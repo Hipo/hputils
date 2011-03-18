@@ -27,6 +27,18 @@
 		EC46DF6513340D030075E597 /* UIColor+HPColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */; };
 		EC46DF6713340D270075E597 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF6613340D270075E597 /* UIKit.framework */; };
 		EC46DF6813340D2F0075E597 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF6613340D270075E597 /* UIKit.framework */; };
+		EC46DF71133410C80075E597 /* UIScreen+HPScaleAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF6F133410C80075E597 /* UIScreen+HPScaleAdditions.h */; };
+		EC46DF72133410C80075E597 /* UIScreen+HPScaleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF70133410C80075E597 /* UIScreen+HPScaleAdditions.m */; };
+		EC46DF75133411010075E597 /* NSString+HPHashAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF73133411000075E597 /* NSString+HPHashAdditions.h */; };
+		EC46DF76133411010075E597 /* NSString+HPHashAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF74133411000075E597 /* NSString+HPHashAdditions.m */; };
+		EC46DF871334122E0075E597 /* NSDate+HPTimeSinceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF851334122C0075E597 /* NSDate+HPTimeSinceAdditions.h */; };
+		EC46DF881334122E0075E597 /* NSDate+HPTimeSinceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF861334122D0075E597 /* NSDate+HPTimeSinceAdditions.m */; };
+		EC46DF8B1334129C0075E597 /* NSObject+HPKVCAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF891334129A0075E597 /* NSObject+HPKVCAdditions.h */; };
+		EC46DF8C1334129C0075E597 /* NSObject+HPKVCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF8A1334129B0075E597 /* NSObject+HPKVCAdditions.m */; };
+		EC46DF8F133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */; };
+		EC46DF90133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */; };
+		EC46DF91133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */; };
+		EC46DF92133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */; };
 		ECB76456133400D000451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
 		ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = ECB764671334015400451A54 /* HPUtils-Prefix.pch */; };
 		ECB7646C1334020300451A54 /* HPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646B1334020300451A54 /* HPUtils.h */; };
@@ -44,6 +56,16 @@
 		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
 		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
 		EC46DF6613340D270075E597 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		EC46DF6F133410C80075E597 /* UIScreen+HPScaleAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+HPScaleAdditions.h"; sourceTree = "<group>"; };
+		EC46DF70133410C80075E597 /* UIScreen+HPScaleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+HPScaleAdditions.m"; sourceTree = "<group>"; };
+		EC46DF73133411000075E597 /* NSString+HPHashAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HPHashAdditions.h"; sourceTree = "<group>"; };
+		EC46DF74133411000075E597 /* NSString+HPHashAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HPHashAdditions.m"; sourceTree = "<group>"; };
+		EC46DF851334122C0075E597 /* NSDate+HPTimeSinceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HPTimeSinceAdditions.h"; sourceTree = "<group>"; };
+		EC46DF861334122D0075E597 /* NSDate+HPTimeSinceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HPTimeSinceAdditions.m"; sourceTree = "<group>"; };
+		EC46DF891334129A0075E597 /* NSObject+HPKVCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HPKVCAdditions.h"; sourceTree = "<group>"; };
+		EC46DF8A1334129B0075E597 /* NSObject+HPKVCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HPKVCAdditions.m"; sourceTree = "<group>"; };
+		EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HPCapabilityAdditions.h"; sourceTree = "<group>"; };
+		EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+HPCapabilityAdditions.m"; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB76455133400D000451A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECB764671334015400451A54 /* HPUtils-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Prefix.pch"; sourceTree = "<group>"; };
@@ -85,6 +107,16 @@
 			children = (
 				EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */,
 				EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */,
+				EC46DF6F133410C80075E597 /* UIScreen+HPScaleAdditions.h */,
+				EC46DF70133410C80075E597 /* UIScreen+HPScaleAdditions.m */,
+				EC46DF73133411000075E597 /* NSString+HPHashAdditions.h */,
+				EC46DF74133411000075E597 /* NSString+HPHashAdditions.m */,
+				EC46DF851334122C0075E597 /* NSDate+HPTimeSinceAdditions.h */,
+				EC46DF861334122D0075E597 /* NSDate+HPTimeSinceAdditions.m */,
+				EC46DF891334129A0075E597 /* NSObject+HPKVCAdditions.h */,
+				EC46DF8A1334129B0075E597 /* NSObject+HPKVCAdditions.m */,
+				EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */,
+				EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -208,6 +240,11 @@
 				ECB7646F1334027F00451A54 /* HPLoadingView.h in Headers */,
 				ECB76473133402CB00451A54 /* HPLoadingViewController.h in Headers */,
 				EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */,
+				EC46DF71133410C80075E597 /* UIScreen+HPScaleAdditions.h in Headers */,
+				EC46DF75133411010075E597 /* NSString+HPHashAdditions.h in Headers */,
+				EC46DF871334122E0075E597 /* NSDate+HPTimeSinceAdditions.h in Headers */,
+				EC46DF8B1334129C0075E597 /* NSObject+HPKVCAdditions.h in Headers */,
+				EC46DF8F133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +252,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC46DF90133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +344,11 @@
 				ECB764701334027F00451A54 /* HPLoadingView.m in Sources */,
 				ECB76474133402CB00451A54 /* HPLoadingViewController.m in Sources */,
 				EC46DF6513340D030075E597 /* UIColor+HPColorAdditions.m in Sources */,
+				EC46DF72133410C80075E597 /* UIScreen+HPScaleAdditions.m in Sources */,
+				EC46DF76133411010075E597 /* NSString+HPHashAdditions.m in Sources */,
+				EC46DF881334122E0075E597 /* NSDate+HPTimeSinceAdditions.m in Sources */,
+				EC46DF8C1334129C0075E597 /* NSObject+HPKVCAdditions.m in Sources */,
+				EC46DF91133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +358,7 @@
 			files = (
 				ECB764841334076500451A54 /* HPLoadingView.m in Sources */,
 				ECB764851334076900451A54 /* HPLoadingViewController.m in Sources */,
+				EC46DF92133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
