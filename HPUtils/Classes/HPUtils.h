@@ -7,7 +7,11 @@
 //
 
 #import "HPCacheManager.h"
+#import "HPLocationManager.h"
 #import "HPReachabilityManager.h"
+
+#import "HPImageOperation.h"
+#import "HPRequestOperation.h"
 
 #import "HPLoadingViewController.h"
 
