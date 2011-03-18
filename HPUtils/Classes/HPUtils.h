@@ -7,3 +7,5 @@
 //
 
 #import "HPLoadingViewController.h"
+
+#import "UIColor+HPColorAdditions.h"
