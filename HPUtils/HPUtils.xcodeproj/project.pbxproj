@@ -58,6 +58,10 @@
 		EC46DFAB133417A40075E597 /* HPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFA9133417A40075E597 /* HPLocationManager.h */; };
 		EC46DFAC133417A40075E597 /* HPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFAA133417A40075E597 /* HPLocationManager.m */; };
 		EC46DFAE133418980075E597 /* HPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFAD133418960075E597 /* HPErrors.h */; };
+		EC46DFB2133419CC0075E597 /* HPImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFB0133419CC0075E597 /* HPImageOperation.h */; };
+		EC46DFB3133419CC0075E597 /* HPImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFB0133419CC0075E597 /* HPImageOperation.h */; };
+		EC46DFB4133419CC0075E597 /* HPImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFB1133419CC0075E597 /* HPImageOperation.m */; };
+		EC46DFB5133419CC0075E597 /* HPImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFB1133419CC0075E597 /* HPImageOperation.m */; };
 		ECB76456133400D000451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
 		ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = ECB764671334015400451A54 /* HPUtils-Prefix.pch */; };
 		ECB7646C1334020300451A54 /* HPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646B1334020300451A54 /* HPUtils.h */; };
@@ -94,6 +98,8 @@
 		EC46DFA9133417A40075E597 /* HPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLocationManager.h; sourceTree = "<group>"; };
 		EC46DFAA133417A40075E597 /* HPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLocationManager.m; sourceTree = "<group>"; };
 		EC46DFAD133418960075E597 /* HPErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPErrors.h; sourceTree = "<group>"; };
+		EC46DFB0133419CC0075E597 /* HPImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPImageOperation.h; sourceTree = "<group>"; };
+		EC46DFB1133419CC0075E597 /* HPImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPImageOperation.m; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB76455133400D000451A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECB764671334015400451A54 /* HPUtils-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Prefix.pch"; sourceTree = "<group>"; };
@@ -153,6 +159,15 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		EC46DFAF133419B00075E597 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				EC46DFB0133419CC0075E597 /* HPImageOperation.h */,
+				EC46DFB1133419CC0075E597 /* HPImageOperation.m */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		ECB76447133400D000451A54 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +209,7 @@
 				EC46DF6113340CEA0075E597 /* Categories */,
 				ECB764601334015400451A54 /* Controllers */,
 				ECB764611334015400451A54 /* Managers */,
+				EC46DFAF133419B00075E597 /* Operations */,
 				ECB764621334015400451A54 /* Views */,
 			);
 			path = Classes;
@@ -290,6 +306,7 @@
 				EC46DFA0133416380075E597 /* HPReachabilityManager.h in Headers */,
 				EC46DFAB133417A40075E597 /* HPLocationManager.h in Headers */,
 				EC46DFAE133418980075E597 /* HPErrors.h in Headers */,
+				EC46DFB2133419CC0075E597 /* HPImageOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +316,7 @@
 			files = (
 				EC46DF90133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */,
 				EC46DF96133414D50075E597 /* HPCacheManager.h in Headers */,
+				EC46DFB3133419CC0075E597 /* HPImageOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +416,7 @@
 				EC46DF97133414D50075E597 /* HPCacheManager.m in Sources */,
 				EC46DFA1133416380075E597 /* HPReachabilityManager.m in Sources */,
 				EC46DFAC133417A40075E597 /* HPLocationManager.m in Sources */,
+				EC46DFB4133419CC0075E597 /* HPImageOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +434,7 @@
 				EC46DF98133414D50075E597 /* HPCacheManager.m in Sources */,
 				EC46DFA8133417950075E597 /* HPReachabilityManager.m in Sources */,
 				EC46DF991334159C0075E597 /* UIColor+HPColorAdditions.m in Sources */,
+				EC46DFB5133419CC0075E597 /* HPImageOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
