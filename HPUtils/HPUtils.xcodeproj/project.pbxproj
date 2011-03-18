@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		ECB764801334065500451A54 /* HPUtils */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = ECB764811334065500451A54 /* Build configuration list for PBXAggregateTarget "HPUtils" */;
+			buildPhases = (
+				ECB764831334070700451A54 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = HPUtils;
+			productName = HPUtils;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		EC46DF4B133409070075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
+		EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
+		EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */; };
+		EC46DF6513340D030075E597 /* UIColor+HPColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */; };
+		EC46DF6713340D270075E597 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF6613340D270075E597 /* UIKit.framework */; };
+		EC46DF6813340D2F0075E597 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF6613340D270075E597 /* UIKit.framework */; };
+		ECB76456133400D000451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
+		ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = ECB764671334015400451A54 /* HPUtils-Prefix.pch */; };
+		ECB7646C1334020300451A54 /* HPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646B1334020300451A54 /* HPUtils.h */; };
+		ECB7646F1334027F00451A54 /* HPLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646D1334027F00451A54 /* HPLoadingView.h */; };
+		ECB764701334027F00451A54 /* HPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB7646E1334027F00451A54 /* HPLoadingView.m */; };
+		ECB76473133402CB00451A54 /* HPLoadingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB76471133402CB00451A54 /* HPLoadingViewController.h */; };
+		ECB76474133402CB00451A54 /* HPLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB76472133402CB00451A54 /* HPLoadingViewController.m */; };
+		ECB7647A133405FC00451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
+		ECB764841334076500451A54 /* HPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB7646E1334027F00451A54 /* HPLoadingView.m */; };
+		ECB764851334076900451A54 /* HPLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB76472133402CB00451A54 /* HPLoadingViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EC46DF49133408FE0075E597 /* PLBlocks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PLBlocks.framework; sourceTree = "<group>"; };
+		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
+		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
+		EC46DF6613340D270075E597 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECB76455133400D000451A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ECB764671334015400451A54 /* HPUtils-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Prefix.pch"; sourceTree = "<group>"; };
+		ECB7646B1334020300451A54 /* HPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPUtils.h; sourceTree = "<group>"; };
+		ECB7646D1334027F00451A54 /* HPLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLoadingView.h; sourceTree = "<group>"; };
+		ECB7646E1334027F00451A54 /* HPLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLoadingView.m; sourceTree = "<group>"; };
+		ECB76471133402CB00451A54 /* HPLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLoadingViewController.h; sourceTree = "<group>"; };
+		ECB76472133402CB00451A54 /* HPLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLoadingViewController.m; sourceTree = "<group>"; };
+		ECB76479133405FC00451A54 /* libHPUtils-Simulator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Simulator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECB7647D133405FC00451A54 /* HPUtils-Simulator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Simulator-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECB7644F133400D000451A54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC46DF6813340D2F0075E597 /* UIKit.framework in Frameworks */,
+				ECB76456133400D000451A54 /* Foundation.framework in Frameworks */,
+				EC46DF4B133409070075E597 /* PLBlocks.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECB76476133405FC00451A54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC46DF6713340D270075E597 /* UIKit.framework in Frameworks */,
+				ECB7647A133405FC00451A54 /* Foundation.framework in Frameworks */,
+				EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC46DF6113340CEA0075E597 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */,
+				EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		ECB76447133400D000451A54 = {
+			isa = PBXGroup;
+			children = (
+				ECB7645F1334015400451A54 /* Classes */,
+				ECB764631334015400451A54 /* Dependencies */,
+				ECB764651334015400451A54 /* Resources */,
+				ECB764661334015400451A54 /* Support */,
+				ECB7647B133405FC00451A54 /* HPUtils-Simulator */,
+				ECB76454133400D000451A54 /* Frameworks */,
+				ECB76453133400D000451A54 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECB76453133400D000451A54 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECB76452133400D000451A54 /* libHPUtils-Device.a */,
+				ECB76479133405FC00451A54 /* libHPUtils-Simulator.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECB76454133400D000451A54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC46DF6613340D270075E597 /* UIKit.framework */,
+				ECB76455133400D000451A54 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECB7645F1334015400451A54 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				ECB7646B1334020300451A54 /* HPUtils.h */,
+				EC46DF6113340CEA0075E597 /* Categories */,
+				ECB764601334015400451A54 /* Controllers */,
+				ECB764611334015400451A54 /* Managers */,
+				ECB764621334015400451A54 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		ECB764601334015400451A54 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ECB76471133402CB00451A54 /* HPLoadingViewController.h */,
+				ECB76472133402CB00451A54 /* HPLoadingViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		ECB764611334015400451A54 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		ECB764621334015400451A54 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ECB7646D1334027F00451A54 /* HPLoadingView.h */,
+				ECB7646E1334027F00451A54 /* HPLoadingView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ECB764631334015400451A54 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				EC46DF49133408FE0075E597 /* PLBlocks.framework */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		ECB764651334015400451A54 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ECB764661334015400451A54 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				ECB764671334015400451A54 /* HPUtils-Prefix.pch */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		ECB7647B133405FC00451A54 /* HPUtils-Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				ECB7647C133405FC00451A54 /* Supporting Files */,
+			);
+			path = "HPUtils-Simulator";
+			sourceTree = "<group>";
+		};
+		ECB7647C133405FC00451A54 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECB7647D133405FC00451A54 /* HPUtils-Simulator-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		ECB76450133400D000451A54 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */,
+				ECB7646C1334020300451A54 /* HPUtils.h in Headers */,
+				ECB7646F1334027F00451A54 /* HPLoadingView.h in Headers */,
+				ECB76473133402CB00451A54 /* HPLoadingViewController.h in Headers */,
+				EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECB76477133405FC00451A54 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		ECB76451133400D000451A54 /* HPUtils-Device */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECB7645C133400D000451A54 /* Build configuration list for PBXNativeTarget "HPUtils-Device" */;
+			buildPhases = (
+				ECB7644E133400D000451A54 /* Sources */,
+				ECB7644F133400D000451A54 /* Frameworks */,
+				ECB76450133400D000451A54 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HPUtils-Device";
+			productName = HPUtils;
+			productReference = ECB76452133400D000451A54 /* libHPUtils-Device.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		ECB76478133405FC00451A54 /* HPUtils-Simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECB7647E133405FC00451A54 /* Build configuration list for PBXNativeTarget "HPUtils-Simulator" */;
+			buildPhases = (
+				ECB76475133405FC00451A54 /* Sources */,
+				ECB76476133405FC00451A54 /* Frameworks */,
+				ECB76477133405FC00451A54 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HPUtils-Simulator";
+			productName = "HPUtils-Simulator";
+			productReference = ECB76479133405FC00451A54 /* libHPUtils-Simulator.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECB76449133400D000451A54 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Hippo Foundry";
+			};
+			buildConfigurationList = ECB7644C133400D000451A54 /* Build configuration list for PBXProject "HPUtils" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ECB76447133400D000451A54;
+			productRefGroup = ECB76453133400D000451A54 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECB76451133400D000451A54 /* HPUtils-Device */,
+				ECB76478133405FC00451A54 /* HPUtils-Simulator */,
+				ECB764801334065500451A54 /* HPUtils */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ECB764831334070700451A54 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -configuration \"${CONFIGURATION}\" -target \"${PRODUCT_NAME}-Device\" -sdk iphoneos\nxcodebuild -configuration \"${CONFIGURATION}\" -target \"${PRODUCT_NAME}-Simulator\" -sdk iphonesimulator -miphoneos-version-min=3.0\n\nBUILD_DIR=\"${PROJECT_DIR}/build\"\nFRAMEWORK_NAME=${PRODUCT_NAME}\nFRAMEWORK_PATH=\"${BUILD_DIR}/${PRODUCT_NAME}.framework\"\n\nif [ -d \"$FRAMEWORK_PATH\" ]\nthen\necho \"Cleaning existing framework...\"\nrm -rf \"$FRAMEWORK_PATH\"\nfi\n\nmkdir -p \"$FRAMEWORK_PATH\"\nmkdir -p \"$FRAMEWORK_PATH/Headers\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PRODUCT_NAME}-Device.a\" \\\n\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PRODUCT_NAME}-Simulator.a\" \\\n-create -output \"$FRAMEWORK_PATH/${PRODUCT_NAME}\"\n\nfind \"Classes\" -name \"*.h\" | xargs -tI % cp -fp % \"$FRAMEWORK_PATH/Headers/\"\nfind \"Dependencies\" -name \"*.h\" | xargs -tI % cp -fp % \"$FRAMEWORK_PATH/Headers/\"\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECB7644E133400D000451A54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECB764701334027F00451A54 /* HPLoadingView.m in Sources */,
+				ECB76474133402CB00451A54 /* HPLoadingViewController.m in Sources */,
+				EC46DF6513340D030075E597 /* UIColor+HPColorAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECB76475133405FC00451A54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECB764841334076500451A54 /* HPLoadingView.m in Sources */,
+				ECB764851334076900451A54 /* HPLoadingViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ECB7645B133400D000451A54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Support/HPUtils-Prefix.pch";
+				GCC_VERSION = coop.plausible.blocks.compilers.gcc.4_2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				OTHER_CFLAGS = "-D__IPHONE_OS_VERSION_MIN_REQUIRED=031300";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		ECB7645E133400D000451A54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HPUtils.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ECB7647F133405FC00451A54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/HPUtils_Simulator.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphonesimulator;
+			};
+			name = Release;
+		};
+		ECB764821334065500451A54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECB7644C133400D000451A54 /* Build configuration list for PBXProject "HPUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECB7645B133400D000451A54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECB7645C133400D000451A54 /* Build configuration list for PBXNativeTarget "HPUtils-Device" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECB7645E133400D000451A54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECB7647E133405FC00451A54 /* Build configuration list for PBXNativeTarget "HPUtils-Simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECB7647F133405FC00451A54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECB764811334065500451A54 /* Build configuration list for PBXAggregateTarget "HPUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECB764821334065500451A54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECB76449133400D000451A54 /* Project object */;
+}
