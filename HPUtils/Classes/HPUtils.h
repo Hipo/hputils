@@ -6,6 +6,13 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import "HPCacheManager.h"
+
 #import "HPLoadingViewController.h"
 
 #import "UIColor+HPColorAdditions.h"
+#import "UIScreen+HPScaleAdditions.h"
+#import "NSString+HPHashAdditions.h"
+#import "NSDate+HPTimeSinceAdditions.h"
+#import "NSObject+HPKVCAdditions.h"
+#import "UIDevice+HPCapabilityAdditions.h"

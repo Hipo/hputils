@@ -39,6 +39,15 @@
 		EC46DF90133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */; };
 		EC46DF91133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */; };
 		EC46DF92133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */; };
+		EC46DF95133414D50075E597 /* HPCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF93133414D50075E597 /* HPCacheManager.h */; };
+		EC46DF96133414D50075E597 /* HPCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF93133414D50075E597 /* HPCacheManager.h */; };
+		EC46DF97133414D50075E597 /* HPCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF94133414D50075E597 /* HPCacheManager.m */; };
+		EC46DF98133414D50075E597 /* HPCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF94133414D50075E597 /* HPCacheManager.m */; };
+		EC46DF991334159C0075E597 /* UIColor+HPColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */; };
+		EC46DF9A133415A00075E597 /* UIScreen+HPScaleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF70133410C80075E597 /* UIScreen+HPScaleAdditions.m */; };
+		EC46DF9B133415A70075E597 /* NSString+HPHashAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF74133411000075E597 /* NSString+HPHashAdditions.m */; };
+		EC46DF9C133415AB0075E597 /* NSDate+HPTimeSinceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF861334122D0075E597 /* NSDate+HPTimeSinceAdditions.m */; };
+		EC46DF9D133415B00075E597 /* NSObject+HPKVCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF8A1334129B0075E597 /* NSObject+HPKVCAdditions.m */; };
 		ECB76456133400D000451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
 		ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = ECB764671334015400451A54 /* HPUtils-Prefix.pch */; };
 		ECB7646C1334020300451A54 /* HPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646B1334020300451A54 /* HPUtils.h */; };
@@ -66,6 +75,8 @@
 		EC46DF8A1334129B0075E597 /* NSObject+HPKVCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HPKVCAdditions.m"; sourceTree = "<group>"; };
 		EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HPCapabilityAdditions.h"; sourceTree = "<group>"; };
 		EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+HPCapabilityAdditions.m"; sourceTree = "<group>"; };
+		EC46DF93133414D50075E597 /* HPCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCacheManager.h; sourceTree = "<group>"; };
+		EC46DF94133414D50075E597 /* HPCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCacheManager.m; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB76455133400D000451A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECB764671334015400451A54 /* HPUtils-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Prefix.pch"; sourceTree = "<group>"; };
@@ -176,6 +187,8 @@
 		ECB764611334015400451A54 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EC46DF93133414D50075E597 /* HPCacheManager.h */,
+				EC46DF94133414D50075E597 /* HPCacheManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -245,6 +258,7 @@
 				EC46DF871334122E0075E597 /* NSDate+HPTimeSinceAdditions.h in Headers */,
 				EC46DF8B1334129C0075E597 /* NSObject+HPKVCAdditions.h in Headers */,
 				EC46DF8F133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */,
+				EC46DF95133414D50075E597 /* HPCacheManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC46DF90133412DF0075E597 /* UIDevice+HPCapabilityAdditions.h in Headers */,
+				EC46DF96133414D50075E597 /* HPCacheManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +364,7 @@
 				EC46DF881334122E0075E597 /* NSDate+HPTimeSinceAdditions.m in Sources */,
 				EC46DF8C1334129C0075E597 /* NSObject+HPKVCAdditions.m in Sources */,
 				EC46DF91133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */,
+				EC46DF97133414D50075E597 /* HPCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,9 +372,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC46DF9A133415A00075E597 /* UIScreen+HPScaleAdditions.m in Sources */,
 				ECB764841334076500451A54 /* HPLoadingView.m in Sources */,
 				ECB764851334076900451A54 /* HPLoadingViewController.m in Sources */,
+				EC46DF9B133415A70075E597 /* NSString+HPHashAdditions.m in Sources */,
+				EC46DF9C133415AB0075E597 /* NSDate+HPTimeSinceAdditions.m in Sources */,
 				EC46DF92133412DF0075E597 /* UIDevice+HPCapabilityAdditions.m in Sources */,
+				EC46DF9D133415B00075E597 /* NSObject+HPKVCAdditions.m in Sources */,
+				EC46DF98133414D50075E597 /* HPCacheManager.m in Sources */,
+				EC46DF991334159C0075E597 /* UIColor+HPColorAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
