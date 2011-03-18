@@ -14,6 +14,9 @@
 	NSURLResponse *_response;
 	NSString *_MIMEType;
 	NSURL *_requestURL;
+    
+    NSString *_username;
+    NSString *_password;
 	
 	long long _expectedSize;
 	
@@ -25,6 +28,9 @@
     void (^_parserBlock)(NSData *, NSString *);
     void (^_progressBlock)(float);
 }
+
+@property (nonatomic, copy) NSString *username;
+@property (nonatomic, copy) NSString *password;
 
 @property (nonatomic, copy) void (^parserBlock)(NSData *, NSString *);
 @property (nonatomic, copy) void (^progressBlock)(float);

@@ -18,6 +18,8 @@
 
 @implementation HPRequestOperation
 
+@synthesize username = _username;
+@synthesize password = _password;
 @synthesize parserBlock = _parserBlock;
 @synthesize progressBlock = _progressBlock;
 
@@ -35,6 +37,8 @@
 		_isCancelled = NO;
         
 		_MIMEType = nil;
+        _username = nil;
+        _password = nil;
 		_requestURL = [requestURL copy];
 		_cacheResponse = cacheResponse;
 		
@@ -54,6 +58,8 @@
 	
 	return self;
 }
+
+#pragma mark - Operation handling
 
 - (void)start {
 	if ([self isCancelled] || [self isFinished]) {
@@ -109,6 +115,8 @@
 	return _isExecuting;
 }
 
+#pragma Progress and completion block handling
+
 - (void)callProgressBlockWithPercentage:(NSNumber *)percentage {
 	if (![NSThread isMainThread]) {
 		[self performSelectorOnMainThread:_cmd 
@@ -144,6 +152,8 @@
 	_isFinished = YES;
 	[self didChangeValueForKey:@"isFinished"];
 }
+
+#pragma mark - NSURLConnectionDelegate calls
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	_response = [response retain];
@@ -214,9 +224,29 @@
 	}
 }
 
+#pragma mark - Authentication
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	return (_username != nil && _password != nil);
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	if ([challenge previousFailureCount] == 0) {
+		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:_username 
+																	 password:_password 
+																  persistence:NSURLCredentialPersistencePermanent] 
+			   forAuthenticationChallenge:challenge];
+	}
+}
+
+
+#pragma mark - Memory management
+
 - (void)dealloc {
 	[_connection cancel];
-    
+
+    [_username release], _username = nil;
+    [_password release], _password = nil;
 	[_MIMEType release], _MIMEType = nil;
 	[_response release], _response = nil;
 	[_requestURL release], _requestURL = nil;
