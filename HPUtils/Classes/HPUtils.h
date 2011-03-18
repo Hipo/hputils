@@ -7,6 +7,7 @@
 //
 
 #import "HPCacheManager.h"
+#import "HPReachabilityManager.h"
 
 #import "HPLoadingViewController.h"
 
