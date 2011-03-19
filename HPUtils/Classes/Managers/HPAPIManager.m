@@ -207,6 +207,7 @@ static HPAPIManager *_sharedManager = nil;
 	HPRequestOperation *request = [self imageRequestForURL:imageURL];
 	
 	[request setIndexPath:indexPath];
+    [request setQueuePriority:NSOperationQueuePriorityLow];
     
 	if (CGSizeEqualToSize(targetSize, CGSizeZero)) {
 		[request addCompletionBlock:block];
@@ -221,6 +222,7 @@ static HPAPIManager *_sharedManager = nil;
 				
 				[operation setIndexPath:indexPath];
 				[operation addCompletionBlock:block];
+                [operation setQueuePriority:NSOperationQueuePriorityLow];
 				
 				[_processQueue addOperation:operation];
 				
@@ -245,6 +247,7 @@ static HPAPIManager *_sharedManager = nil;
                                                               imageFormat:HPImageFormatJPEG];
 	
 	[operation addCompletionBlock:block];
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
 	[operation setOutputFormat:HPImageOperationOutputFormatRawData];
 	
 	[_processQueue addOperation:operation];
