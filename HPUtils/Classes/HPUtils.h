@@ -14,6 +14,7 @@
 #import "HPImageOperation.h"
 #import "HPRequestOperation.h"
 
+#import "HPLoadingWindow.h"
 #import "HPLoadingViewController.h"
 #import "HPImageLoadingTableViewController.h"
 

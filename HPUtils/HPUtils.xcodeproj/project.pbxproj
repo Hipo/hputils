@@ -97,6 +97,10 @@
 		EC46DFE8133426580075E597 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFD3133426580075E597 /* SBJsonWriter.m */; };
 		EC46DFE9133426580075E597 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFD3133426580075E597 /* SBJsonWriter.m */; };
 		EC46DFEA133429A00075E597 /* HPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFAA133417A40075E597 /* HPLocationManager.m */; };
+		EC46DFED133516330075E597 /* HPLoadingWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFEB133516320075E597 /* HPLoadingWindow.h */; };
+		EC46DFEE133516330075E597 /* HPLoadingWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFEB133516320075E597 /* HPLoadingWindow.h */; };
+		EC46DFEF133516330075E597 /* HPLoadingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFEC133516320075E597 /* HPLoadingWindow.m */; };
+		EC46DFF0133516330075E597 /* HPLoadingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFEC133516320075E597 /* HPLoadingWindow.m */; };
 		ECB76456133400D000451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
 		ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = ECB764671334015400451A54 /* HPUtils-Prefix.pch */; };
 		ECB7646C1334020300451A54 /* HPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646B1334020300451A54 /* HPUtils.h */; };
@@ -152,6 +156,8 @@
 		EC46DFD1133426580075E597 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		EC46DFD2133426580075E597 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		EC46DFD3133426580075E597 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		EC46DFEB133516320075E597 /* HPLoadingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLoadingWindow.h; sourceTree = "<group>"; };
+		EC46DFEC133516320075E597 /* HPLoadingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLoadingWindow.m; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB76455133400D000451A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECB764671334015400451A54 /* HPUtils-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Prefix.pch"; sourceTree = "<group>"; };
@@ -318,6 +324,8 @@
 			children = (
 				ECB7646D1334027F00451A54 /* HPLoadingView.h */,
 				ECB7646E1334027F00451A54 /* HPLoadingView.m */,
+				EC46DFEB133516320075E597 /* HPLoadingWindow.h */,
+				EC46DFEC133516320075E597 /* HPLoadingWindow.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 				EC46DFDE133426580075E597 /* SBJsonBase.h in Headers */,
 				EC46DFE2133426580075E597 /* SBJsonParser.h in Headers */,
 				EC46DFE6133426580075E597 /* SBJsonWriter.h in Headers */,
+				EC46DFED133516330075E597 /* HPLoadingWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +421,7 @@
 				EC46DFDF133426580075E597 /* SBJsonBase.h in Headers */,
 				EC46DFE3133426580075E597 /* SBJsonParser.h in Headers */,
 				EC46DFE7133426580075E597 /* SBJsonWriter.h in Headers */,
+				EC46DFEE133516330075E597 /* HPLoadingWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +530,7 @@
 				EC46DFE0133426580075E597 /* SBJsonBase.m in Sources */,
 				EC46DFE4133426580075E597 /* SBJsonParser.m in Sources */,
 				EC46DFE8133426580075E597 /* SBJsonWriter.m in Sources */,
+				EC46DFEF133516330075E597 /* HPLoadingWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +558,7 @@
 				EC46DFE1133426580075E597 /* SBJsonBase.m in Sources */,
 				EC46DFE5133426580075E597 /* SBJsonParser.m in Sources */,
 				EC46DFE9133426580075E597 /* SBJsonWriter.m in Sources */,
+				EC46DFF0133516330075E597 /* HPLoadingWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
