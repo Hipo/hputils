@@ -11,8 +11,12 @@
 
 
 @interface HPRequestOperation (PrivateMethods)
+- (void)sendErrorToBlocks:(NSError *)error;
+- (void)sendResourcesToBlocks:(id)resources;
 - (void)callParserBlockWithData:(NSData *)data;
 - (void)callProgressBlockWithPercentage:(NSNumber *)percentage;
+- (void)callParserBlockWithData:(NSData *)data error:(NSError *)error;
+- (void)sendResourcesToBlocks:(id)resources withError:(NSError *)error;
 @end
 
 
@@ -20,38 +24,70 @@
 
 @synthesize username = _username;
 @synthesize password = _password;
+@synthesize indexPath = _indexPath;
 @synthesize parserBlock = _parserBlock;
 @synthesize progressBlock = _progressBlock;
 
-+ (HPRequestOperation *)operationWithURL:(NSURL *)requestURL cacheResponse:(BOOL)cacheResponse {
-	return [[[HPRequestOperation alloc] initWithURL:requestURL 
-                                      cacheResponse:cacheResponse] autorelease];
++ (HPRequestOperation *)requestForURL:(NSURL *)url 
+                             withData:(NSData *)data 
+                               method:(HPRequestMethod)method 
+                               cached:(BOOL)cached {
+	return [[[HPRequestOperation alloc] initWithURL:url 
+                                               data:data 
+                                             method:method 
+                                             cached:cached] autorelease];
 }
 
-- (id)initWithURL:(NSURL *)requestURL cacheResponse:(BOOL)cacheResponse {
-	self = [super init];
-	
+- (id)initWithURL:(NSURL *)url 
+             data:(NSData *)data 
+           method:(HPRequestMethod)method 
+           cached:(BOOL)cached {
+    self = [super init];
+    
 	if (self) {
-		_isFinished = NO;
-		_isExecuting = NO;
+		_indexPath = nil;
+		_isCached = cached;
+		_requestMethod = method;
+		_requestURL = [url copy];
+		_requestData = [data copy];
+		_completionBlocks = [[NSMutableSet alloc] init];
+		
 		_isCancelled = NO;
-        
-		_MIMEType = nil;
-        _username = nil;
-        _password = nil;
-		_requestURL = [requestURL copy];
-		_cacheResponse = cacheResponse;
+		_isExecuting = NO;
+		_isFinished = NO;
 		
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_requestURL 
-															   cachePolicy:(_cacheResponse) ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringCacheData 
+															   cachePolicy:(_isCached) ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringCacheData 
 														   timeoutInterval:30.0];
 		
+		switch (_requestMethod) {
+			case HPRequestMethodGet:
+				[request setHTTPMethod:@"GET"];
+				break;
+			case HPRequestMethodPost:
+				[request setHTTPMethod:@"POST"];
+				break;
+			case HPRequestMethodDelete:
+				[request setHTTPMethod:@"DELETE"];
+				break;
+			case HPRequestMethodPut:
+				[request setHTTPMethod:@"PUT"];
+				break;
+		}
+
 		[request setValue:@"text/javascript" forHTTPHeaderField:@"Accept"];
+		[request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+		
+		if (_requestData) {
+			[request setHTTPBody:_requestData];
+			[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+			[request setValue:[NSString stringWithFormat:@"%d", [_requestData length]] forHTTPHeaderField:@"Content-Length"];
+		}
 		
 		_connection = [[NSURLConnection alloc] initWithRequest:request 
 													  delegate:self 
 											  startImmediately:NO];
-		
+        
 		[_connection scheduleInRunLoop:[NSRunLoop mainRunLoop] 
 							   forMode:NSRunLoopCommonModes];
 	}
@@ -75,7 +111,7 @@
 	} else {
         HPCacheItem *cacheItem = nil;
         
-        if (_cacheResponse) {
+        if (_isCached) {
             cacheItem = [[HPCacheManager sharedManager] cachedItemForURL:_requestURL];
         }
         
@@ -117,6 +153,75 @@
 
 #pragma Progress and completion block handling
 
+- (void)addCompletionBlock:(void(^)(id resources, NSError *error))block {
+	[_completionBlocks addObject:[[block copy] autorelease]];
+}
+
+- (void)sendResourcesToBlocks:(id)resources {
+	if (![NSThread isMainThread]) {
+		[self performSelectorOnMainThread:_cmd 
+							   withObject:resources 
+							waitUntilDone:NO];
+		
+		return;
+	}
+	
+	[self sendResourcesToBlocks:resources withError:nil];
+}
+
+- (void)sendErrorToBlocks:(NSError *)error {
+	if (![NSThread isMainThread]) {
+		[self performSelectorOnMainThread:_cmd 
+							   withObject:error 
+							waitUntilDone:NO];
+		
+		return;
+	}
+    
+	[self sendResourcesToBlocks:nil withError:error];
+}
+
+- (void)sendResourcesToBlocks:(id)resources withError:(NSError *)error {
+	for (void(^blk)(id resources, NSError *error) in _completionBlocks) {
+		blk(resources, error);
+	}
+    
+	[self willChangeValueForKey:@"isExecuting"];
+	_isExecuting = NO;
+	[self didChangeValueForKey:@"isExecuting"];
+	
+	[self willChangeValueForKey:@"isFinished"];
+	_isFinished = YES;
+	[self didChangeValueForKey:@"isFinished"];
+}
+
+- (void)callParserBlockWithData:(NSData *)data {
+	[self callParserBlockWithData:data error:nil];
+}
+
+- (void)callParserBlockWithData:(NSData *)data error:(NSError *)error {
+	if (data != nil) {
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        
+		if (![self isCancelled] && _parserBlock != nil) {
+			id parsedData = _parserBlock(data, _MIMEType);
+			
+			if ([parsedData respondsToSelector:@selector(objectForKey:)] && 
+                [parsedData objectForKey:@"error"] != nil) {
+				[self sendResourcesToBlocks:nil];
+			} else {
+				[self sendResourcesToBlocks:parsedData];
+			}
+		} else {
+			[self sendResourcesToBlocks:nil];
+		}
+		
+		[pool drain];
+	} else {
+		[self sendErrorToBlocks:error];
+	}
+}
+
 - (void)callProgressBlockWithPercentage:(NSNumber *)percentage {
 	if (![NSThread isMainThread]) {
 		[self performSelectorOnMainThread:_cmd 
@@ -129,28 +234,6 @@
 	if (![self isCancelled] && _progressBlock != nil) {
 		_progressBlock([percentage floatValue]);
 	}
-}
-
-- (void)callParserBlockWithData:(NSData *)data {
-	if (![NSThread isMainThread]) {
-		[self performSelectorOnMainThread:_cmd 
-							   withObject:data 
-							waitUntilDone:NO];
-		
-		return;
-	}
-	
-	if (![self isCancelled] && _parserBlock != nil) {
-		_parserBlock(data, _MIMEType);
-	}
-	
-	[self willChangeValueForKey:@"isExecuting"];
-	_isExecuting = NO;
-	[self didChangeValueForKey:@"isExecuting"];
-	
-	[self willChangeValueForKey:@"isFinished"];
-	_isFinished = YES;
-	[self didChangeValueForKey:@"isFinished"];
 }
 
 #pragma mark - NSURLConnectionDelegate calls
@@ -208,7 +291,7 @@
 	if (statusCode == 304 || statusCode >= 400) {
 		[self callParserBlockWithData:nil];
 	} else {
-		if (_cacheResponse) {
+		if (_isCached) {
 			if ([_response respondsToSelector:@selector(MIMEType)]) {
 				_MIMEType = [[(NSHTTPURLResponse *)_response MIMEType] copy];
 			} else {
@@ -249,11 +332,14 @@
     [_password release], _password = nil;
 	[_MIMEType release], _MIMEType = nil;
 	[_response release], _response = nil;
+    [_indexPath release], _indexPath = nil;
 	[_requestURL release], _requestURL = nil;
 	[_connection release], _connection = nil;
 	[_loadedData release], _loadedData = nil;
+    [_requestData release], _requestData = nil;
 	[_parserBlock release], _parserBlock = nil;
 	[_progressBlock release], _progressBlock = nil;
+    [_completionBlocks release], _completionBlocks = nil;
 	
 	[super dealloc];
 }

@@ -6,6 +6,7 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import "HPAPIManager.h"
 #import "HPCacheManager.h"
 #import "HPLocationManager.h"
 #import "HPReachabilityManager.h"
@@ -14,6 +15,7 @@
 #import "HPRequestOperation.h"
 
 #import "HPLoadingViewController.h"
+#import "HPImageLoadingTableViewController.h"
 
 #import "UIColor+HPColorAdditions.h"
 #import "UIScreen+HPScaleAdditions.h"

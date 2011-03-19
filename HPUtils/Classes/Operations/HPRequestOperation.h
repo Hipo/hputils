@@ -7,11 +7,24 @@
 //
 
 
+typedef enum {
+	HPRequestMethodGet,
+	HPRequestMethodPost,
+	HPRequestMethodPut,
+	HPRequestMethodDelete
+} HPRequestMethod;
+
+
 @interface HPRequestOperation : NSOperation {
 @private
+	HPRequestMethod _requestMethod;
+    
+    NSMutableSet *_completionBlocks;
 	NSURLConnection *_connection;
     NSMutableData *_loadedData;
 	NSURLResponse *_response;
+    NSIndexPath *_indexPath;
+	NSData *_requestData;
 	NSString *_MIMEType;
 	NSURL *_requestURL;
     
@@ -20,23 +33,32 @@
 	
 	long long _expectedSize;
 	
-	BOOL _cacheResponse;
+	BOOL _isCached;
 	BOOL _isExecuting;
 	BOOL _isCancelled;
 	BOOL _isFinished;
     
-    void (^_parserBlock)(NSData *, NSString *);
+    id (^_parserBlock)(NSData *, NSString *);
     void (^_progressBlock)(float);
 }
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSIndexPath *indexPath;
 
-@property (nonatomic, copy) void (^parserBlock)(NSData *, NSString *);
+@property (nonatomic, copy) id (^parserBlock)(NSData *, NSString *);
 @property (nonatomic, copy) void (^progressBlock)(float);
 
-+ (HPRequestOperation *)operationWithURL:(NSURL *)requestURL cacheResponse:(BOOL)cacheResponse;
++ (HPRequestOperation *)requestForURL:(NSURL *)url 
+                             withData:(NSData *)data 
+                               method:(HPRequestMethod)method 
+                               cached:(BOOL)cached;
 
-- (id)initWithURL:(NSURL *)requestURL cacheResponse:(BOOL)cacheResponse;
+- (id)initWithURL:(NSURL *)url 
+             data:(NSData *)data 
+           method:(HPRequestMethod)method 
+           cached:(BOOL)cached;
+
+- (void)addCompletionBlock:(void(^)(id resources, NSError *error))block;
 
 @end
