@@ -114,6 +114,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC0EC7831335636D00BD383A /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
+		EC0EC7841335636D00BD383A /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		EC0EC7851335636D00BD383A /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
+		EC0EC7861335636D00BD383A /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
+		EC0EC7871335636D00BD383A /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
+		EC0EC7881335636D00BD383A /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
 		EC46DF49133408FE0075E597 /* PLBlocks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PLBlocks.framework; sourceTree = "<group>"; };
 		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
 		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
@@ -198,6 +204,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC0EC7821335636D00BD383A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EC0EC7831335636D00BD383A /* error.png */,
+				EC0EC7841335636D00BD383A /* error@2x.png */,
+				EC0EC7851335636D00BD383A /* success.png */,
+				EC0EC7861335636D00BD383A /* success@2x.png */,
+				EC0EC7871335636D00BD383A /* warning.png */,
+				EC0EC7881335636D00BD383A /* warning@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		EC46DF6113340CEA0075E597 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +361,7 @@
 		ECB764651334015400451A54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC0EC7821335636D00BD383A /* Images */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

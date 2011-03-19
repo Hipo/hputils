@@ -29,11 +29,13 @@ static NSString * const kHPLoadingViewAnimationEnd = @"loadingAnimationEnd";
     if (self) {
         [self setBackgroundColor:[UIColor lightBlueBackgroundColor]];
         
+        CGFloat centerYOffset = 20.0;
+        
         _loadIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
         [_loadIndicator setHidesWhenStopped:YES];
         [_loadIndicator setCenter:CGPointMake(floorf(self.bounds.size.width / 2.0), 
-                                              floorf(self.bounds.size.height / 2.0))];
+                                              floorf(self.bounds.size.height / 2.0) - centerYOffset)];
         [_loadIndicator setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin | 
                                              UIViewAutoresizingFlexibleBottomMargin | 
                                              UIViewAutoresizingFlexibleLeftMargin | 
@@ -93,13 +95,14 @@ static NSString * const kHPLoadingViewAnimationEnd = @"loadingAnimationEnd";
         if (_errorView == nil) {
             _errorView = [[UIView alloc] initWithFrame:CGRectInset(self.bounds, 40.0, 40.0)];
             
+            CGFloat centerYOffset = 20.0;
             UIImageView *errorIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"warning.png"]];
             
             [errorIcon sizeToFit];
             [errorIcon setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | 
                                             UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin)];
             [errorIcon setCenter:CGPointMake(floorf(_errorView.bounds.size.width / 2.0), 
-                                             floorf(_errorView.bounds.size.height / 2.0))];
+                                             floorf(_errorView.bounds.size.height / 2.0) - centerYOffset)];
             
             [_errorView addSubview:errorIcon];
             
