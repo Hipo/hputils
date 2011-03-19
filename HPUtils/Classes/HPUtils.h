@@ -6,6 +6,8 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import "HPErrors.h"
+
 #import "HPCacheManager.h"
 #import "HPRequestManager.h"
 #import "HPLocationManager.h"

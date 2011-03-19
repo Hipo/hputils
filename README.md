@@ -1,11 +1,34 @@
 HPUtils - Hippo Foundry's iOS Utility Classes
 =============================================
 
-HPUtils a static iOS library that includes several reusable components. Some 
-descriptions are included below, but to see how to use them please check out 
-the header files. For any questions or suggestions, feel free to open an issue 
-ticket here on GitHub.
+HPUtils is a static iOS library from [Hippo Foundry](http://hippofoundry.com). 
+Main functionality of the library revolves around network requests and image 
+processing. We also provide some utility classes for activity indication and a 
+bunch of categories to extend SDK components.
 
+Some descriptions of the classes are included below, but to learn how to use 
+them please check out the header files. For any questions or suggestions, 
+feel free to open an issue ticket here on GitHub or email [Taylan Pince](mailto:taylan@hippofoundry.com).
+
+* * *
+
+Installation
+------------
+
+If you are building for iOS 4+, there are no requirements for build. If you 
+would like to support pre-iOS4 systems, you will have to compile with PLBlocks. 
+HPUtils already includes the PLBlocks Runtime, but you might have to install 
+the [PLBlocks SDK](http://code.google.com/p/plblocks/) if you haven't already 
+done so.
+
+Open the project in Xcode and build once you are ready. HPUtils.framework will 
+be created as a combined static library under build/. Drag and drop the 
+HPUtils.framework into your own project's Dependencies folder and then add it 
+as a framework to your project.
+
+You can then #import <HPUtils/HPUtils.h> and you will be good to go.
+
+* * *
 
 HPCacheManager
 --------------
@@ -140,3 +163,31 @@ Adds backwards-compatible UIDevice utility methods:
 	canScanBarcodes
 	isTablet
 
+
+* * *
+
+
+License
+-------
+
+    The MIT License
+    
+    Copyright (c) 2009 Free Time Studios and Nathan Eror
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
