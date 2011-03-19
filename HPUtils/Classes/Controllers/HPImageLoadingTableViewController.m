@@ -24,11 +24,21 @@
 
 @synthesize tableView = _tableView;
 
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithNibName:nil bundle:nil];
+    
+    if (self) {
+        _tableStyle = style;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _tableView = [[UITableView alloc] initWithFrame:self.contentView.bounds 
-                                              style:UITableViewStylePlain];
+                                              style:_tableStyle];
     
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];

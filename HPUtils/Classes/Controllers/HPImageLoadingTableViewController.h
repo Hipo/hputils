@@ -12,8 +12,11 @@
 @interface HPImageLoadingTableViewController : HPLoadingViewController <UITableViewDelegate, UITableViewDataSource> {
 @private
     UITableView *_tableView;
+    UITableViewStyle _tableStyle;
 }
 
 @property (nonatomic, retain, readonly) UITableView *tableView;
+
+- (id)initWithStyle:(UITableViewStyle)style;
 
 @end
