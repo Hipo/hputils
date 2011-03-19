@@ -205,13 +205,17 @@
 		if (![self isCancelled] && _parserBlock != nil) {
 			id parsedData = _parserBlock(data, _MIMEType);
 			
-			if ([parsedData respondsToSelector:@selector(objectForKey:)] && 
+            if (parsedData == nil) {
+                [self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
+                                                            code:kHPRequestParserFailureErrorCode 
+                                                        userInfo:nil]];
+			} else if ([parsedData respondsToSelector:@selector(objectForKey:)] && 
                 [parsedData objectForKey:@"error"] != nil) {
 				[self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
                                                             code:kHPRequestServerFailureErrorCode 
                                                         userInfo:[NSDictionary dictionaryWithObject:parsedData 
                                                                                              forKey:@"serverError"]]];
-			} else {
+            } else {
 				[self sendResourcesToBlocks:parsedData];
 			}
 		} else {
