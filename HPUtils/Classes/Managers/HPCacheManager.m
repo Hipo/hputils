@@ -41,15 +41,24 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 @synthesize timeStamp = _timeStamp;
 @synthesize MIMEType = _MIMEType;
 
-+ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data path:(NSString *)path MIMEType:(NSString *)type stamp:(NSDate *)stamp {
-	return [[[HPCacheItem alloc] initWithCacheData:data path:path MIMEType:type stamp:stamp] autorelease];
++ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data 
+                                   path:(NSString *)path 
+                               MIMEType:(NSString *)type 
+                                  stamp:(NSDate *)stamp {
+	return [[[HPCacheItem alloc] initWithCacheData:data 
+                                              path:path 
+                                          MIMEType:type 
+                                             stamp:stamp] autorelease];
 }
 
 + (HPCacheItem *)cacheItemWithPickledObject:(NSDictionary *)pickle {
 	return [[[HPCacheItem alloc] initWithPickledObject:pickle] autorelease];
 }
 
-- (id)initWithCacheData:(NSData *)data path:(NSString *)path MIMEType:(NSString *)type stamp:(NSDate *)stamp {
+- (id)initWithCacheData:(NSData *)data 
+                   path:(NSString *)path 
+               MIMEType:(NSString *)type 
+                  stamp:(NSDate *)stamp {
 	self = [super init];
 	
 	if (self) {
@@ -98,14 +107,36 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 
 static HPCacheManager *_sharedManager = nil;
 
-+ (void)initialize {
-	if (self == [HPCacheManager class]) {
-		_sharedManager = [[HPCacheManager alloc] init];
-	}
++ (HPCacheManager *)sharedManager {
+    if (_sharedManager == nil) {
+        _sharedManager = [[super allocWithZone:NULL] init];
+    }
+    
+	return _sharedManager;
 }
 
-+ (HPCacheManager *)sharedManager {
-	return _sharedManager;
++ (id)allocWithZone:(NSZone *)zone {
+    return [[self sharedManager] retain];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (id)retain {
+    return self;
+}
+
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;
+}
+
+- (void)release {
+    
+}
+
+- (id)autorelease {
+    return self;
 }
 
 - (id)init {
@@ -150,7 +181,9 @@ static HPCacheManager *_sharedManager = nil;
 	if (pickle != nil) {
 		HPCacheItem *cachedItem = [HPCacheItem cacheItemWithPickledObject:pickle];
 		
-		if (cachedItem.timeStamp == nil || (cachedItem.timeStamp != nil && (-1 * [cachedItem.timeStamp timeIntervalSinceNow]) > kHPStaleCacheInterval)) {
+		if (cachedItem.timeStamp == nil || 
+            (cachedItem.timeStamp != nil && 
+             (-1 * [cachedItem.timeStamp timeIntervalSinceNow]) > kHPStaleCacheInterval)) {
 			[self clearCacheForCacheKey:cacheKey];
 			
 			return nil;

@@ -9,7 +9,7 @@
 #import "JSON.h"
 
 #import "HPErrors.h"
-#import "HPAPIManager.h"
+#import "HPRequestManager.h"
 #import "HPCacheManager.h"
 #import "HPImageOperation.h"
 #import "HPRequestOperation.h"
@@ -20,23 +20,47 @@
 NSString * const kHPNetworkStatusChangeNotification = @"networkStatusChange";
 
 
-@interface HPAPIManager (PrivateMethods)
+@interface HPRequestManager (PrivateMethods)
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification;
 @end
 
 
-@implementation HPAPIManager
+@implementation HPRequestManager
 
-static HPAPIManager *_sharedManager = nil;
+#pragma mark - Singleton and init management
 
-+ (void)initialize {
-	if (self == [HPAPIManager class]) {
-		_sharedManager = [[HPAPIManager alloc] init];
-	}
+static HPRequestManager *_sharedManager = nil;
+
++ (HPRequestManager *)sharedManager {
+    if (_sharedManager == nil) {
+        _sharedManager = [[super allocWithZone:NULL] init];
+    }
+    
+	return _sharedManager;
 }
 
-+ (HPAPIManager *)sharedManager {
-	return _sharedManager;
++ (id)allocWithZone:(NSZone *)zone {
+    return [[self sharedManager] retain];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (id)retain {
+    return self;
+}
+
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;
+}
+
+- (void)release {
+    
+}
+
+- (id)autorelease {
+    return self;
 }
 
 - (id)init {
@@ -63,10 +87,22 @@ static HPAPIManager *_sharedManager = nil;
 	return self;
 }
 
+#pragma mark - Operations management
+
 - (void)cancelAllOperations {
 	[_requestQueue cancelAllOperations];
 	[_processQueue cancelAllOperations];
 }
+
+- (NSArray *)activeRequestOperations {
+	return [_requestQueue operations];
+}
+
+- (NSArray *)activeProcessOperations {
+	return [_processQueue operations];
+}
+
+#pragma mark - Parsers
 
 - (id)parseJSONData:(NSData *)loadedData {
 	NSString *resource = [[NSString alloc] initWithBytesNoCopy:(void *)[loadedData bytes]
@@ -84,6 +120,14 @@ static HPAPIManager *_sharedManager = nil;
 	
 	return ret;
 }
+
+- (id)parseImageData:(NSData *)loadedData {
+    UIImage *image = [UIImage imageWithData:loadedData];
+    
+    return image;
+}
+
+#pragma mark - Request creation and management
 
 - (HPRequestOperation *)requestForPath:(NSString *)path 
                            withBaseURL:(NSString *)baseURL 
@@ -112,9 +156,7 @@ static HPAPIManager *_sharedManager = nil;
                                                              cached:YES];
 	
 	[request setParserBlock:^ id (NSData *loadedData, NSString *MIMEType) {
-		UIImage *image = [UIImage imageWithData:loadedData];
-		
-		return image;
+        return [self parseImageData:loadedData];
 	}];
 	
 	return request;
@@ -133,6 +175,8 @@ static HPAPIManager *_sharedManager = nil;
 		[_requestQueue addOperation:request];
 	}
 }
+
+#pragma mark - URL creation and encoding
 
 - (NSString*)encodeURL:(NSString *)string {
 	NSString *newString = [(NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
@@ -180,16 +224,10 @@ static HPAPIManager *_sharedManager = nil;
 	return requestPath;
 }
 
+#pragma mark - Reachability
+
 - (BOOL)isNetworkConnectionAvailable {
 	return _networkConnectionAvailable;
-}
-
-- (NSArray *)activeRequestOperations {
-	return [_requestQueue operations];
-}
-
-- (NSArray *)activeProcessOperations {
-	return [_processQueue operations];
 }
 
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification {
@@ -198,6 +236,8 @@ static HPAPIManager *_sharedManager = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:kHPNetworkStatusChangeNotification 
 														object:self];
 }
+
+#pragma mark - Image loaders
 
 - (void)loadImageAtURL:(NSString *)imageURL 
 		 withIndexPath:(NSIndexPath *)indexPath 
@@ -254,6 +294,8 @@ static HPAPIManager *_sharedManager = nil;
 	
 	[operation release];
 }
+
+#pragma mark - Memory management
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];

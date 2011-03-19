@@ -27,16 +27,40 @@ double const kLocationCheckInterval = 4.0;
 
 @implementation HPLocationManager
 
+#pragma mark - Singleton and init management
+
 static HPLocationManager *_sharedManager = nil;
 
-+ (void)initialize {
-	if (self == [HPLocationManager class]) {
-		_sharedManager = [[HPLocationManager alloc] init];
-	}
++ (HPLocationManager *)sharedManager {
+    if (_sharedManager == nil) {
+        _sharedManager = [[super allocWithZone:NULL] init];
+    }
+    
+	return _sharedManager;
 }
 
-+ (HPLocationManager *)sharedManager {
-	return _sharedManager;
++ (id)allocWithZone:(NSZone *)zone {
+    return [[self sharedManager] retain];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (id)retain {
+    return self;
+}
+
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;
+}
+
+- (void)release {
+    
+}
+
+- (id)autorelease {
+    return self;
 }
 
 - (id)init {
@@ -53,6 +77,8 @@ static HPLocationManager *_sharedManager = nil;
 	
 	return self;
 }
+
+#pragma mark - CLLocationManagerDelegate calls
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 	[self cancelLocationCheck];
@@ -74,6 +100,8 @@ static HPLocationManager *_sharedManager = nil;
 		[self sendLocationToBlocks:newLocation withError:nil];
 	}
 }
+
+#pragma mark - Location update calls
 
 - (void)refreshLocation {
 	if (_queryStartTime == nil) {
@@ -163,10 +191,12 @@ static HPLocationManager *_sharedManager = nil;
 	[_executionBlocks removeAllObjects];
 }
 
+#pragma mark - Memory management
+
 - (void)dealloc {
-	[_queryStartTime release];
-	[_executionBlocks release];
-	[_locationManager release];
+	[_queryStartTime release], _queryStartTime = nil;
+	[_executionBlocks release], _executionBlocks = nil;
+	[_locationManager release], _locationManager = nil;
 	
 	[super dealloc];
 }

@@ -14,7 +14,7 @@ extern NSString * const kHPNetworkStatusChangeNotification;
 
 @class HPReachabilityManager;
 
-@interface HPAPIManager : NSObject {
+@interface HPRequestManager : NSObject {
 @private
     NSOperationQueue *_requestQueue;
     NSOperationQueue *_processQueue;
@@ -24,7 +24,7 @@ extern NSString * const kHPNetworkStatusChangeNotification;
     BOOL _networkConnectionAvailable;
 }
 
-+ (HPAPIManager *)sharedManager;
++ (HPRequestManager *)sharedManager;
 
 - (BOOL)isNetworkConnectionAvailable;
 
@@ -45,6 +45,8 @@ extern NSString * const kHPNetworkStatusChangeNotification;
 	completionBlock:(void (^)(id, NSError *))block;
 
 - (id)parseJSONData:(NSData *)loadedData;
+- (id)parseImageData:(NSData *)loadedData;
+
 - (NSString *)encodeURL:(NSString *)string;
 - (NSData *)dataFromDict:(NSDictionary *)dict;
 - (NSData *)dataFromArray:(NSArray *)array withKey:(NSString *)key;

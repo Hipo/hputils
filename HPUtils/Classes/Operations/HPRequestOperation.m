@@ -6,6 +6,7 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import "HPErrors.h"
 #import "HPCacheManager.h"
 #import "HPRequestOperation.h"
 
@@ -13,7 +14,6 @@
 @interface HPRequestOperation (PrivateMethods)
 - (void)sendErrorToBlocks:(NSError *)error;
 - (void)sendResourcesToBlocks:(id)resources;
-- (void)callParserBlockWithData:(NSData *)data;
 - (void)callProgressBlockWithPercentage:(NSNumber *)percentage;
 - (void)callParserBlockWithData:(NSData *)data error:(NSError *)error;
 - (void)sendResourcesToBlocks:(id)resources withError:(NSError *)error;
@@ -118,7 +118,7 @@
         if (cacheItem != nil) {
             _MIMEType = [cacheItem.MIMEType copy];
             
-            [self callParserBlockWithData:cacheItem.cacheData];
+            [self callParserBlockWithData:cacheItem.cacheData error:nil];
         } else {
             [_connection start];
         }
@@ -132,7 +132,10 @@
 	_isCancelled = YES;
 	[self didChangeValueForKey:@"isCancelled"];
 	
-	[self callParserBlockWithData:nil];
+	[self callParserBlockWithData:nil 
+                            error:[NSError errorWithDomain:kHPErrorDomain 
+                                                      code:kHPRequestConnectionCancelledErrorCode 
+                                                  userInfo:nil]];
 }
 
 - (BOOL)isConcurrent {
@@ -195,10 +198,6 @@
 	[self didChangeValueForKey:@"isFinished"];
 }
 
-- (void)callParserBlockWithData:(NSData *)data {
-	[self callParserBlockWithData:data error:nil];
-}
-
 - (void)callParserBlockWithData:(NSData *)data error:(NSError *)error {
 	if (data != nil) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -208,12 +207,17 @@
 			
 			if ([parsedData respondsToSelector:@selector(objectForKey:)] && 
                 [parsedData objectForKey:@"error"] != nil) {
-				[self sendResourcesToBlocks:nil];
+				[self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
+                                                            code:kHPRequestServerFailureErrorCode 
+                                                        userInfo:[NSDictionary dictionaryWithObject:parsedData 
+                                                                                             forKey:@"serverError"]]];
 			} else {
 				[self sendResourcesToBlocks:parsedData];
 			}
 		} else {
-			[self sendResourcesToBlocks:nil];
+			[self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
+                                                        code:kHPRequestParserFailureErrorCode 
+                                                    userInfo:nil]];
 		}
 		
 		[pool drain];
@@ -251,7 +255,10 @@
 		case 500: {
 			[connection cancel];
 			
-			[self callParserBlockWithData:nil];
+			[self callParserBlockWithData:nil 
+                                    error:[NSError errorWithDomain:kHPErrorDomain 
+                                                              code:kHPRequestServerFailureErrorCode 
+                                                          userInfo:nil]];
 			
 			break;
 		}
@@ -278,7 +285,11 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	[self callParserBlockWithData:nil];
+	[self callParserBlockWithData:nil 
+                            error:[NSError errorWithDomain:kHPErrorDomain 
+                                                      code:kHPRequestConnectionFailureErrorCode 
+                                                  userInfo:[NSDictionary dictionaryWithObject:error 
+                                                                                       forKey:@"connectionError"]]];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -289,7 +300,11 @@
 	}
     
 	if (statusCode == 304 || statusCode >= 400) {
-		[self callParserBlockWithData:nil];
+		[self callParserBlockWithData:nil 
+                                error:[NSError errorWithDomain:kHPErrorDomain 
+                                                          code:kHPRequestConnectionFailureErrorCode 
+                                                      userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:statusCode] 
+                                                                                           forKey:@"statusCode"]]];
 	} else {
 		if (_isCached) {
 			if ([_response respondsToSelector:@selector(MIMEType)]) {
@@ -303,7 +318,7 @@
 										 withMIMEType:_MIMEType];
 		}
 		
-		[self callParserBlockWithData:_loadedData];
+		[self callParserBlockWithData:_loadedData error:nil];
 	}
 }
 

@@ -20,11 +20,18 @@
 @property (nonatomic, retain, readonly) NSString *MIMEType;
 @property (nonatomic, retain, readonly) NSString *cachePath;
 
-+ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data path:(NSString *)path MIMEType:(NSString *)type stamp:(NSDate *)stamp;
 + (HPCacheItem *)cacheItemWithPickledObject:(NSDictionary *)pickle;
++ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data 
+                                   path:(NSString *)path 
+                               MIMEType:(NSString *)type 
+                                  stamp:(NSDate *)stamp;
 
-- (id)initWithCacheData:(NSData *)data path:(NSString *)path MIMEType:(NSString *)type stamp:(NSDate *)stamp;
 - (id)initWithPickledObject:(NSDictionary *)pickle;
+- (id)initWithCacheData:(NSData *)data 
+                   path:(NSString *)path 
+               MIMEType:(NSString *)type 
+                  stamp:(NSDate *)stamp;
+
 - (NSDictionary *)pickledObjectForArchive;
 
 @end
@@ -39,10 +46,14 @@
 + (HPCacheManager *)sharedManager;
 
 - (HPCacheItem *)cachedItemForCacheKey:(NSString *)cacheKey;
-- (void)cacheData:(NSData *)cacheData forCacheKey:(NSString *)cacheKey withMIMEType:(NSString *)MIMEType;
+- (void)cacheData:(NSData *)cacheData 
+      forCacheKey:(NSString *)cacheKey 
+     withMIMEType:(NSString *)MIMEType;
 
 - (HPCacheItem *)cachedItemForURL:(NSURL *)url;
-- (void)cacheData:(NSData *)cacheData forURL:(NSURL *)url withMIMEType:(NSString *)MIMEType;
+- (void)cacheData:(NSData *)cacheData 
+           forURL:(NSURL *)url 
+     withMIMEType:(NSString *)MIMEType;
 
 - (void)clearCacheForCacheKey:(NSString *)cacheKey;
 - (void)clearCacheForURL:(NSURL *)url;

@@ -70,10 +70,10 @@
 		EC46DFBF133420E50075E597 /* HPImageLoadingTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFBC133420E40075E597 /* HPImageLoadingTableViewController.h */; };
 		EC46DFC0133420E50075E597 /* HPImageLoadingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFBD133420E40075E597 /* HPImageLoadingTableViewController.m */; };
 		EC46DFC1133420E50075E597 /* HPImageLoadingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFBD133420E40075E597 /* HPImageLoadingTableViewController.m */; };
-		EC46DFC4133421320075E597 /* HPAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFC21334212F0075E597 /* HPAPIManager.h */; };
-		EC46DFC5133421320075E597 /* HPAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFC21334212F0075E597 /* HPAPIManager.h */; };
-		EC46DFC6133421320075E597 /* HPAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFC3133421300075E597 /* HPAPIManager.m */; };
-		EC46DFC7133421320075E597 /* HPAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFC3133421300075E597 /* HPAPIManager.m */; };
+		EC46DFC4133421320075E597 /* HPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFC21334212F0075E597 /* HPRequestManager.h */; };
+		EC46DFC5133421320075E597 /* HPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFC21334212F0075E597 /* HPRequestManager.h */; };
+		EC46DFC6133421320075E597 /* HPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFC3133421300075E597 /* HPRequestManager.m */; };
+		EC46DFC7133421320075E597 /* HPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFC3133421300075E597 /* HPRequestManager.m */; };
 		EC46DFD4133426580075E597 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFC9133426580075E597 /* JSON.h */; };
 		EC46DFD5133426580075E597 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFC9133426580075E597 /* JSON.h */; };
 		EC46DFD6133426580075E597 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFCA133426580075E597 /* NSObject+SBJSON.h */; };
@@ -139,8 +139,8 @@
 		EC46DFB713341E260075E597 /* HPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPRequestOperation.m; sourceTree = "<group>"; };
 		EC46DFBC133420E40075E597 /* HPImageLoadingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPImageLoadingTableViewController.h; sourceTree = "<group>"; };
 		EC46DFBD133420E40075E597 /* HPImageLoadingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPImageLoadingTableViewController.m; sourceTree = "<group>"; };
-		EC46DFC21334212F0075E597 /* HPAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAPIManager.h; sourceTree = "<group>"; };
-		EC46DFC3133421300075E597 /* HPAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAPIManager.m; sourceTree = "<group>"; };
+		EC46DFC21334212F0075E597 /* HPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPRequestManager.h; sourceTree = "<group>"; };
+		EC46DFC3133421300075E597 /* HPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPRequestManager.m; sourceTree = "<group>"; };
 		EC46DFC9133426580075E597 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		EC46DFCA133426580075E597 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		EC46DFCB133426580075E597 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -307,8 +307,8 @@
 				EC46DF9F133416380075E597 /* HPReachabilityManager.m */,
 				EC46DFA9133417A40075E597 /* HPLocationManager.h */,
 				EC46DFAA133417A40075E597 /* HPLocationManager.m */,
-				EC46DFC21334212F0075E597 /* HPAPIManager.h */,
-				EC46DFC3133421300075E597 /* HPAPIManager.m */,
+				EC46DFC21334212F0075E597 /* HPRequestManager.h */,
+				EC46DFC3133421300075E597 /* HPRequestManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -386,7 +386,7 @@
 				EC46DFB2133419CC0075E597 /* HPImageOperation.h in Headers */,
 				EC46DFB813341E260075E597 /* HPRequestOperation.h in Headers */,
 				EC46DFBE133420E50075E597 /* HPImageLoadingTableViewController.h in Headers */,
-				EC46DFC4133421320075E597 /* HPAPIManager.h in Headers */,
+				EC46DFC4133421320075E597 /* HPRequestManager.h in Headers */,
 				EC46DFD4133426580075E597 /* JSON.h in Headers */,
 				EC46DFD6133426580075E597 /* NSObject+SBJSON.h in Headers */,
 				EC46DFDA133426580075E597 /* NSString+SBJSON.h in Headers */,
@@ -405,7 +405,7 @@
 				EC46DFB3133419CC0075E597 /* HPImageOperation.h in Headers */,
 				EC46DFB913341E260075E597 /* HPRequestOperation.h in Headers */,
 				EC46DFBF133420E50075E597 /* HPImageLoadingTableViewController.h in Headers */,
-				EC46DFC5133421320075E597 /* HPAPIManager.h in Headers */,
+				EC46DFC5133421320075E597 /* HPRequestManager.h in Headers */,
 				EC46DFD5133426580075E597 /* JSON.h in Headers */,
 				EC46DFD7133426580075E597 /* NSObject+SBJSON.h in Headers */,
 				EC46DFDB133426580075E597 /* NSString+SBJSON.h in Headers */,
@@ -514,7 +514,7 @@
 				EC46DFB4133419CC0075E597 /* HPImageOperation.m in Sources */,
 				EC46DFBA13341E260075E597 /* HPRequestOperation.m in Sources */,
 				EC46DFC0133420E50075E597 /* HPImageLoadingTableViewController.m in Sources */,
-				EC46DFC6133421320075E597 /* HPAPIManager.m in Sources */,
+				EC46DFC6133421320075E597 /* HPRequestManager.m in Sources */,
 				EC46DFD8133426580075E597 /* NSObject+SBJSON.m in Sources */,
 				EC46DFDC133426580075E597 /* NSString+SBJSON.m in Sources */,
 				EC46DFE0133426580075E597 /* SBJsonBase.m in Sources */,
@@ -541,7 +541,7 @@
 				EC46DFB5133419CC0075E597 /* HPImageOperation.m in Sources */,
 				EC46DFBB13341E260075E597 /* HPRequestOperation.m in Sources */,
 				EC46DFC1133420E50075E597 /* HPImageLoadingTableViewController.m in Sources */,
-				EC46DFC7133421320075E597 /* HPAPIManager.m in Sources */,
+				EC46DFC7133421320075E597 /* HPRequestManager.m in Sources */,
 				EC46DFD9133426580075E597 /* NSObject+SBJSON.m in Sources */,
 				EC46DFDD133426580075E597 /* NSString+SBJSON.m in Sources */,
 				EC46DFE1133426580075E597 /* SBJsonBase.m in Sources */,

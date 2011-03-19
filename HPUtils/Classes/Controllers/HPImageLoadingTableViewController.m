@@ -6,7 +6,7 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
-#import "HPAPIManager.h"
+#import "HPRequestManager.h"
 #import "HPImageOperation.h"
 #import "HPRequestOperation.h"
 #import "HPImageLoadingTableViewController.h"
@@ -58,7 +58,7 @@
 }
 
 - (void)cancelLoadOperationsForHiddenCells {
-	for (HPRequestOperation *request in [[HPAPIManager sharedManager] activeRequestOperations]) {
+	for (HPRequestOperation *request in [[HPRequestManager sharedManager] activeRequestOperations]) {
 		if ([request isExecuting] && request.indexPath != nil) {
 			UITableViewCell *cell = [_tableView cellForRowAtIndexPath:request.indexPath];
 			
@@ -70,7 +70,7 @@
 }
 
 - (void)cancelAllLoadOperations {
-	for (HPRequestOperation *request in [[HPAPIManager sharedManager] activeRequestOperations]) {
+	for (HPRequestOperation *request in [[HPRequestManager sharedManager] activeRequestOperations]) {
 		if ([request isExecuting] && request.indexPath != nil) {
 			[request cancel];
 		}
@@ -78,7 +78,7 @@
 }
 
 - (void)cancelProcessOperationsForHiddenCells {
-	for (HPImageOperation *operation in [[HPAPIManager sharedManager] activeProcessOperations]) {
+	for (HPImageOperation *operation in [[HPRequestManager sharedManager] activeProcessOperations]) {
 		if ([operation isKindOfClass:[HPImageOperation class]] && [operation isExecuting] && operation.indexPath != nil) {
 			UITableViewCell *cell = [_tableView cellForRowAtIndexPath:operation.indexPath];
 			
@@ -90,8 +90,8 @@
 }
 
 - (void)cancelAllProcessOperations {
-	for (HPImageOperation *operation in [[HPAPIManager sharedManager] activeProcessOperations]) {
-		if ([operation isKindOfClass:[HPAPIManager class]] && [operation isExecuting] && operation.indexPath != nil) {
+	for (HPImageOperation *operation in [[HPRequestManager sharedManager] activeProcessOperations]) {
+		if ([operation isKindOfClass:[HPRequestManager class]] && [operation isExecuting] && operation.indexPath != nil) {
 			[operation cancel];
 		}
 	}
