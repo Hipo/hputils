@@ -50,7 +50,10 @@ extern NSString * const kHPNetworkStatusChangeNotification;
 - (NSString *)encodeURL:(NSString *)string;
 - (NSData *)dataFromDict:(NSDictionary *)dict;
 - (NSData *)dataFromArray:(NSArray *)array withKey:(NSString *)key;
-- (NSString *)pathFromBasePath:(NSString *)basePath withOptions:(NSDictionary *)options;
+- (NSString *)pathFromBasePath:(NSString *)basePath 
+                   withOptions:(NSDictionary *)options;
+
+- (void)enqueueRequest:(HPRequestOperation *)request;
 
 - (HPRequestOperation *)imageRequestForURL:(NSString *)urlString;
 - (HPRequestOperation *)requestForPath:(NSString *)path 
