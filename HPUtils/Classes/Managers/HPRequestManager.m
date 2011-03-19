@@ -182,7 +182,7 @@ static HPRequestManager *_sharedManager = nil;
 	NSString *newString = [(NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
 																			   (CFStringRef)string, 
 																			   NULL, 
-																			   CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), 
+																			   CFSTR(":/?#[]@!$ &'()*+;=\"<>%{}|\\^~`"), 
 																			   CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)) autorelease];
 	
 	if (newString) {
@@ -217,7 +217,7 @@ static HPRequestManager *_sharedManager = nil;
 	
 	if (options != nil) {
 		for (NSString *key in [options allKeys]) {
-			[requestPath appendFormat:@"&%@=%@", key, [self encodeURL:[options objectForKey:key]]];
+			[requestPath appendFormat:@"%@=%@&", key, [self encodeURL:[options objectForKey:key]]];
 		}
 	}
 	
