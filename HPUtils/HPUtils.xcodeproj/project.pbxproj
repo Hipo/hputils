@@ -30,6 +30,10 @@
 		EC1F156A13369B6600385E05 /* HPAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156713369B6600385E05 /* HPAuthenticationManager.m */; };
 		EC1F156B13369B6600385E05 /* HPAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156713369B6600385E05 /* HPAuthenticationManager.m */; };
 		EC1F156E1336A5DF00385E05 /* HPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156013369AB100385E05 /* HPKeychainItem.m */; };
+		EC1F157A1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */; };
+		EC1F157B1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */; };
+		EC1F157C1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */; };
+		EC1F157D1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */; };
 		EC46DF4B133409070075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
 		EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
 		EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */; };
@@ -134,6 +138,8 @@
 		EC1F156313369B3C00385E05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EC1F156613369B6600385E05 /* HPAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAuthenticationManager.h; sourceTree = "<group>"; };
 		EC1F156713369B6600385E05 /* HPAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAuthenticationManager.m; sourceTree = "<group>"; };
+		EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPEditableTableViewCell.h; sourceTree = "<group>"; };
+		EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPEditableTableViewCell.m; sourceTree = "<group>"; };
 		EC46DF49133408FE0075E597 /* PLBlocks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PLBlocks.framework; sourceTree = "<group>"; };
 		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
 		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
@@ -374,6 +380,8 @@
 				ECB7646E1334027F00451A54 /* HPLoadingView.m */,
 				EC46DFEB133516320075E597 /* HPLoadingWindow.h */,
 				EC46DFEC133516320075E597 /* HPLoadingWindow.m */,
+				EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */,
+				EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -453,6 +461,7 @@
 				EC46DFED133516330075E597 /* HPLoadingWindow.h in Headers */,
 				EC1F156113369AB100385E05 /* HPKeychainItem.h in Headers */,
 				EC1F156813369B6600385E05 /* HPAuthenticationManager.h in Headers */,
+				EC1F157A1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +483,7 @@
 				EC46DFE7133426580075E597 /* SBJsonWriter.h in Headers */,
 				EC46DFEE133516330075E597 /* HPLoadingWindow.h in Headers */,
 				EC1F156913369B6600385E05 /* HPAuthenticationManager.h in Headers */,
+				EC1F157B1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +595,7 @@
 				EC46DFEF133516330075E597 /* HPLoadingWindow.m in Sources */,
 				EC1F156213369AB100385E05 /* HPKeychainItem.m in Sources */,
 				EC1F156A13369B6600385E05 /* HPAuthenticationManager.m in Sources */,
+				EC1F157C1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +626,7 @@
 				EC46DFF0133516330075E597 /* HPLoadingWindow.m in Sources */,
 				EC1F156B13369B6600385E05 /* HPAuthenticationManager.m in Sources */,
 				EC1F156E1336A5DF00385E05 /* HPKeychainItem.m in Sources */,
+				EC1F157D1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
