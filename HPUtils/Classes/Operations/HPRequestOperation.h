@@ -27,9 +27,6 @@ typedef enum {
 	NSData *_requestData;
 	NSString *_MIMEType;
 	NSURL *_requestURL;
-    
-    NSString *_username;
-    NSString *_password;
 	
 	long long _expectedSize;
 	
@@ -42,8 +39,6 @@ typedef enum {
     void (^_progressBlock)(float);
 }
 
-@property (nonatomic, copy) NSString *username;
-@property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSIndexPath *indexPath;
 
 @property (nonatomic, copy) id (^parserBlock)(NSData *, NSString *);

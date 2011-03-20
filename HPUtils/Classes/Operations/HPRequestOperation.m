@@ -6,8 +6,9 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
-#import "HPErrors.h"
+#import "HPAuthenticationManager.h"
 #import "HPCacheManager.h"
+#import "HPErrors.h"
 #import "HPRequestOperation.h"
 
 
@@ -22,8 +23,6 @@
 
 @implementation HPRequestOperation
 
-@synthesize username = _username;
-@synthesize password = _password;
 @synthesize indexPath = _indexPath;
 @synthesize parserBlock = _parserBlock;
 @synthesize progressBlock = _progressBlock;
@@ -329,13 +328,15 @@
 #pragma mark - Authentication
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-	return (_username != nil && _password != nil);
+	return [[HPAuthenticationManager sharedManager] isAuthenticated];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 	if ([challenge previousFailureCount] == 0) {
-		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:_username 
-																	 password:_password 
+        NSDictionary *userCredentials = [[HPAuthenticationManager sharedManager] userCredentials];
+        
+		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:[userCredentials objectForKey:HPAuthenticationManagerUsernameKey] 
+																	 password:[userCredentials objectForKey:HPAuthenticationManagerPasswordKey] 
 																  persistence:NSURLCredentialPersistencePermanent] 
 			   forAuthenticationChallenge:challenge];
 	}
@@ -347,8 +348,6 @@
 - (void)dealloc {
 	[_connection cancel];
 
-    [_username release], _username = nil;
-    [_password release], _password = nil;
 	[_MIMEType release], _MIMEType = nil;
 	[_response release], _response = nil;
     [_indexPath release], _indexPath = nil;
