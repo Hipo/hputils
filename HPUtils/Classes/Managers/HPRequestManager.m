@@ -8,16 +8,16 @@
 
 #import "JSON.h"
 
-#import "HPErrors.h"
-#import "HPRequestManager.h"
 #import "HPCacheManager.h"
+#import "HPErrors.h"
 #import "HPImageOperation.h"
-#import "HPRequestOperation.h"
 #import "HPReachabilityManager.h"
+#import "HPRequestManager.h"
+#import "HPRequestOperation.h"
 #import "NSString+HPHashAdditions.h"
 
 
-NSString * const kHPNetworkStatusChangeNotification = @"networkStatusChange";
+NSString * const HPNetworkStatusChangeNotification = @"networkStatusChange";
 
 
 @interface HPRequestManager (PrivateMethods)
@@ -233,7 +233,7 @@ static HPRequestManager *_sharedManager = nil;
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification {
 	_networkConnectionAvailable = ([_reachabilityManager currentReachabilityStatus] != NotReachable);
     
-	[[NSNotificationCenter defaultCenter] postNotificationName:kHPNetworkStatusChangeNotification 
+	[[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
 														object:self];
 }
 

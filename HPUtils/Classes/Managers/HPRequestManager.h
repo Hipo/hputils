@@ -9,7 +9,7 @@
 #import "HPRequestOperation.h"
 
 
-extern NSString * const kHPNetworkStatusChangeNotification;
+extern NSString * const HPNetworkStatusChangeNotification;
 
 
 @class HPReachabilityManager;
