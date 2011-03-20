@@ -12,6 +12,7 @@
 #import "HPRequestManager.h"
 #import "HPLocationManager.h"
 #import "HPReachabilityManager.h"
+#import "HPAuthenticationManager.h"
 
 #import "HPImageOperation.h"
 #import "HPRequestOperation.h"

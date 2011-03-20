@@ -21,6 +21,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		EC1F156113369AB100385E05 /* HPKeychainItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F155F13369AB100385E05 /* HPKeychainItem.h */; };
+		EC1F156213369AB100385E05 /* HPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156013369AB100385E05 /* HPKeychainItem.m */; };
+		EC1F156413369B3C00385E05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1F156313369B3C00385E05 /* Security.framework */; };
+		EC1F156513369B4400385E05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1F156313369B3C00385E05 /* Security.framework */; };
+		EC1F156813369B6600385E05 /* HPAuthenticationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F156613369B6600385E05 /* HPAuthenticationManager.h */; };
+		EC1F156913369B6600385E05 /* HPAuthenticationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F156613369B6600385E05 /* HPAuthenticationManager.h */; };
+		EC1F156A13369B6600385E05 /* HPAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156713369B6600385E05 /* HPAuthenticationManager.m */; };
+		EC1F156B13369B6600385E05 /* HPAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156713369B6600385E05 /* HPAuthenticationManager.m */; };
+		EC1F156E1336A5DF00385E05 /* HPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156013369AB100385E05 /* HPKeychainItem.m */; };
 		EC46DF4B133409070075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
 		EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
 		EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */; };
@@ -120,6 +129,11 @@
 		EC0EC7861335636D00BD383A /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		EC0EC7871335636D00BD383A /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
 		EC0EC7881335636D00BD383A /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
+		EC1F155F13369AB100385E05 /* HPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPKeychainItem.h; sourceTree = "<group>"; };
+		EC1F156013369AB100385E05 /* HPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPKeychainItem.m; sourceTree = "<group>"; };
+		EC1F156313369B3C00385E05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EC1F156613369B6600385E05 /* HPAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAuthenticationManager.h; sourceTree = "<group>"; };
+		EC1F156713369B6600385E05 /* HPAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAuthenticationManager.m; sourceTree = "<group>"; };
 		EC46DF49133408FE0075E597 /* PLBlocks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PLBlocks.framework; sourceTree = "<group>"; };
 		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
 		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
@@ -181,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC1F156413369B3C00385E05 /* Security.framework in Frameworks */,
 				EC46DFA5133417740075E597 /* CoreLocation.framework in Frameworks */,
 				EC46DFA3133417600075E597 /* SystemConfiguration.framework in Frameworks */,
 				EC46DF6813340D2F0075E597 /* UIKit.framework in Frameworks */,
@@ -197,6 +212,7 @@
 				ECB7647A133405FC00451A54 /* Foundation.framework in Frameworks */,
 				EC46DFA6133417810075E597 /* CoreLocation.framework in Frameworks */,
 				EC46DFA7133417810075E597 /* SystemConfiguration.framework in Frameworks */,
+				EC1F156513369B4400385E05 /* Security.framework in Frameworks */,
 				EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +231,15 @@
 				EC0EC7881335636D00BD383A /* warning@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		EC1F155D13369A9500385E05 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EC1F155F13369AB100385E05 /* HPKeychainItem.h */,
+				EC1F156013369AB100385E05 /* HPKeychainItem.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		EC46DF6113340CEA0075E597 /* Categories */ = {
@@ -290,6 +315,7 @@
 		ECB76454133400D000451A54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC1F156313369B3C00385E05 /* Security.framework */,
 				EC46DFA4133417730075E597 /* CoreLocation.framework */,
 				EC46DFA2133417600075E597 /* SystemConfiguration.framework */,
 				EC46DF6613340D270075E597 /* UIKit.framework */,
@@ -308,6 +334,7 @@
 				ECB764611334015400451A54 /* Managers */,
 				EC46DFAF133419B00075E597 /* Operations */,
 				ECB764621334015400451A54 /* Views */,
+				EC1F155D13369A9500385E05 /* Utilities */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -334,6 +361,8 @@
 				EC46DFAA133417A40075E597 /* HPLocationManager.m */,
 				EC46DFC21334212F0075E597 /* HPRequestManager.h */,
 				EC46DFC3133421300075E597 /* HPRequestManager.m */,
+				EC1F156613369B6600385E05 /* HPAuthenticationManager.h */,
+				EC1F156713369B6600385E05 /* HPAuthenticationManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -422,6 +451,8 @@
 				EC46DFE2133426580075E597 /* SBJsonParser.h in Headers */,
 				EC46DFE6133426580075E597 /* SBJsonWriter.h in Headers */,
 				EC46DFED133516330075E597 /* HPLoadingWindow.h in Headers */,
+				EC1F156113369AB100385E05 /* HPKeychainItem.h in Headers */,
+				EC1F156813369B6600385E05 /* HPAuthenticationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +473,7 @@
 				EC46DFE3133426580075E597 /* SBJsonParser.h in Headers */,
 				EC46DFE7133426580075E597 /* SBJsonWriter.h in Headers */,
 				EC46DFEE133516330075E597 /* HPLoadingWindow.h in Headers */,
+				EC1F156913369B6600385E05 /* HPAuthenticationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +583,8 @@
 				EC46DFE4133426580075E597 /* SBJsonParser.m in Sources */,
 				EC46DFE8133426580075E597 /* SBJsonWriter.m in Sources */,
 				EC46DFEF133516330075E597 /* HPLoadingWindow.m in Sources */,
+				EC1F156213369AB100385E05 /* HPKeychainItem.m in Sources */,
+				EC1F156A13369B6600385E05 /* HPAuthenticationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +613,8 @@
 				EC46DFE5133426580075E597 /* SBJsonParser.m in Sources */,
 				EC46DFE9133426580075E597 /* SBJsonWriter.m in Sources */,
 				EC46DFF0133516330075E597 /* HPLoadingWindow.m in Sources */,
+				EC1F156B13369B6600385E05 /* HPAuthenticationManager.m in Sources */,
+				EC1F156E1336A5DF00385E05 /* HPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
