@@ -15,3 +15,4 @@ static NSInteger const kHPRequestServerFailureErrorCode = 101;
 static NSInteger const kHPRequestConnectionFailureErrorCode = 102;
 static NSInteger const kHPRequestConnectionCancelledErrorCode = 103;
 static NSInteger const kHPRequestParserFailureErrorCode = 104;
+static NSInteger const kHPRequestAuthenticationFailureErrorCode = 105;
