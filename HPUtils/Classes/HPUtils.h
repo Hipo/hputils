@@ -18,6 +18,7 @@
 #import "HPRequestOperation.h"
 
 #import "HPLoadingWindow.h"
+#import "HPInteractiveView.h"
 #import "HPLoadingViewController.h"
 #import "HPImageLoadingTableViewController.h"
 
@@ -29,3 +30,4 @@
 #import "NSDate+HPTimeSinceAdditions.h"
 #import "NSObject+HPKVCAdditions.h"
 #import "UIDevice+HPCapabilityAdditions.h"
+#import "UITouch+HPTouchSorting.h"

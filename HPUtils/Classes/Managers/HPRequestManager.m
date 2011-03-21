@@ -288,7 +288,6 @@ static HPRequestManager *_sharedManager = nil;
 	
 	[operation addCompletionBlock:block];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
-	[operation setOutputFormat:HPImageOperationOutputFormatRawData];
 	
 	[_processQueue addOperation:operation];
 	

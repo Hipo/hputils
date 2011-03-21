@@ -114,6 +114,13 @@
 		EC46DFEE133516330075E597 /* HPLoadingWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DFEB133516320075E597 /* HPLoadingWindow.h */; };
 		EC46DFEF133516330075E597 /* HPLoadingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFEC133516320075E597 /* HPLoadingWindow.m */; };
 		EC46DFF0133516330075E597 /* HPLoadingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DFEC133516320075E597 /* HPLoadingWindow.m */; };
+		EC6AEE211337C7F200D4CF26 /* HPInteractiveView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC6AEE1F1337C7F100D4CF26 /* HPInteractiveView.h */; };
+		EC6AEE221337C7F200D4CF26 /* HPInteractiveView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC6AEE1F1337C7F100D4CF26 /* HPInteractiveView.h */; };
+		EC6AEE231337C7F200D4CF26 /* HPInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE201337C7F100D4CF26 /* HPInteractiveView.m */; };
+		EC6AEE241337C7F200D4CF26 /* HPInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE201337C7F100D4CF26 /* HPInteractiveView.m */; };
+		EC6AEE281337C80C00D4CF26 /* UITouch+HPTouchSorting.h in Headers */ = {isa = PBXBuildFile; fileRef = EC6AEE261337C80C00D4CF26 /* UITouch+HPTouchSorting.h */; };
+		EC6AEE291337C80C00D4CF26 /* UITouch+HPTouchSorting.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE271337C80C00D4CF26 /* UITouch+HPTouchSorting.m */; };
+		EC6AEE2A1337C93B00D4CF26 /* UITouch+HPTouchSorting.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE271337C80C00D4CF26 /* UITouch+HPTouchSorting.m */; };
 		ECB76456133400D000451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
 		ECB764691334015400451A54 /* HPUtils-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = ECB764671334015400451A54 /* HPUtils-Prefix.pch */; };
 		ECB7646C1334020300451A54 /* HPUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB7646B1334020300451A54 /* HPUtils.h */; };
@@ -184,6 +191,10 @@
 		EC46DFD3133426580075E597 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		EC46DFEB133516320075E597 /* HPLoadingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLoadingWindow.h; sourceTree = "<group>"; };
 		EC46DFEC133516320075E597 /* HPLoadingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLoadingWindow.m; sourceTree = "<group>"; };
+		EC6AEE1F1337C7F100D4CF26 /* HPInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPInteractiveView.h; sourceTree = "<group>"; };
+		EC6AEE201337C7F100D4CF26 /* HPInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPInteractiveView.m; sourceTree = "<group>"; };
+		EC6AEE261337C80C00D4CF26 /* UITouch+HPTouchSorting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+HPTouchSorting.h"; sourceTree = "<group>"; };
+		EC6AEE271337C80C00D4CF26 /* UITouch+HPTouchSorting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+HPTouchSorting.m"; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB76455133400D000451A54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECB764671334015400451A54 /* HPUtils-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Prefix.pch"; sourceTree = "<group>"; };
@@ -263,6 +274,8 @@
 				EC46DF8A1334129B0075E597 /* NSObject+HPKVCAdditions.m */,
 				EC46DF8D133412DA0075E597 /* UIDevice+HPCapabilityAdditions.h */,
 				EC46DF8E133412DC0075E597 /* UIDevice+HPCapabilityAdditions.m */,
+				EC6AEE261337C80C00D4CF26 /* UITouch+HPTouchSorting.h */,
+				EC6AEE271337C80C00D4CF26 /* UITouch+HPTouchSorting.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -382,6 +395,8 @@
 				EC46DFEC133516320075E597 /* HPLoadingWindow.m */,
 				EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */,
 				EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */,
+				EC6AEE1F1337C7F100D4CF26 /* HPInteractiveView.h */,
+				EC6AEE201337C7F100D4CF26 /* HPInteractiveView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,6 +477,8 @@
 				EC1F156113369AB100385E05 /* HPKeychainItem.h in Headers */,
 				EC1F156813369B6600385E05 /* HPAuthenticationManager.h in Headers */,
 				EC1F157A1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */,
+				EC6AEE211337C7F200D4CF26 /* HPInteractiveView.h in Headers */,
+				EC6AEE281337C80C00D4CF26 /* UITouch+HPTouchSorting.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +501,7 @@
 				EC46DFEE133516330075E597 /* HPLoadingWindow.h in Headers */,
 				EC1F156913369B6600385E05 /* HPAuthenticationManager.h in Headers */,
 				EC1F157B1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */,
+				EC6AEE221337C7F200D4CF26 /* HPInteractiveView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +614,8 @@
 				EC1F156213369AB100385E05 /* HPKeychainItem.m in Sources */,
 				EC1F156A13369B6600385E05 /* HPAuthenticationManager.m in Sources */,
 				EC1F157C1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */,
+				EC6AEE231337C7F200D4CF26 /* HPInteractiveView.m in Sources */,
+				EC6AEE291337C80C00D4CF26 /* UITouch+HPTouchSorting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +635,7 @@
 				EC46DFA8133417950075E597 /* HPReachabilityManager.m in Sources */,
 				EC46DF991334159C0075E597 /* UIColor+HPColorAdditions.m in Sources */,
 				EC46DFB5133419CC0075E597 /* HPImageOperation.m in Sources */,
+				EC6AEE2A1337C93B00D4CF26 /* UITouch+HPTouchSorting.m in Sources */,
 				EC46DFBB13341E260075E597 /* HPRequestOperation.m in Sources */,
 				EC46DFC1133420E50075E597 /* HPImageLoadingTableViewController.m in Sources */,
 				EC46DFC7133421320075E597 /* HPRequestManager.m in Sources */,
@@ -627,6 +648,7 @@
 				EC1F156B13369B6600385E05 /* HPAuthenticationManager.m in Sources */,
 				EC1F156E1336A5DF00385E05 /* HPKeychainItem.m in Sources */,
 				EC1F157D1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */,
+				EC6AEE241337C7F200D4CF26 /* HPInteractiveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
