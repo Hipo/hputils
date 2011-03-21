@@ -25,7 +25,7 @@ static HPLoadingWindow *_sharedInstance = nil;
 
 + (HPLoadingWindow *)sharedInstance {
     if (_sharedInstance == nil) {
-        _sharedInstance = [[super allocWithZone:NULL] init];
+        _sharedInstance = [[super allocWithZone:NULL] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
     
 	return _sharedInstance;
