@@ -21,6 +21,8 @@
 #import "HPLoadingViewController.h"
 #import "HPImageLoadingTableViewController.h"
 
+#import "HPEditableTableViewCell.h"
+
 #import "UIColor+HPColorAdditions.h"
 #import "UIScreen+HPScaleAdditions.h"
 #import "NSString+HPHashAdditions.h"
