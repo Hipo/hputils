@@ -143,7 +143,8 @@ static HPRequestManager *_sharedManager = nil;
                               withData:(NSData *)data 
                                 method:(HPRequestMethod)method 
                                 cached:(BOOL)cached {
-	NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:baseURL, path] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", baseURL, path] 
+                                       stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
 	HPRequestOperation *request = [HPRequestOperation requestForURL:url 
                                                            withData:data 
