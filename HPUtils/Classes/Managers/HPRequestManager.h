@@ -7,6 +7,7 @@
 //
 
 #import "HPRequestOperation.h"
+#import "HPS3UploadOperation.h"
 
 
 extern NSString * const HPNetworkStatusChangeNotification;
@@ -44,8 +45,16 @@ extern NSString * const HPNetworkStatusChangeNotification;
 	   withCacheKey:(NSString *)cacheKey 
 	completionBlock:(void (^)(id, NSError *))block;
 
+- (void)uploadImageToS3:(UIImage *)image 
+               toBucket:(NSString *)bucket 
+                 atPath:(NSString *)path 
+          withAccessKey:(NSString *)accessKey 
+                 secret:(NSString *)secret 
+        completionBlock:(void (^)(id, NSError *))block;
+
 - (id)parseJSONData:(NSData *)loadedData;
 - (id)parseImageData:(NSData *)loadedData;
+- (id)parseStringData:(NSData *)loadedData;
 
 - (NSString *)encodeURL:(NSString *)string;
 - (NSData *)dataFromDict:(NSDictionary *)dict;
@@ -61,5 +70,12 @@ extern NSString * const HPNetworkStatusChangeNotification;
                               withData:(NSData *)data 
                                 method:(HPRequestMethod)method 
                                 cached:(BOOL)cached;
+
+- (HPS3UploadOperation *)S3UploadOperationWithData:(NSData *)fileData 
+                                          MIMEType:(NSString *)MIMEType 
+                                         forBucket:(NSString *)bucket 
+                                              path:(NSString *)path 
+                                     withAccessKey:(NSString *)accessKey 
+                                            secret:(NSString *)secret;
 
 @end

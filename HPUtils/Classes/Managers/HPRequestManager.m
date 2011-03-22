@@ -127,6 +127,15 @@ static HPRequestManager *_sharedManager = nil;
     return image;
 }
 
+- (id)parseStringData:(NSData *)loadedData {
+	NSString *resource = [[NSString alloc] initWithBytesNoCopy:(void *)[loadedData bytes]
+														length:[loadedData length]
+													  encoding:NSUTF8StringEncoding
+												  freeWhenDone:NO];
+    
+    return [resource autorelease];
+}
+
 #pragma mark - Request creation and management
 
 - (HPRequestOperation *)requestForPath:(NSString *)path 
@@ -160,6 +169,26 @@ static HPRequestManager *_sharedManager = nil;
 	}];
 	
 	return request;
+}
+
+- (HPS3UploadOperation *)S3UploadOperationWithData:(NSData *)fileData 
+                                          MIMEType:(NSString *)MIMEType 
+                                         forBucket:(NSString *)bucket 
+                                              path:(NSString *)path 
+                                     withAccessKey:(NSString *)accessKey 
+                                            secret:(NSString *)secret {
+    HPS3UploadOperation *request = [HPS3UploadOperation uploadOperationWithData:fileData 
+                                                                       MIMEType:MIMEType 
+                                                                      forBucket:bucket 
+                                                                           path:path 
+                                                                  withAccessKey:accessKey 
+                                                                         secret:secret];
+    
+	[request setParserBlock:^ id (NSData *loadedData, NSString *contentType) {
+		return [self parseStringData:loadedData];
+	}];
+    
+    return request;
 }
 
 - (void)enqueueRequest:(HPRequestOperation *)request {
@@ -288,6 +317,46 @@ static HPRequestManager *_sharedManager = nil;
 	
 	[operation addCompletionBlock:block];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
+	
+	[_processQueue addOperation:operation];
+	
+	[operation release];
+}
+
+- (void)uploadImageToS3:(UIImage *)image 
+               toBucket:(NSString *)bucket 
+                 atPath:(NSString *)path 
+          withAccessKey:(NSString *)accessKey 
+                 secret:(NSString *)secret 
+        completionBlock:(void (^)(id, NSError *))block {
+    HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:image 
+                                                               targetSize:CGSizeZero 
+                                                              contentMode:UIViewContentModeScaleAspectFill 
+                                                                 cacheKey:nil 
+                                                              imageFormat:HPImageFormatJPEG];
+	
+	[operation addCompletionBlock:^(id resources, NSError *error) {
+        if (error == nil) {
+            HPS3UploadOperation *request = [self S3UploadOperationWithData:(NSData *)resources 
+                                                                  MIMEType:@"image/jpeg" 
+                                                                 forBucket:bucket 
+                                                                      path:path 
+                                                             withAccessKey:accessKey 
+                                                                    secret:secret];
+            
+            [request addCompletionBlock:block];
+            [request setQueuePriority:NSOperationQueuePriorityHigh];
+            
+            [_requestQueue addOperation:request];
+        } else {
+            block(nil, [NSError errorWithDomain:kHPErrorDomain 
+                                           code:kHPRequestParserFailureErrorCode 
+                                       userInfo:nil]);
+        }
+    }];
+    
+    [operation setOutputFormat:HPImageOperationOutputFormatRawData];
+    [operation setQueuePriority:NSOperationQueuePriorityHigh];
 	
 	[_processQueue addOperation:operation];
 	

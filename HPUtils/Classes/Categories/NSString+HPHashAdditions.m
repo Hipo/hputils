@@ -7,6 +7,7 @@
 //
 
 #import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonHMAC.h>
 
 #import "NSString+HPHashAdditions.h"
 
@@ -29,6 +30,20 @@
 	}
 	
 	return outputString;
+}
+
+- (NSData *)HMACSHA1withKey:(NSString *)key {
+    NSData *clearTextData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
+    
+    CCHmacContext hmacContext;
+    CCHmacInit(&hmacContext, kCCHmacAlgSHA1, keyData.bytes, keyData.length);
+    CCHmacUpdate(&hmacContext, clearTextData.bytes, clearTextData.length);
+    CCHmacFinal(&hmacContext, digest);
+    
+    return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
 @end

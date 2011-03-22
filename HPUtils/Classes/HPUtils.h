@@ -16,6 +16,7 @@
 
 #import "HPImageOperation.h"
 #import "HPRequestOperation.h"
+#import "HPS3UploadOperation.h"
 
 #import "HPLoadingWindow.h"
 #import "HPInteractiveView.h"
