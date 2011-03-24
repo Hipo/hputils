@@ -82,7 +82,7 @@
 			[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 			[request setValue:[NSString stringWithFormat:@"%d", [_requestData length]] forHTTPHeaderField:@"Content-Length"];
 		}
-		NSLog(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+		//NSLog(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
 		_connection = [[NSURLConnection alloc] initWithRequest:request 
 													  delegate:self 
 											  startImmediately:NO];

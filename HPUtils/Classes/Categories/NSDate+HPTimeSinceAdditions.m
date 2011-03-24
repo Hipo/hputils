@@ -37,12 +37,12 @@
 				NSInteger hours = floor((seconds - (years * year) - (months * month) - (days * day)) / hour);
 				
 				if (hours > 0) {
-					return [NSString stringWithFormat:@"%@ ago", (months == 1) ? @"An hour" : [NSString stringWithFormat:@"%d hours", hours]];
+					return [NSString stringWithFormat:@"%@ ago", (hours == 1) ? @"An hour" : [NSString stringWithFormat:@"%d hours", hours]];
 				} else {
 					NSInteger minutes = floor((seconds - (years * year) - (months * month) - (days * day) - (hours * hour)) / minute);
 					
 					if (minutes > 2) {
-						return [NSString stringWithFormat:@"%@ ago", (months == 1) ? @"A minute" : [NSString stringWithFormat:@"%d minutes", minutes]];
+						return [NSString stringWithFormat:@"%@ ago", (minutes == 1) ? @"A minute" : [NSString stringWithFormat:@"%d minutes", minutes]];
 					} else {
 						return @"Just now";
 					}

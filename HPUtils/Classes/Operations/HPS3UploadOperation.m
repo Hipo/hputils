@@ -88,8 +88,7 @@ static NSString * const kHPAmazonCanonicalPermission = @"public-read";
         NSString *auth = [NSString stringWithFormat:@"AWS %@:%@", accessKey, signature];
         
         [request setValue:auth forHTTPHeaderField:@"Authorization"];
-        
-		NSLog(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+		//NSLog(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
 		_connection = [[NSURLConnection alloc] initWithRequest:request 
 													  delegate:self 
 											  startImmediately:NO];
