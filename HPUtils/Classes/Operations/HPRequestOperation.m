@@ -115,6 +115,8 @@
         }
         
         if (cacheItem != nil) {
+            [_connection cancel];
+            
             _MIMEType = [cacheItem.MIMEType copy];
             
             [self callParserBlockWithData:cacheItem.cacheData error:nil];
