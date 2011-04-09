@@ -281,8 +281,9 @@
     NSDictionary *attributes = NULL;
     NSMutableDictionary *updateItem = NULL;
 	OSStatus result;
-    
-    if (SecItemCopyMatching((CFDictionaryRef)genericPasswordQuery, (CFTypeRef *)&attributes) == noErr)
+    OSStatus searchResult = SecItemCopyMatching((CFDictionaryRef)genericPasswordQuery, (CFTypeRef *)&attributes);
+
+    if (searchResult == noErr)
     {
         // First we need the attributes from the Keychain.
         updateItem = [NSMutableDictionary dictionaryWithDictionary:attributes];

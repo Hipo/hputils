@@ -82,7 +82,7 @@
 			[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 			[request setValue:[NSString stringWithFormat:@"%d", [_requestData length]] forHTTPHeaderField:@"Content-Length"];
 		}
-		//NSLog(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+
 		_connection = [[NSURLConnection alloc] initWithRequest:request 
 													  delegate:self 
 											  startImmediately:NO];
@@ -334,9 +334,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([challenge previousFailureCount] == 0) {
-        NSDictionary *userCredentials = [[HPAuthenticationManager sharedManager] userCredentials];
-        
+    NSDictionary *userCredentials = [[HPAuthenticationManager sharedManager] userCredentials];
+
+	if ([challenge previousFailureCount] == 0 && userCredentials != nil && [userCredentials count] > 0) {
 		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:[userCredentials objectForKey:HPAuthenticationManagerUsernameKey] 
 																	 password:[userCredentials objectForKey:HPAuthenticationManagerPasswordKey] 
 																  persistence:NSURLCredentialPersistencePermanent] 
