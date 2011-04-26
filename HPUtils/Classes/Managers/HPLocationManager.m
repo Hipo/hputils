@@ -120,7 +120,9 @@ static HPLocationManager *_sharedManager = nil;
 - (void)getLocationWithExecutionBlock:(void (^)(CLLocation *, NSError *))block {
 	if (_queryStartTime != nil) {
 		[_executionBlocks addObject:[[block copy] autorelease]];
-	} else if (_locationManager.location == nil || (_locationManager.location != nil && (-1 * [_locationManager.location.timestamp timeIntervalSinceNow]) > kMaximumAllowedLocationInterval)) {
+	} else if (_locationManager.location == nil || 
+               (_locationManager.location != nil && 
+                (-1 * [_locationManager.location.timestamp timeIntervalSinceNow]) > kMaximumAllowedLocationInterval)) {
 		_queryStartTime = [[NSDate date] retain];
         
 		[_executionBlocks addObject:[[block copy] autorelease]];
@@ -166,9 +168,13 @@ static HPLocationManager *_sharedManager = nil;
                        withObject:nil 
                        afterDelay:(kLocationCheckInterval)];
 		}
-	} else {
+	} else if (interval >= kLocationTimeOut) {
 		[self cancelLocationCheck];
-	}
+	} else {
+        [self performSelector:@selector(checkLocationStatus) 
+				   withObject:nil 
+				   afterDelay:(kLocationCheckInterval)];
+    }
 }
 
 - (void)cancelLocationCheck {
@@ -181,8 +187,13 @@ static HPLocationManager *_sharedManager = nil;
 }
 
 - (void)sendLocationToBlocks:(CLLocation *)location withError:(NSError *)error {
-	[_queryStartTime release], _queryStartTime = nil;
-	[_locationManager stopUpdatingLocation];
+	CLLocationAccuracy accuracy = location.horizontalAccuracy;
+	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
+    
+    if (accuracy <= kCLLocationAccuracyNearestTenMeters || interval > kLocationTimeOut) {
+        [_queryStartTime release], _queryStartTime = nil;
+        [_locationManager stopUpdatingLocation];
+    }
 	
     for (void(^block)(CLLocation *location, NSError *error) in _executionBlocks) {
 		block(location, error);

@@ -243,8 +243,13 @@ static HPRequestManager *_sharedManager = nil;
 }
 
 - (NSString *)pathFromBasePath:(NSString *)basePath withOptions:(NSDictionary *)options {
-	NSMutableString *requestPath = [NSMutableString stringWithFormat:@"%@?", basePath];
+	NSMutableString *requestPath = [NSMutableString stringWithString:basePath];
+    NSString *lastCharacter = [requestPath substringFromIndex:([requestPath length] - 1)];
 	
+    if (![lastCharacter isEqualToString:@"&"]) {
+        [requestPath appendString:@"?"];
+    }
+    
 	if (options != nil) {
 		for (NSString *key in [options allKeys]) {
 			[requestPath appendFormat:@"%@=%@&", key, [self encodeURL:[options objectForKey:key]]];

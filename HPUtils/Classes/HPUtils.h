@@ -20,6 +20,7 @@
 
 #import "HPLoadingWindow.h"
 #import "HPInteractiveView.h"
+#import "HPScrollView.h"
 #import "HPLoadingViewController.h"
 #import "HPImageLoadingTableViewController.h"
 
