@@ -128,6 +128,9 @@
 		EC6AEE5513381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EC6AEE5213381D5900D4CF26 /* HPS3UploadOperation.h */; };
 		EC6AEE5613381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */; };
 		EC6AEE5713381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */; };
+		EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC79140C13668A3E0099AD73 /* HPWebViewController.h */; };
+		EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC79140D13668A3E0099AD73 /* HPWebViewController.m */; };
+		EC791429136691370099AD73 /* HPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC79140D13668A3E0099AD73 /* HPWebViewController.m */; };
 		ECB55F72135B770900E8ED26 /* HPScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB55F70135B770900E8ED26 /* HPScrollView.h */; };
 		ECB55F73135B770900E8ED26 /* HPScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB55F70135B770900E8ED26 /* HPScrollView.h */; };
 		ECB55F74135B770900E8ED26 /* HPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB55F71135B770900E8ED26 /* HPScrollView.m */; };
@@ -210,6 +213,8 @@
 		EC6AEE4E13381BDA00D4CF26 /* NSData+HPBase64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HPBase64Additions.m"; sourceTree = "<group>"; };
 		EC6AEE5213381D5900D4CF26 /* HPS3UploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPS3UploadOperation.h; sourceTree = "<group>"; };
 		EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPS3UploadOperation.m; sourceTree = "<group>"; };
+		EC79140C13668A3E0099AD73 /* HPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPWebViewController.h; sourceTree = "<group>"; };
+		EC79140D13668A3E0099AD73 /* HPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPWebViewController.m; sourceTree = "<group>"; };
 		ECB55F70135B770900E8ED26 /* HPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPScrollView.h; sourceTree = "<group>"; };
 		ECB55F71135B770900E8ED26 /* HPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPScrollView.m; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,6 +391,8 @@
 				ECB76472133402CB00451A54 /* HPLoadingViewController.m */,
 				EC46DFBC133420E40075E597 /* HPImageLoadingTableViewController.h */,
 				EC46DFBD133420E40075E597 /* HPImageLoadingTableViewController.m */,
+				EC79140C13668A3E0099AD73 /* HPWebViewController.h */,
+				EC79140D13668A3E0099AD73 /* HPWebViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -505,6 +512,7 @@
 				EC6AEE4F13381BDC00D4CF26 /* NSData+HPBase64Additions.h in Headers */,
 				EC6AEE5413381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */,
 				ECB55F72135B770900E8ED26 /* HPScrollView.h in Headers */,
+				EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +655,7 @@
 				EC6AEE5013381BDC00D4CF26 /* NSData+HPBase64Additions.m in Sources */,
 				EC6AEE5613381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */,
 				ECB55F74135B770900E8ED26 /* HPScrollView.m in Sources */,
+				EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +666,7 @@
 				EC46DFEA133429A00075E597 /* HPLocationManager.m in Sources */,
 				EC46DF9A133415A00075E597 /* UIScreen+HPScaleAdditions.m in Sources */,
 				ECB764841334076500451A54 /* HPLoadingView.m in Sources */,
+				EC791429136691370099AD73 /* HPWebViewController.m in Sources */,
 				ECB764851334076900451A54 /* HPLoadingViewController.m in Sources */,
 				EC46DF9B133415A70075E597 /* NSString+HPHashAdditions.m in Sources */,
 				EC46DF9C133415AB0075E597 /* NSDate+HPTimeSinceAdditions.m in Sources */,

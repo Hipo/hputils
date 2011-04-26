@@ -23,6 +23,7 @@
 #import "HPScrollView.h"
 #import "HPLoadingViewController.h"
 #import "HPImageLoadingTableViewController.h"
+#import "HPWebViewController.h"
 
 #import "HPEditableTableViewCell.h"
 
