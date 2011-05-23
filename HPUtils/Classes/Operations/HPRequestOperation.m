@@ -216,6 +216,11 @@
                                                             code:kHPRequestServerFailureErrorCode 
                                                         userInfo:[NSDictionary dictionaryWithObject:parsedData 
                                                                                              forKey:@"serverError"]]];
+            } else if (error != nil) {
+				[self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
+                                                            code:kHPRequestServerFailureErrorCode 
+                                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                  parsedData, @"serverError", nil]]];
             } else {
 				[self sendResourcesToBlocks:parsedData];
 			}
@@ -305,11 +310,24 @@
 	}
     
 	if (statusCode == 304 || statusCode >= 400) {
-		[self callParserBlockWithData:nil 
-                                error:[NSError errorWithDomain:kHPErrorDomain 
-                                                          code:kHPRequestConnectionFailureErrorCode 
-                                                      userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:statusCode] 
-                                                                                           forKey:@"statusCode"]]];
+        switch (statusCode) {
+            case 400: {
+                [self callParserBlockWithData:_loadedData 
+                                        error:[NSError errorWithDomain:kHPErrorDomain 
+                                                                  code:kHPRequestConnectionFailureErrorCode 
+                                                              userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:statusCode] 
+                                                                                                   forKey:@"statusCode"]]];
+                break;
+            }
+            default: {
+                [self callParserBlockWithData:nil 
+                                        error:[NSError errorWithDomain:kHPErrorDomain 
+                                                                  code:kHPRequestConnectionFailureErrorCode 
+                                                              userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:statusCode] 
+                                                                                                   forKey:@"statusCode"]]];
+                break;
+            }
+        }
 	} else {
 		if (_isCached) {
 			if ([_response respondsToSelector:@selector(MIMEType)]) {

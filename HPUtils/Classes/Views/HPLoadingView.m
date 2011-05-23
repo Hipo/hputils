@@ -149,9 +149,11 @@ static NSString * const kHPLoadingViewAnimationEnd = @"loadingAnimationEnd";
     [_loadIndicator setAlpha:0.0];
     
     if (success) {
+        [_contentView setHidden:NO];
         [_contentView setAlpha:1.0];
         [_errorView setAlpha:0.0];
     } else {
+        [_errorView setHidden:NO];
         [_contentView setAlpha:0.0];
         [_errorView setAlpha:1.0];
     }
@@ -173,8 +175,8 @@ static NSString * const kHPLoadingViewAnimationEnd = @"loadingAnimationEnd";
 
 - (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
     if ([animationID isEqualToString:kHPLoadingViewAnimationStart]) {
-        [_contentView setHidden:YES];
-        [_errorView setHidden:YES];
+        //[_contentView setHidden:YES];
+        //[_errorView setHidden:YES];
     } else if ([animationID isEqualToString:kHPLoadingViewAnimationEnd]) {
         [_loadIndicator stopAnimating];
     }
