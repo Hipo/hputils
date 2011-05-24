@@ -25,5 +25,6 @@ extern NSString * const HPAuthenticationManagerPasswordKey;
 - (NSDictionary *)userCredentials;
 - (void)removeUserCredentials;
 - (void)saveUserCredentials:(NSDictionary *)credentials;
+- (void)updateUsername:(NSString *)username;
 
 @end

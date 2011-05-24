@@ -114,6 +114,19 @@ static HPAuthenticationManager *_sharedManager = nil;
     _isAuthenticated = YES;
 }
 
+- (void)updateUsername:(NSString *)username {
+    NSDictionary *credentials = [self userCredentials];
+    
+    if (credentials != nil) {
+        [self removeUserCredentials];
+
+        [self saveUserCredentials:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   [credentials objectForKey:HPAuthenticationManagerPasswordKey], 
+                                   HPAuthenticationManagerPasswordKey, 
+                                   username, HPAuthenticationManagerUsernameKey, nil]];
+    }
+}
+
 #pragma mark - Memory management
 
 - (void)dealloc {

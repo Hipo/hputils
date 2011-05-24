@@ -354,10 +354,10 @@
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     NSDictionary *userCredentials = [[HPAuthenticationManager sharedManager] userCredentials];
 
-	if ([challenge previousFailureCount] == 0 && userCredentials != nil && [userCredentials count] > 0) {
+	if ([challenge previousFailureCount] < 2 && userCredentials != nil && [userCredentials count] > 0) {
 		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:[userCredentials objectForKey:HPAuthenticationManagerUsernameKey] 
 																	 password:[userCredentials objectForKey:HPAuthenticationManagerPasswordKey] 
-																  persistence:NSURLCredentialPersistencePermanent] 
+																  persistence:NSURLCredentialPersistenceNone] 
 			   forAuthenticationChallenge:challenge];
 	} else {
         [self callParserBlockWithData:nil 
