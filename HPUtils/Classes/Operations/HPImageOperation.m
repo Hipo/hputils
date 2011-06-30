@@ -65,7 +65,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 		
 		if (cacheKey != nil) {
 			_cacheKey = [[HPImageOperation cacheKeyWithHash:cacheKey 
-												 targetSize:targetSize 
+												 targetSize:_targetSize 
 												contentMode:_contentMode 
 												imageFormat:_imageFormat] copy];
 		}
@@ -223,14 +223,26 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                     CGColorSpaceRelease(colorSpace);
                     
                     if (cgImage != NULL) {
-                        finalImage = [[UIImage alloc] initWithCGImage:cgImage];
+                        if (screenScaleRatio > 1.0) {
+                            finalImage = [[UIImage alloc] initWithCGImage:cgImage 
+                                                                    scale:screenScaleRatio 
+                                                              orientation:UIImageOrientationUp];
+                        } else {
+                            finalImage = [[UIImage alloc] initWithCGImage:cgImage];
+                        }
                         
                         CGImageRelease(cgImage);
                     }
                 }
             } else {
                 if (![self isCancelled]) {
-                    finalImage = [[UIImage alloc] initWithCGImage:[_sourceImage CGImage]];
+                    if (screenScaleRatio > 1.0) {
+                        finalImage = [[UIImage alloc] initWithCGImage:[_sourceImage CGImage] 
+                                                                scale:screenScaleRatio 
+                                                          orientation:UIImageOrientationUp];
+                    } else {
+                        finalImage = [[UIImage alloc] initWithCGImage:[_sourceImage CGImage]];
+                    }
                 }
             }
         }

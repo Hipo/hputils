@@ -226,7 +226,17 @@ static HPRequestManager *_sharedManager = nil;
 	NSMutableString *dataString = [NSMutableString string];
 	
 	for (NSString *key in [dict allKeys]) {
-		[dataString appendFormat:@"%@=%@&", key, [self encodeURL:[dict objectForKey:key]]];
+        id value = [dict objectForKey:key];
+        
+        if ((NSNull *)value == [NSNull null]) {
+            value = @"";
+        }
+        
+        if ([value respondsToSelector:@selector(stringValue)]) {
+            [dataString appendFormat:@"%@=%@&", key, [value stringValue]];
+        } else {
+            [dataString appendFormat:@"%@=%@&", key, [self encodeURL:(NSString *)value]];
+        }
 	}
     
 	return [dataString dataUsingEncoding:NSUTF8StringEncoding];
@@ -252,7 +262,17 @@ static HPRequestManager *_sharedManager = nil;
     
 	if (options != nil) {
 		for (NSString *key in [options allKeys]) {
-			[requestPath appendFormat:@"%@=%@&", key, [self encodeURL:[options objectForKey:key]]];
+            id value = [options objectForKey:key];
+            
+            if ((NSNull *)value == [NSNull null]) {
+                value = @"";
+            }
+            
+            if ([value respondsToSelector:@selector(stringValue)]) {
+                [requestPath appendFormat:@"%@=%@&", key, [value stringValue]];
+            } else {
+                [requestPath appendFormat:@"%@=%@&", key, [self encodeURL:(NSString *)value]];
+            }
 		}
 	}
 	

@@ -34,3 +34,5 @@
 #import "NSObject+HPKVCAdditions.h"
 #import "UIDevice+HPCapabilityAdditions.h"
 #import "UITouch+HPTouchSorting.h"
+
+#import "JSON.h"

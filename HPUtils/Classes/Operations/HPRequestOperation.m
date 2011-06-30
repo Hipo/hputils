@@ -272,6 +272,13 @@
 			
 			break;
 		}
+        case 204: {
+            [connection cancel];
+            
+            [self callParserBlockWithData:nil error:nil];
+            
+            break;
+        }
 		default: {
 			_expectedSize = [response expectedContentLength];
 			

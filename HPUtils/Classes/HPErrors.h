@@ -17,4 +17,5 @@ enum {
     kHPRequestConnectionCancelledErrorCode = 103,
     kHPRequestParserFailureErrorCode = 104,
     kHPRequestAuthenticationFailureErrorCode = 105,
+    kHPLocationDeniedErrorCode = 106,
 };

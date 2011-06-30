@@ -81,7 +81,18 @@ static HPLocationManager *_sharedManager = nil;
 #pragma mark - CLLocationManagerDelegate calls
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	[self cancelLocationCheck];
+    switch ([error code]) {
+        case kCLErrorDenied: {
+            [self sendLocationToBlocks:nil 
+                             withError:[NSError errorWithDomain:kHPErrorDomain 
+                                                           code:kHPLocationDeniedErrorCode 
+                                                       userInfo:nil]];
+            break;
+        }
+        default:
+            [self cancelLocationCheck];
+            break;
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
@@ -91,7 +102,7 @@ static HPLocationManager *_sharedManager = nil;
 	
 	CLLocationAccuracy accuracy = newLocation.horizontalAccuracy;
 	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
-    
+
 	if (accuracy <= kCLLocationAccuracyNearestTenMeters || 
 		(accuracy <= kCLLocationAccuracyHundredMeters && interval > kLocationAccuracyHundredMetersTimeOut) || 
 		(accuracy <= kCLLocationAccuracyKilometer && interval > kLocationAccuracyKilometerTimeOut) || 
@@ -190,9 +201,13 @@ static HPLocationManager *_sharedManager = nil;
 	CLLocationAccuracy accuracy = location.horizontalAccuracy;
 	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
     
-    if (accuracy <= kCLLocationAccuracyNearestTenMeters || interval > kLocationTimeOut) {
+    if (accuracy <= kCLLocationAccuracyNearestTenMeters || interval >= kLocationTimeOut) {
         [_queryStartTime release], _queryStartTime = nil;
         [_locationManager stopUpdatingLocation];
+    } else {
+        [self performSelector:@selector(checkLocationStatus) 
+                   withObject:nil 
+                   afterDelay:(kLocationCheckInterval)];
     }
 	
     for (void(^block)(CLLocation *location, NSError *error) in _executionBlocks) {
