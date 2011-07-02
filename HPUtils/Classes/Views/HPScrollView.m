@@ -9,6 +9,9 @@
 #import "HPScrollView.h"
 
 
+static NSInteger const kHPScrollViewTagOffset = 1;
+
+
 @interface HPScrollView (PrivateMethods)
 - (void)refreshCellLayout;
 - (void)removePage:(UIView *)page withIndex:(NSInteger)pageIndex;
@@ -123,8 +126,8 @@
 	while (index != NSNotFound) {
 		if (![visibleIndices containsIndex:index]) {
             for (UIView *subview in [_cellContainer subviews]) {
-                if (subview.tag == index) {
-                    [self removePage:subview withIndex:subview.tag];
+                if (subview.tag == (index + kHPScrollViewTagOffset)) {
+                    [self removePage:subview withIndex:index];
                     
                     break;
                 }
@@ -143,7 +146,7 @@
 	while (index != NSNotFound) {
 		UIView *cell = [dataSource scrollView:self viewForPageWithIndex:index];
 		
-		[cell setTag:index];
+		[cell setTag:(index + kHPScrollViewTagOffset)];
 		[cell setFrame:[self frameForCellAtIndex:index]];
         
 		[_cellContainer addSubview:cell];
@@ -244,11 +247,11 @@
 }
 
 - (NSInteger)indexOfCellView:(UIView *)cellView {
-    return cellView.tag;
+    return (cellView.tag - kHPScrollViewTagOffset);
 }
 
 - (UIView *)cellViewWithIndex:(NSInteger)cellIndex {
-    return [_cellContainer viewWithTag:cellIndex];
+    return [_cellContainer viewWithTag:(cellIndex + kHPScrollViewTagOffset)];
 }
 
 - (void)dealloc {
