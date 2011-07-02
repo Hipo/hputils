@@ -6,11 +6,23 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+@class HPScrollView;
 
 
-@protocol HPScrollViewDelegate;
-@protocol HPScrollViewDataSource;
+@protocol HPScrollViewDelegate <UIScrollViewDelegate>
+@optional
+- (void)scrollView:(HPScrollView *)scrollView didRemovePageWithIndex:(NSInteger)pageIndex;
+@end
+
+
+@protocol HPScrollViewDataSource <NSObject>
+@required
+- (NSInteger)numberOfPagesInScrollView:(HPScrollView *)scrollView;
+- (UIView *)scrollView:(HPScrollView *)scrollView viewForPageWithIndex:(NSInteger)pageIndex;
+- (CGRect)scrollView:(HPScrollView *)scrollView frameForPageWithIndex:(NSInteger)pageIndex;
+@end
+
 
 @interface HPScrollView : UIScrollView {
 @private
@@ -34,19 +46,6 @@
 - (void)reloadData;
 - (UIView *)dequeueReusablePage;
 - (NSInteger)indexOfCellView:(UIView *)cellView;
+- (UIView *)cellViewWithIndex:(NSInteger)cellIndex;
 
-@end
-
-
-@protocol HPScrollViewDelegate <UIScrollViewDelegate>
-@optional
-- (void)scrollView:(HPScrollView *)scrollView didRemovePageWithIndex:(NSInteger)pageIndex;
-@end
-
-
-@protocol HPScrollViewDataSource <NSObject>
-@required
-- (NSInteger)numberOfPagesInScrollView:(HPScrollView *)scrollView;
-- (UIView *)scrollView:(HPScrollView *)scrollView viewForPageWithIndex:(NSInteger)pageIndex;
-- (CGRect)scrollView:(HPScrollView *)scrollView frameForPageWithIndex:(NSInteger)pageIndex;
 @end

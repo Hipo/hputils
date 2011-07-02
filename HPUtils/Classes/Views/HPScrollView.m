@@ -247,6 +247,10 @@
     return cellView.tag;
 }
 
+- (UIView *)cellViewWithIndex:(NSInteger)cellIndex {
+    return [_cellContainer viewWithTag:cellIndex];
+}
+
 - (void)dealloc {
 	if (_cellRects != NULL) {
 		NSZoneFree(NULL, _cellRects);
