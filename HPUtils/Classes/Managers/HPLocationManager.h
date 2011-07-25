@@ -14,7 +14,12 @@
 	NSDate *_queryStartTime;
 	NSMutableSet *_executionBlocks;
 	CLLocationManager *_locationManager;
+    CLLocationAccuracy _desiredAccuracy;
+    double _intervalModifier;
 }
+
+@property (nonatomic, assign) CLLocationAccuracy desiredAccuracy;
+@property (nonatomic, assign) double intervalModifier;
 
 + (HPLocationManager *)sharedManager;
 

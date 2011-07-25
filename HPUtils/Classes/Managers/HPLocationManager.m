@@ -27,6 +27,9 @@ double const kLocationCheckInterval = 4.0;
 
 @implementation HPLocationManager
 
+@synthesize desiredAccuracy = _desiredAccuracy;
+@synthesize intervalModifier = _intervalModifier;
+
 #pragma mark - Singleton and init management
 
 static HPLocationManager *_sharedManager = nil;
@@ -70,6 +73,8 @@ static HPLocationManager *_sharedManager = nil;
 		_queryStartTime = nil;
 		_executionBlocks = [[NSMutableSet alloc] init];
 		_locationManager = [[CLLocationManager alloc] init];
+        _desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        _intervalModifier = 1.0;
 		
 		[_locationManager setDelegate:self];
 		[_locationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
@@ -95,7 +100,9 @@ static HPLocationManager *_sharedManager = nil;
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager 
+    didUpdateToLocation:(CLLocation *)newLocation 
+           fromLocation:(CLLocation *)oldLocation {
 	if (-1 * [newLocation.timestamp timeIntervalSinceNow] > kMaximumAllowedLocationInterval) {
 		return;
 	}
@@ -104,10 +111,10 @@ static HPLocationManager *_sharedManager = nil;
 	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
 
 	if (accuracy <= kCLLocationAccuracyNearestTenMeters || 
-		(accuracy <= kCLLocationAccuracyHundredMeters && interval > kLocationAccuracyHundredMetersTimeOut) || 
-		(accuracy <= kCLLocationAccuracyKilometer && interval > kLocationAccuracyKilometerTimeOut) || 
-		(accuracy <= kCLLocationAccuracyThreeKilometers && interval > kLocationAccuracyThreeKilometersTimeOut) || 
-		interval > kLocationTimeOut) {
+		(accuracy <= kCLLocationAccuracyHundredMeters && interval > kLocationAccuracyHundredMetersTimeOut * _intervalModifier) || 
+		(accuracy <= kCLLocationAccuracyKilometer && interval > kLocationAccuracyKilometerTimeOut * _intervalModifier) || 
+		(accuracy <= kCLLocationAccuracyThreeKilometers && interval > kLocationAccuracyThreeKilometersTimeOut * _intervalModifier) || 
+		interval > kLocationTimeOut * _intervalModifier) {
 		[self sendLocationToBlocks:newLocation withError:nil];
 	}
 }
@@ -115,17 +122,17 @@ static HPLocationManager *_sharedManager = nil;
 #pragma mark - Location update calls
 
 - (void)refreshLocation {
-	if (_queryStartTime == nil) {
-		[_queryStartTime release], _queryStartTime = nil;
-        
-		_queryStartTime = [[NSDate date] retain];
-		
-		[_locationManager startUpdatingLocation];
-		
-		[self performSelector:@selector(checkLocationStatus) 
-				   withObject:nil 
-				   afterDelay:kLocationCheckInterval];
-	}
+	if (_queryStartTime != nil) {
+        return;
+    }
+    
+    _queryStartTime = [[NSDate date] retain];
+    
+    [_locationManager startUpdatingLocation];
+    
+    [self performSelector:@selector(checkLocationStatus) 
+               withObject:nil 
+               afterDelay:kLocationCheckInterval];
 }
 
 - (void)getLocationWithExecutionBlock:(void (^)(CLLocation *, NSError *))block {
@@ -155,7 +162,7 @@ static HPLocationManager *_sharedManager = nil;
 	CLLocationAccuracy accuracy = _locationManager.location.horizontalAccuracy;
 	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
 	
-	if (interval >= kLocationAccuracyHundredMetersTimeOut && interval < kLocationAccuracyKilometerTimeOut) {
+	if (interval >= kLocationAccuracyHundredMetersTimeOut && interval < kLocationAccuracyKilometerTimeOut * _intervalModifier) {
 		if (accuracy <= kCLLocationAccuracyHundredMeters) {
 			[self sendLocationToBlocks:_locationManager.location withError:nil];
 		} else {
@@ -163,7 +170,7 @@ static HPLocationManager *_sharedManager = nil;
 					   withObject:nil 
 					   afterDelay:(kLocationCheckInterval)];
 		}
-	} else if (interval >= kLocationAccuracyKilometerTimeOut && interval < kLocationAccuracyThreeKilometersTimeOut) {
+	} else if (interval >= kLocationAccuracyKilometerTimeOut && interval < kLocationAccuracyThreeKilometersTimeOut * _intervalModifier) {
 		if (accuracy <= kCLLocationAccuracyKilometer) {
 			[self sendLocationToBlocks:_locationManager.location withError:nil];
 		} else {
@@ -171,7 +178,7 @@ static HPLocationManager *_sharedManager = nil;
                        withObject:nil 
                        afterDelay:(kLocationCheckInterval)];
 		}
-	} else if (interval >= kLocationAccuracyThreeKilometersTimeOut && interval < kLocationTimeOut) {
+	} else if (interval >= kLocationAccuracyThreeKilometersTimeOut && interval < kLocationTimeOut * _intervalModifier) {
 		if (accuracy <= kCLLocationAccuracyThreeKilometers) {
 			[self sendLocationToBlocks:_locationManager.location withError:nil];
 		} else {
@@ -179,7 +186,7 @@ static HPLocationManager *_sharedManager = nil;
                        withObject:nil 
                        afterDelay:(kLocationCheckInterval)];
 		}
-	} else if (interval >= kLocationTimeOut) {
+	} else if (interval >= kLocationTimeOut * _intervalModifier) {
 		[self cancelLocationCheck];
 	} else {
         [self performSelector:@selector(checkLocationStatus) 
@@ -215,6 +222,20 @@ static HPLocationManager *_sharedManager = nil;
 	}
 	
 	[_executionBlocks removeAllObjects];
+}
+
+#pragma mark - Accuracy
+
+- (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy {
+    if (_desiredAccuracy == desiredAccuracy) {
+        return;
+    }
+    
+    _desiredAccuracy = desiredAccuracy;
+    
+    [_locationManager setDesiredAccuracy:_desiredAccuracy];
+    
+    [self refreshLocation];
 }
 
 #pragma mark - Memory management
