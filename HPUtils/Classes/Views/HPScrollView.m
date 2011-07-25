@@ -112,6 +112,29 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     }
 }
 
+- (void)removeHiddenCells {
+    CGRect visibleBounds = self.bounds;
+	NSIndexSet *visibleIndices = [self indicesOfCellsInRect:visibleBounds];
+    
+    for (UIView *cell in [_cellContainer subviews]) {
+        if (![visibleIndices containsIndex:(cell.tag - kHPScrollViewTagOffset)]) {
+            [_reusablePages addObject:cell];
+            
+            [cell removeFromSuperview];
+            
+            if ([self.delegate respondsToSelector:@selector(scrollView:didRemoveCell:withIndex:)]) {
+                [self.delegate scrollView:self didRemovePageWithIndex:(cell.tag - kHPScrollViewTagOffset)];
+            }
+        }
+    }
+}
+
+- (void)refreshVisibleCells {
+    for (UIView *cell in [_cellContainer subviews]) {
+        [cell setFrame:[dataSource scrollView:self frameForPageWithIndex:(cell.tag - kHPScrollViewTagOffset)]];
+    }
+}
+
 - (void)layoutSubviews {
 	CGRect visibleBounds = UIEdgeInsetsInsetRect(self.bounds, _renderEdgeInsets);
 	NSIndexSet *visibleIndices = [self indicesOfCellsInRect:visibleBounds];

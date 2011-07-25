@@ -235,7 +235,7 @@ static HPCacheManager *_sharedManager = nil;
 	NSError *error;
 	NSString *cachePath = [self cachePathForCacheKey:cacheKey];
 	NSFileManager *fileManager = [NSFileManager defaultManager];
-    
+
 	if ([fileManager fileExistsAtPath:cachePath]) {
 		if (![fileManager removeItemAtPath:cachePath error:&error]) {
 			NSLog(@"ERROR: %@", [error localizedDescription]);

@@ -44,6 +44,9 @@
 @property (nonatomic, assign) id <HPScrollViewDataSource> dataSource;
 
 - (void)reloadData;
+- (void)removeHiddenCells;
+- (void)refreshVisibleCells;
+
 - (UIView *)dequeueReusablePage;
 - (NSInteger)indexOfCellView:(UIView *)cellView;
 - (UIView *)cellViewWithIndex:(NSInteger)cellIndex;
