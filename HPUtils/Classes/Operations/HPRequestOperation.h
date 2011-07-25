@@ -30,6 +30,7 @@ typedef enum {
     NSMutableData *_loadedData;
 	NSURLResponse *_response;
     NSIndexPath *_indexPath;
+    NSString *_identifier;
 	NSData *_requestData;
 	NSString *_MIMEType;
 	NSURL *_requestURL;
@@ -45,6 +46,7 @@ typedef enum {
     void (^_progressBlock)(float);
 }
 
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSIndexPath *indexPath;
 @property (nonatomic, assign) HPRequestOperationPostType postType;
 

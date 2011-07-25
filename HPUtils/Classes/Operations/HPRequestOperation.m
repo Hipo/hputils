@@ -24,6 +24,7 @@
 @implementation HPRequestOperation
 
 @synthesize indexPath = _indexPath;
+@synthesize identifier = _identifier;
 @synthesize parserBlock = _parserBlock;
 @synthesize progressBlock = _progressBlock;
 @synthesize postType = _postType;
@@ -395,6 +396,7 @@
 	[_MIMEType release], _MIMEType = nil;
 	[_response release], _response = nil;
     [_indexPath release], _indexPath = nil;
+    [_identifier release], _identifier = nil;
 	[_requestURL release], _requestURL = nil;
 	[_connection release], _connection = nil;
 	[_loadedData release], _loadedData = nil;
