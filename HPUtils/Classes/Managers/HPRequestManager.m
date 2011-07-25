@@ -19,8 +19,11 @@
 
 NSString * const HPNetworkStatusChangeNotification = @"networkStatusChange";
 
+NSTimeInterval const kNetworkActivityCheckInterval = 30.0;
+
 
 @interface HPRequestManager (PrivateMethods)
+- (void)checkNetworkActivity;
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification;
 @end
 
@@ -82,6 +85,10 @@ static HPRequestManager *_sharedManager = nil;
 												   object:_reachabilityManager];
 		
 		[_reachabilityManager startNotifier];
+        
+        [self performSelector:@selector(checkNetworkActivity) 
+                   withObject:nil 
+                   afterDelay:kNetworkActivityCheckInterval];
 	}
 	
 	return self;
@@ -194,16 +201,28 @@ static HPRequestManager *_sharedManager = nil;
 
 - (void)enqueueRequest:(HPRequestOperation *)request {
 	if (![request isExecuting] && ![request isFinished] && ![[_requestQueue operations] containsObject:request]) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
 		[request addCompletionBlock:^(id resources, NSError *error) {
 			if (error != nil && [error code] == kHPNetworkErrorCode) {
 				_networkConnectionAvailable = NO;
 			} else {
 				_networkConnectionAvailable = YES;
 			}
+            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] > 0)];
 		}];
 		
 		[_requestQueue addOperation:request];
 	}
+}
+
+- (void)checkNetworkActivity {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] > 0)];
+
+    [self performSelector:@selector(checkNetworkActivity) 
+               withObject:nil 
+               afterDelay:kNetworkActivityCheckInterval];
 }
 
 #pragma mark - URL creation and encoding
