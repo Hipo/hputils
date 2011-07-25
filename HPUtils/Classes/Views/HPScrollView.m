@@ -143,7 +143,14 @@ static NSInteger const kHPScrollViewTagOffset = 1;
         return;
     }
     
-	NSIndexSet *oldIndices = [self indicesOfCellsInRect:_visibleBounds];
+	NSMutableIndexSet *oldIndices = [[[self indicesOfCellsInRect:_visibleBounds] mutableCopy] autorelease];
+    
+    if (_insertedIndices != nil) {
+        [oldIndices removeIndexes:_insertedIndices];
+        
+        [_insertedIndices release], _insertedIndices = nil;
+    }
+    
 	NSUInteger index = [oldIndices firstIndex];
     
 	while (index != NSNotFound) {
@@ -234,6 +241,21 @@ static NSInteger const kHPScrollViewTagOffset = 1;
 	[_cellContainer setFrame:CGRectMake(0.0, 0.0, self.contentSize.width, self.contentSize.height)];
 }
 
+- (void)insertCells:(NSInteger)cellCount {
+    if (cellCount <= 0) {
+        return;
+    }
+    
+    if (_insertedIndices != nil) {
+        [_insertedIndices release], _insertedIndices = nil;
+    }
+    
+    _insertedIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(_totalCells, cellCount)];
+    
+    [self refreshCellLayout];
+    [self setNeedsLayout];
+}
+
 - (NSIndexSet *)indicesOfCellsInRect:(CGRect)rect {
 	if (CGRectIsEmpty(rect)) {
 		return [NSIndexSet indexSet];
@@ -285,6 +307,7 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     [_reusablePages release], _reusablePages = nil;
 	[_currentIndices release], _currentIndices = nil;
 	[_cellContainer release], _cellContainer = nil;
+    [_insertedIndices release], _insertedIndices = nil;
 	
     [super dealloc];
 }

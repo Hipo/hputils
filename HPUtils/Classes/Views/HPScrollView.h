@@ -31,6 +31,7 @@
 	CGRect _visibleBounds;
 	UIView *_cellContainer;
     NSIndexSet *_currentIndices;
+    NSIndexSet *_insertedIndices;
     NSInteger _horizontalPageIndex;
     UIEdgeInsets _renderEdgeInsets;
     NSMutableSet *_reusablePages;
@@ -46,6 +47,7 @@
 - (void)reloadData;
 - (void)removeHiddenCells;
 - (void)refreshVisibleCells;
+- (void)insertCells:(NSInteger)cellCount;
 
 - (UIView *)dequeueReusablePage;
 - (NSInteger)indexOfCellView:(UIView *)cellView;
