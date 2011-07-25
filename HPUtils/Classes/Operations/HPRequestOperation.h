@@ -14,10 +14,16 @@ typedef enum {
 	HPRequestMethodDelete
 } HPRequestMethod;
 
+typedef enum {
+    HPRequestOperationPostTypeForm,
+    HPRequestOperationPostTypeJSON,
+} HPRequestOperationPostType;
+
 
 @interface HPRequestOperation : NSOperation {
 @private
 	HPRequestMethod _requestMethod;
+    HPRequestOperationPostType _postType;
     
     NSMutableSet *_completionBlocks;
 	NSURLConnection *_connection;
@@ -40,6 +46,7 @@ typedef enum {
 }
 
 @property (nonatomic, copy) NSIndexPath *indexPath;
+@property (nonatomic, assign) HPRequestOperationPostType postType;
 
 @property (nonatomic, copy) id (^parserBlock)(NSData *, NSString *);
 @property (nonatomic, copy) void (^progressBlock)(float);

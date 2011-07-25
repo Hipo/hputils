@@ -26,6 +26,7 @@
 @synthesize indexPath = _indexPath;
 @synthesize parserBlock = _parserBlock;
 @synthesize progressBlock = _progressBlock;
+@synthesize postType = _postType;
 
 + (HPRequestOperation *)requestForURL:(NSURL *)url 
                              withData:(NSData *)data 
@@ -54,41 +55,6 @@
 		_isCancelled = NO;
 		_isExecuting = NO;
 		_isFinished = NO;
-		
-		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_requestURL 
-															   cachePolicy:(_isCached) ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringCacheData 
-														   timeoutInterval:30.0];
-		
-		switch (_requestMethod) {
-			case HPRequestMethodGet:
-				[request setHTTPMethod:@"GET"];
-				break;
-			case HPRequestMethodPost:
-				[request setHTTPMethod:@"POST"];
-				break;
-			case HPRequestMethodDelete:
-				[request setHTTPMethod:@"DELETE"];
-				break;
-			case HPRequestMethodPut:
-				[request setHTTPMethod:@"PUT"];
-				break;
-		}
-
-		[request setValue:@"text/javascript" forHTTPHeaderField:@"Accept"];
-		[request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-		
-		if (_requestData) {
-			[request setHTTPBody:_requestData];
-			[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-			[request setValue:[NSString stringWithFormat:@"%d", [_requestData length]] forHTTPHeaderField:@"Content-Length"];
-		}
-
-		_connection = [[NSURLConnection alloc] initWithRequest:request 
-													  delegate:self 
-											  startImmediately:NO];
-        
-		[_connection scheduleInRunLoop:[NSRunLoop mainRunLoop] 
-							   forMode:NSRunLoopCommonModes];
 	}
 	
 	return self;
@@ -104,6 +70,52 @@
 	[self willChangeValueForKey:@"isExecuting"];
 	_isExecuting = YES;
 	[self didChangeValueForKey:@"isExecuting"];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_requestURL 
+                                                           cachePolicy:(_isCached) ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringCacheData 
+                                                       timeoutInterval:30.0];
+    
+    switch (_requestMethod) {
+        case HPRequestMethodGet:
+            [request setHTTPMethod:@"GET"];
+            break;
+        case HPRequestMethodPost:
+            [request setHTTPMethod:@"POST"];
+            break;
+        case HPRequestMethodDelete:
+            [request setHTTPMethod:@"DELETE"];
+            break;
+        case HPRequestMethodPut:
+            [request setHTTPMethod:@"PUT"];
+            break;
+    }
+    
+    [request setValue:@"text/javascript" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    if (_requestData) {
+        [request setHTTPBody:_requestData];
+        
+        switch (_postType) {
+            case HPRequestOperationPostTypeJSON: {
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                break;
+            }
+            default: {
+                [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+                break;
+            }
+        }
+
+        [request setValue:[NSString stringWithFormat:@"%d", [_requestData length]] forHTTPHeaderField:@"Content-Length"];
+    }
+    
+    _connection = [[NSURLConnection alloc] initWithRequest:request 
+                                                  delegate:self 
+                                          startImmediately:NO];
+    
+    [_connection scheduleInRunLoop:[NSRunLoop mainRunLoop] 
+                           forMode:NSRunLoopCommonModes];
 	
 	if (_connection == nil) {
 		[self cancel];
