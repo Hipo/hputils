@@ -110,7 +110,7 @@ static HPLocationManager *_sharedManager = nil;
 	CLLocationAccuracy accuracy = newLocation.horizontalAccuracy;
 	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
 
-	if (accuracy <= kCLLocationAccuracyNearestTenMeters || 
+	if (accuracy <= _desiredAccuracy || accuracy <= kCLLocationAccuracyNearestTenMeters || 
 		(accuracy <= kCLLocationAccuracyHundredMeters && interval > kLocationAccuracyHundredMetersTimeOut * _intervalModifier) || 
 		(accuracy <= kCLLocationAccuracyKilometer && interval > kLocationAccuracyKilometerTimeOut * _intervalModifier) || 
 		(accuracy <= kCLLocationAccuracyThreeKilometers && interval > kLocationAccuracyThreeKilometersTimeOut * _intervalModifier) || 

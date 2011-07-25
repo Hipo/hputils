@@ -210,7 +210,7 @@ static HPRequestManager *_sharedManager = nil;
 				_networkConnectionAvailable = YES;
 			}
             
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] > 0)];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] - 1 > 0)];
 		}];
 		
 		[_requestQueue addOperation:request];
