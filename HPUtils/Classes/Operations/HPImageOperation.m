@@ -65,7 +65,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 		
 		if (cacheKey != nil) {
 			_cacheKey = [[HPImageOperation cacheKeyWithHash:cacheKey 
-												 targetSize:_targetSize 
+												 targetSize:targetSize 
 												contentMode:_contentMode 
 												imageFormat:_imageFormat] copy];
 		}
