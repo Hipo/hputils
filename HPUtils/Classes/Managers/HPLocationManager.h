@@ -24,6 +24,7 @@
 + (HPLocationManager *)sharedManager;
 
 - (void)refreshLocation;
+- (void)cancelLocationQuery;
 - (void)getLocationWithExecutionBlock:(void (^)(CLLocation *, NSError *))block;
 
 @end

@@ -238,6 +238,14 @@ static HPLocationManager *_sharedManager = nil;
     [self refreshLocation];
 }
 
+#pragma mark - Cancellation
+
+- (void)cancelLocationQuery {
+    [_locationManager stopUpdatingLocation];
+    [_queryStartTime release], _queryStartTime = nil;
+    [_executionBlocks removeAllObjects];
+}
+
 #pragma mark - Memory management
 
 - (void)dealloc {
