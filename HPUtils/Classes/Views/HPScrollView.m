@@ -62,7 +62,7 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     
 	if (!CGSizeEqualToSize(frame.size, self.contentSize) && 
         !CGRectEqualToRect(frame, CGRectZero) && dataSource != nil) {
-		[self reloadData];
+		[self refreshCellLayout];
 		[self setNeedsLayout];
 	}
 }
