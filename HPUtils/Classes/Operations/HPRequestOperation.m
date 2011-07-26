@@ -12,6 +12,9 @@
 #import "HPRequestOperation.h"
 
 
+NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
+
+
 @interface HPRequestOperation (PrivateMethods)
 - (void)sendErrorToBlocks:(NSError *)error;
 - (void)sendResourcesToBlocks:(id)resources;
@@ -75,7 +78,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_requestURL 
                                                            cachePolicy:(_isCached) ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringCacheData 
                                                        timeoutInterval:30.0];
-    
+
     switch (_requestMethod) {
         case HPRequestMethodGet:
             [request setHTTPMethod:@"GET"];
@@ -100,6 +103,11 @@
         switch (_postType) {
             case HPRequestOperationPostTypeJSON: {
                 [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                break;
+            }
+            case HPRequestOperationPostTypeFile: {
+                [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", 
+                                   HPRequestOperationMultiPartFormBoundary] forHTTPHeaderField:@"Content-Type"];
                 break;
             }
             default: {
@@ -277,7 +285,7 @@
 	switch (statusCode) {
 		case 500: {
 			[connection cancel];
-			
+
 			[self callParserBlockWithData:nil 
                                     error:[NSError errorWithDomain:kHPErrorDomain 
                                                               code:kHPRequestServerFailureErrorCode 

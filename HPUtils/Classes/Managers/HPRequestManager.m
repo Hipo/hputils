@@ -10,7 +10,6 @@
 
 #import "HPCacheManager.h"
 #import "HPErrors.h"
-#import "HPImageOperation.h"
 #import "HPReachabilityManager.h"
 #import "HPRequestManager.h"
 #import "HPRequestOperation.h"
@@ -153,6 +152,13 @@ static HPRequestManager *_sharedManager = nil;
 	NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", baseURL, path] 
                                        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
+    return [self requestForURL:url withData:data method:method cached:cached];
+}
+
+- (HPRequestOperation *)requestForURL:(NSURL *)url 
+                             withData:(NSData *)data 
+                               method:(HPRequestMethod)method 
+                               cached:(BOOL)cached {
 	HPRequestOperation *request = [HPRequestOperation requestForURL:url 
                                                            withData:data 
                                                              method:method 
@@ -261,6 +267,62 @@ static HPRequestManager *_sharedManager = nil;
 	return [dataString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
+- (NSData *)multiPartDataFromDict:(NSDictionary *)dict 
+                      withFileKey:(NSString *)fileKey 
+                  fileContentType:(NSString *)contentType {
+    NSMutableData *postData = [NSMutableData data];
+    NSInteger keyIndex = 0;
+	
+	[postData appendData:[[NSString stringWithFormat:@"--%@\r\n", 
+                           HPRequestOperationMultiPartFormBoundary] 
+                          dataUsingEncoding:NSASCIIStringEncoding 
+                          allowLossyConversion:NO]];
+
+	for (NSString *key in [dict allKeys]) {
+		NSRange keyLookup = [key rangeOfString:fileKey];
+		
+        if (keyIndex > 0) {
+            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", 
+                                   HPRequestOperationMultiPartFormBoundary] 
+                                  dataUsingEncoding:NSASCIIStringEncoding 
+                                  allowLossyConversion:NO]];
+        }
+		
+		if (keyLookup.location == NSNotFound) {
+			[postData appendData:[[NSString stringWithFormat:
+                                   @"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] 
+                                  dataUsingEncoding:NSASCIIStringEncoding]];
+
+			[postData appendData:[[dict objectForKey:key] 
+                                  dataUsingEncoding:NSASCIIStringEncoding]];
+		} else {
+			NSData *fileData = [dict objectForKey:key];
+
+			[postData appendData:[[NSString stringWithFormat:
+                                   @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.jpg\"\r\n", key, key] 
+                                  dataUsingEncoding:NSASCIIStringEncoding]];
+
+			[postData appendData:[[NSString stringWithFormat:
+                                   @"Content-Type: %@\r\n", contentType] 
+                                  dataUsingEncoding:NSASCIIStringEncoding]];
+            
+			[postData appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" 
+                                  dataUsingEncoding:NSASCIIStringEncoding]];
+
+			[postData appendData:fileData];
+		}
+        
+        keyIndex += 1;
+	}
+	
+	[postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", 
+                           HPRequestOperationMultiPartFormBoundary] 
+                          dataUsingEncoding:NSASCIIStringEncoding 
+                          allowLossyConversion:NO]];
+    
+	return postData;
+}
+
 - (NSData *)dataFromArray:(NSArray *)array withKey:(NSString *)key {
 	NSMutableString *dataString = [NSMutableString string];
 	
@@ -354,14 +416,27 @@ static HPRequestManager *_sharedManager = nil;
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
 	completionBlock:(void (^)(id, NSError *))block {
-	HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:sourceImage 
+	[self resizeImage:sourceImage 
+         toTargetSize:targetSize 
+         withCacheKey:cacheKey 
+         outputFormat:HPImageOperationOutputFormatImage 
+      completionBlock:block];
+}
+
+- (void)resizeImage:(UIImage *)sourceImage 
+       toTargetSize:(CGSize)targetSize 
+       withCacheKey:(NSString *)cacheKey 
+       outputFormat:(HPImageOperationOutputFormat)outputFormat 
+    completionBlock:(void (^)(id, NSError *))block {
+    HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:sourceImage 
                                                                targetSize:targetSize 
                                                               contentMode:UIViewContentModeScaleAspectFill 
                                                                  cacheKey:cacheKey 
                                                               imageFormat:HPImageFormatJPEG];
 	
 	[operation addCompletionBlock:block];
-    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [operation setOutputFormat:outputFormat];
+    [operation setQueuePriority:NSOperationQueuePriorityVeryHigh];
 	
 	[_processQueue addOperation:operation];
 	

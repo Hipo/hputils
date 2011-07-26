@@ -17,7 +17,11 @@ typedef enum {
 typedef enum {
     HPRequestOperationPostTypeForm,
     HPRequestOperationPostTypeJSON,
+    HPRequestOperationPostTypeFile,
 } HPRequestOperationPostType;
+
+
+extern NSString * const HPRequestOperationMultiPartFormBoundary;
 
 
 @interface HPRequestOperation : NSOperation {

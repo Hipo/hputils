@@ -6,6 +6,7 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import "HPImageOperation.h"
 #import "HPRequestOperation.h"
 #import "HPS3UploadOperation.h"
 
@@ -45,6 +46,12 @@ extern NSString * const HPNetworkStatusChangeNotification;
 	   withCacheKey:(NSString *)cacheKey 
 	completionBlock:(void (^)(id, NSError *))block;
 
+- (void)resizeImage:(UIImage *)sourceImage 
+	   toTargetSize:(CGSize)targetSize 
+	   withCacheKey:(NSString *)cacheKey 
+       outputFormat:(HPImageOperationOutputFormat)outputFormat 
+	completionBlock:(void (^)(id, NSError *))block;
+
 - (void)uploadImageToS3:(UIImage *)image 
                toBucket:(NSString *)bucket 
                  atPath:(NSString *)path 
@@ -57,8 +64,15 @@ extern NSString * const HPNetworkStatusChangeNotification;
 - (id)parseStringData:(NSData *)loadedData;
 
 - (NSString *)encodeURL:(NSString *)string;
+
 - (NSData *)dataFromDict:(NSDictionary *)dict;
-- (NSData *)dataFromArray:(NSArray *)array withKey:(NSString *)key;
+- (NSData *)multiPartDataFromDict:(NSDictionary *)dict 
+                      withFileKey:(NSString *)fileKey 
+                  fileContentType:(NSString *)contentType;
+
+- (NSData *)dataFromArray:(NSArray *)array 
+                  withKey:(NSString *)key;
+
 - (NSString *)pathFromBasePath:(NSString *)basePath 
                    withOptions:(NSDictionary *)options;
 
@@ -70,6 +84,11 @@ extern NSString * const HPNetworkStatusChangeNotification;
                               withData:(NSData *)data 
                                 method:(HPRequestMethod)method 
                                 cached:(BOOL)cached;
+
+- (HPRequestOperation *)requestForURL:(NSURL *)path 
+                             withData:(NSData *)data 
+                               method:(HPRequestMethod)method 
+                               cached:(BOOL)cached;
 
 - (HPS3UploadOperation *)S3UploadOperationWithData:(NSData *)fileData 
                                           MIMEType:(NSString *)MIMEType 
