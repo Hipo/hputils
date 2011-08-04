@@ -412,6 +412,27 @@ static HPRequestManager *_sharedManager = nil;
 	[self enqueueRequest:request];
 }
 
+- (void)loadStoredImageWithKey:(NSString *)storageKey 
+                     indexPath:(NSIndexPath *)indexPath 
+               completionBlock:(void (^)(id, NSError *))block 
+                    scaleToFit:(CGSize)targetSize 
+                   contentMode:(UIViewContentMode)contentMode {
+    HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:nil 
+                                                               targetSize:targetSize 
+                                                              contentMode:contentMode 
+                                                                 cacheKey:storageKey 
+                                                              imageFormat:HPImageFormatJPEG];
+    
+    [operation setIndexPath:indexPath];
+    [operation addCompletionBlock:block];
+    [operation setStorageKey:storageKey];
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    
+    [_processQueue addOperation:operation];
+    
+    [operation release];
+}
+
 - (void)resizeImage:(UIImage *)sourceImage 
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
@@ -428,6 +449,20 @@ static HPRequestManager *_sharedManager = nil;
        withCacheKey:(NSString *)cacheKey 
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
     completionBlock:(void (^)(id, NSError *))block {
+    [self resizeImage:sourceImage 
+         toTargetSize:targetSize 
+         withCacheKey:cacheKey 
+         outputFormat:outputFormat 
+     storePermanently:NO 
+      completionBlock:block];
+}
+
+- (void)resizeImage:(UIImage *)sourceImage 
+       toTargetSize:(CGSize)targetSize 
+       withCacheKey:(NSString *)cacheKey 
+       outputFormat:(HPImageOperationOutputFormat)outputFormat 
+   storePermanently:(BOOL)storePermanently 
+    completionBlock:(void (^)(id, NSError *))block {
     HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:sourceImage 
                                                                targetSize:targetSize 
                                                               contentMode:UIViewContentModeScaleAspectFill 
@@ -436,6 +471,12 @@ static HPRequestManager *_sharedManager = nil;
 	
 	[operation addCompletionBlock:block];
     [operation setOutputFormat:outputFormat];
+    [operation setStorePermanently:storePermanently];
+    
+    if (storePermanently) {
+        [operation setStorageKey:cacheKey];
+    }
+    
     [operation setQueuePriority:NSOperationQueuePriorityVeryHigh];
 	
 	[_processQueue addOperation:operation];

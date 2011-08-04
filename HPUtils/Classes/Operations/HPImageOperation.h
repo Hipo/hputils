@@ -28,10 +28,15 @@ typedef enum {
 	UIViewContentMode _contentMode;
 	NSMutableSet *_completionBlocks;	
 	HPImageOperationOutputFormat _outputFormat;
+    NSString *_storageKey;
+    
+    BOOL _storePermanently;
 }
 
 @property (nonatomic, copy) NSIndexPath *indexPath;
+@property (nonatomic, copy) NSString *storageKey;
 @property (nonatomic, assign) HPImageOperationOutputFormat outputFormat;
+@property (nonatomic, assign) BOOL storePermanently;
 
 + (NSString *)cacheKeyWithHash:(NSString *)hash 
                     targetSize:(CGSize)targetSize 

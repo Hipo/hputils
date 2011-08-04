@@ -23,7 +23,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @implementation HPImageOperation
 
 @synthesize indexPath = _indexPath;
+@synthesize storageKey = _storageKey;
 @synthesize outputFormat = _outputFormat;
+@synthesize storePermanently = _storePermanently;
 
 + (NSString *)cacheKeyWithHash:(NSString *)hash 
                     targetSize:(CGSize)targetSize 
@@ -59,6 +61,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 		_sourceImage = [image retain];
 		_completionBlocks = [[NSMutableSet alloc] init];
 		_contentMode = contentMode;
+        _storePermanently = NO;
 		_outputFormat = HPImageOperationOutputFormatImage;
 		_targetSize = CGSizeMake(targetSize.width * screenScaleRatio, 
 								 targetSize.height * screenScaleRatio);
@@ -82,7 +85,36 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIImage *finalImage = nil;
         BOOL alreadyCached = NO;
         
-        if (_cacheKey != nil) {
+        if (_storageKey != nil && _sourceImage == nil) {
+            HPCacheItem *storedItem = [[HPCacheManager sharedManager] storedItemForStorageKey:_storageKey];
+
+            if (storedItem != nil) {
+                CGDataProviderRef storageProvider = CGDataProviderCreateWithCFData((CFDataRef)storedItem.cacheData);
+                CGImageRef storageImage = NULL;
+                
+                if ([storedItem.MIMEType isEqualToString:@"image/png"]) {
+                    storageImage = CGImageCreateWithPNGDataProvider(storageProvider, NULL, YES, kCGRenderingIntentDefault);
+                } else if ([storedItem.MIMEType isEqualToString:@"image/jpeg"]) {
+                    storageImage = CGImageCreateWithJPEGDataProvider(storageProvider, NULL, YES, kCGRenderingIntentDefault);
+                }
+                
+                if (storageImage != NULL) {
+                    if (screenScaleRatio > 1.0) {
+                        _sourceImage = [[UIImage alloc] initWithCGImage:storageImage 
+                                                                  scale:screenScaleRatio 
+                                                            orientation:UIImageOrientationUp];
+                    } else {
+                        _sourceImage = [[UIImage alloc] initWithCGImage:storageImage];
+                    }
+                    
+                    CFRelease(storageImage);
+                }
+                
+                CFRelease(storageProvider);
+            }
+        }
+        
+        if (_cacheKey != nil && !_storePermanently) {
             HPCacheItem *cachedItem = [[HPCacheManager sharedManager] cachedItemForCacheKey:_cacheKey];
             
             if (cachedItem != nil) {
@@ -268,6 +300,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 }
                 
                 if (imageData != nil) {
+                    if (_storePermanently) {
+                        [[HPCacheManager sharedManager] storeData:imageData 
+                                                    forStorageKey:_storageKey 
+                                                     withMIMEType:MIMEType];
+                    }
+
                     [[HPCacheManager sharedManager] cacheData:imageData 
                                                   forCacheKey:_cacheKey 
                                                  withMIMEType:MIMEType];
@@ -308,10 +346,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)dealloc {
-	[_cacheKey release];
-    [_indexPath release];
-	[_sourceImage release];
-	[_completionBlocks release];
+	[_cacheKey release], _cacheKey = nil;
+    [_indexPath release], _indexPath = nil;
+	[_sourceImage release], _sourceImage = nil;
+	[_completionBlocks release], _completionBlocks = nil;
+    [_storageKey release], _storageKey = nil;
 	
 	[super dealloc];
 }

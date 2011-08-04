@@ -40,10 +40,16 @@
 @interface HPCacheManager : NSObject {
 @private
 	NSString *_cacheDirectoryPath;
+	NSString *_storageDirectoryPath;
 	NSOperationQueue *_saveQueue;
 }
 
 + (HPCacheManager *)sharedManager;
+
+- (HPCacheItem *)storedItemForStorageKey:(NSString *)storageKey;
+- (void)storeData:(NSData *)storageData 
+    forStorageKey:(NSString *)storageKey 
+     withMIMEType:(NSString *)MIMEType;
 
 - (HPCacheItem *)cachedItemForCacheKey:(NSString *)cacheKey;
 - (void)cacheData:(NSData *)cacheData 

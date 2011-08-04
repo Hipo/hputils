@@ -41,6 +41,12 @@ extern NSString * const HPNetworkStatusChangeNotification;
 			scaleToFit:(CGSize)targetSize 
 		   contentMode:(UIViewContentMode)contentMode;
 
+- (void)loadStoredImageWithKey:(NSString *)storageKey 
+                     indexPath:(NSIndexPath *)indexPath 
+               completionBlock:(void (^)(id, NSError *))block 
+                    scaleToFit:(CGSize)targetSize 
+                   contentMode:(UIViewContentMode)contentMode;
+
 - (void)resizeImage:(UIImage *)sourceImage 
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
@@ -50,6 +56,13 @@ extern NSString * const HPNetworkStatusChangeNotification;
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
+	completionBlock:(void (^)(id, NSError *))block;
+
+- (void)resizeImage:(UIImage *)sourceImage 
+	   toTargetSize:(CGSize)targetSize 
+	   withCacheKey:(NSString *)cacheKey 
+       outputFormat:(HPImageOperationOutputFormat)outputFormat 
+   storePermanently:(BOOL)storePermanently 
 	completionBlock:(void (^)(id, NSError *))block;
 
 - (void)uploadImageToS3:(UIImage *)image 

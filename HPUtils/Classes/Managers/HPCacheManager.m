@@ -16,6 +16,7 @@ const NSUInteger kHPURLCacheDiskCapacity = 10 * 1024 * 1024;
 double const kHPStaleCacheInterval = 60.0 * 60.0 * 48.0;
 
 static NSString * const kURLCachePath = @"caches";
+static NSString * const kURLStoragePath = @"storage";
 static NSString * const kURLCacheFilename = @"shared";
 
 static NSString * const kCacheInfoPathKey = @"cachePath";
@@ -31,6 +32,7 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 @interface HPCacheManager (PrivateMethods)
 - (void)storeCacheWithCacheItem:(HPCacheItem *)cacheItem;
 - (NSString *)cachePathForCacheKey:(NSString *)cacheKey;
+- (NSString *)storagePathForStorageKey:(NSString *)storageKey;
 @end
 
 
@@ -145,15 +147,27 @@ static HPCacheManager *_sharedManager = nil;
 	if (self) {
 		_saveQueue = [[NSOperationQueue alloc] init];
 		_cacheDirectoryPath = [[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] 
-								stringByAppendingPathComponent:kURLCachePath] retain];
+								stringByAppendingPathComponent:kURLCachePath] copy];
+		_storageDirectoryPath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] 
+                                  stringByAppendingPathComponent:kURLStoragePath] copy];
 		
 		[_saveQueue setMaxConcurrentOperationCount:1];
 		
 		NSFileManager *fileManager = [NSFileManager defaultManager];
-		BOOL directoryExists = NO;
+
+		BOOL cachesDirectoryExists = NO;
 		
-		if (![fileManager fileExistsAtPath:_cacheDirectoryPath isDirectory:&directoryExists] || !directoryExists) {
+		if (![fileManager fileExistsAtPath:_cacheDirectoryPath isDirectory:&cachesDirectoryExists] || !cachesDirectoryExists) {
 			[fileManager createDirectoryAtPath:_cacheDirectoryPath 
+				   withIntermediateDirectories:YES 
+									attributes:nil 
+										 error:nil];
+		}
+        
+		BOOL storageDirectoryExists = NO;
+		
+		if (![fileManager fileExistsAtPath:_storageDirectoryPath isDirectory:&storageDirectoryExists] || !storageDirectoryExists) {
+			[fileManager createDirectoryAtPath:_storageDirectoryPath 
 				   withIntermediateDirectories:YES 
 									attributes:nil 
 										 error:nil];
@@ -173,6 +187,36 @@ static HPCacheManager *_sharedManager = nil;
 
 - (NSString *)cachePathForCacheKey:(NSString *)cacheKey {
 	return [_cacheDirectoryPath stringByAppendingPathComponent:cacheKey];
+}
+
+- (NSString *)storagePathForStorageKey:(NSString *)storageKey {
+	return [_storageDirectoryPath stringByAppendingPathComponent:storageKey];
+}
+
+- (HPCacheItem *)storedItemForStorageKey:(NSString *)storageKey {
+    NSDictionary *pickle = [NSKeyedUnarchiver unarchiveObjectWithFile:[self storagePathForStorageKey:storageKey]];
+	
+	if (pickle != nil) {
+		HPCacheItem *cachedItem = [HPCacheItem cacheItemWithPickledObject:pickle];
+		
+		return cachedItem;
+	} else {
+		return nil;
+	}
+}
+
+- (void)storeData:(NSData *)storageData forStorageKey:(NSString *)storageKey withMIMEType:(NSString *)MIMEType {
+    if (storageData != nil) {
+		NSString *storagePath = [self storagePathForStorageKey:storageKey];
+
+        [_saveQueue addOperation:[[[NSInvocationOperation alloc] 
+                                   initWithTarget:self 
+                                   selector:@selector(storeCacheWithCacheItem:) 
+                                   object:[HPCacheItem cacheItemWithCacheData:storageData 
+                                                                         path:storagePath 
+                                                                     MIMEType:MIMEType 
+                                                                        stamp:nil]] autorelease]];
+	}
 }
 
 - (HPCacheItem *)cachedItemForCacheKey:(NSString *)cacheKey {
@@ -204,12 +248,13 @@ static HPCacheManager *_sharedManager = nil;
 		NSString *cachePath = [self cachePathForCacheKey:cacheKey];
 		
 		if (![[NSFileManager defaultManager] fileExistsAtPath:cachePath]) {
-			[_saveQueue addOperation:[[[NSInvocationOperation alloc] initWithTarget:self 
-																		   selector:@selector(storeCacheWithCacheItem:) 
-																			 object:[HPCacheItem cacheItemWithCacheData:cacheData 
-																												 path:cachePath 
-																											 MIMEType:MIMEType 
-																												stamp:nil]] autorelease]];
+			[_saveQueue addOperation:[[[NSInvocationOperation alloc] 
+                                       initWithTarget:self 
+                                       selector:@selector(storeCacheWithCacheItem:) 
+                                       object:[HPCacheItem cacheItemWithCacheData:cacheData 
+                                                                             path:cachePath 
+                                                                         MIMEType:MIMEType 
+                                                                            stamp:nil]] autorelease]];
 		}
 	}
 }
@@ -224,7 +269,7 @@ static HPCacheManager *_sharedManager = nil;
 
 - (void)storeCacheWithCacheItem:(HPCacheItem *)cacheItem {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+
 	[NSKeyedArchiver archiveRootObject:[cacheItem pickledObjectForArchive] 
 								toFile:cacheItem.cachePath];
 	
@@ -251,6 +296,7 @@ static HPCacheManager *_sharedManager = nil;
 	[_saveQueue cancelAllOperations];
 	[_saveQueue release], _saveQueue = nil;
 	[_cacheDirectoryPath release], _cacheDirectoryPath = nil;
+    [_storageDirectoryPath release], _storageDirectoryPath = nil;
 	
 	[super dealloc];
 }
