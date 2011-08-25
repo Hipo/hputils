@@ -594,6 +594,7 @@
 		ECB76449133400D000451A54 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "Hippo Foundry";
 			};
 			buildConfigurationList = ECB7644C133400D000451A54 /* Build configuration list for PBXProject "HPUtils" */;
@@ -731,7 +732,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				ZERO_LINK = NO;

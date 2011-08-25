@@ -22,29 +22,38 @@
 	NSInteger years = floor(seconds / year);
 	
 	if (years > 0) {
-		return [NSString stringWithFormat:@"More than %@ ago", (years == 1) ? @"a year" : [NSString stringWithFormat:@"%d years", years]];
+		return [NSString stringWithFormat:NSLocalizedString(@"%@ ago", nil), 
+                (years == 1) ? NSLocalizedString(@"A year", nil) : 
+                [NSString stringWithFormat:NSLocalizedString(@"%d years", nil), years]];
 	} else {
 		NSInteger months = floor((seconds - (years * year)) / month);
 		
 		if (months > 0) {
-			return [NSString stringWithFormat:@"%@ ago", (months == 1) ? @"A month" : [NSString stringWithFormat:@"%d months", months]];
+			return [NSString stringWithFormat:NSLocalizedString(@"%@ ago", nil), 
+                    (months == 1) ? NSLocalizedString(@"A month", nil) : 
+                    [NSString stringWithFormat:NSLocalizedString(@"%d months", nil), months]];
 		} else {
 			NSInteger days = floor((seconds - (years * year) - (months * month)) / day);
 			
 			if (days > 0) {
-				return [NSString stringWithFormat:@"%@ ago", (days == 1) ? @"A day" : [NSString stringWithFormat:@"%d days", days]];
+				return [NSString stringWithFormat:NSLocalizedString(@"%@ ago", nil), 
+                        (days == 1) ? NSLocalizedString(@"A day", nil) : 
+                        [NSString stringWithFormat:NSLocalizedString(@"%d days", nil), days]];
 			} else {
 				NSInteger hours = floor((seconds - (years * year) - (months * month) - (days * day)) / hour);
 				
 				if (hours > 0) {
-					return [NSString stringWithFormat:@"%@ ago", (hours == 1) ? @"An hour" : [NSString stringWithFormat:@"%d hours", hours]];
+					return [NSString stringWithFormat:NSLocalizedString(@"%@ ago", nil), 
+                            (hours == 1) ? NSLocalizedString(@"An hour", nil) : 
+                            [NSString stringWithFormat:NSLocalizedString(@"%d hours", nil), hours]];
 				} else {
 					NSInteger minutes = floor((seconds - (years * year) - (months * month) - (days * day) - (hours * hour)) / minute);
 					
 					if (minutes > 2) {
-						return [NSString stringWithFormat:@"%@ ago", (minutes == 1) ? @"A minute" : [NSString stringWithFormat:@"%d minutes", minutes]];
+						return [NSString stringWithFormat:[NSString stringWithFormat:
+                                                           NSLocalizedString(@"%d minutes ago", nil), minutes]];
 					} else {
-						return @"Just now";
+						return NSLocalizedString(@"Just now", nil);
 					}
 				}
 			}
