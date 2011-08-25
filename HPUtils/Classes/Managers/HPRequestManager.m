@@ -415,6 +415,7 @@ static HPRequestManager *_sharedManager = nil;
 - (void)loadStoredImageWithKey:(NSString *)storageKey 
                      indexPath:(NSIndexPath *)indexPath 
                completionBlock:(void (^)(id, NSError *))block 
+                  outputFormat:(HPImageOperationOutputFormat)outputFormat 
                     scaleToFit:(CGSize)targetSize 
                    contentMode:(UIViewContentMode)contentMode {
     HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:nil 
@@ -426,11 +427,25 @@ static HPRequestManager *_sharedManager = nil;
     [operation setIndexPath:indexPath];
     [operation addCompletionBlock:block];
     [operation setStorageKey:storageKey];
+    [operation setOutputFormat:outputFormat];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     
     [_processQueue addOperation:operation];
     
     [operation release];
+}
+
+- (void)loadStoredImageWithKey:(NSString *)storageKey 
+                     indexPath:(NSIndexPath *)indexPath 
+               completionBlock:(void (^)(id, NSError *))block 
+                    scaleToFit:(CGSize)targetSize 
+                   contentMode:(UIViewContentMode)contentMode {
+    [self loadStoredImageWithKey:storageKey 
+                       indexPath:indexPath 
+                 completionBlock:block 
+                    outputFormat:HPImageOperationOutputFormatImage 
+                      scaleToFit:targetSize 
+                     contentMode:contentMode];
 }
 
 - (void)resizeImage:(UIImage *)sourceImage 

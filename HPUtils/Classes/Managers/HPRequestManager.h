@@ -47,6 +47,13 @@ extern NSString * const HPNetworkStatusChangeNotification;
                     scaleToFit:(CGSize)targetSize 
                    contentMode:(UIViewContentMode)contentMode;
 
+- (void)loadStoredImageWithKey:(NSString *)storageKey 
+                     indexPath:(NSIndexPath *)indexPath 
+               completionBlock:(void (^)(id, NSError *))block 
+                  outputFormat:(HPImageOperationOutputFormat)outputFormat 
+                    scaleToFit:(CGSize)targetSize 
+                   contentMode:(UIViewContentMode)contentMode;
+
 - (void)resizeImage:(UIImage *)sourceImage 
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
