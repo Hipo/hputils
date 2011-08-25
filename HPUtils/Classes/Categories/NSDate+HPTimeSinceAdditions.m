@@ -50,8 +50,7 @@
 					NSInteger minutes = floor((seconds - (years * year) - (months * month) - (days * day) - (hours * hour)) / minute);
 					
 					if (minutes > 2) {
-						return [NSString stringWithFormat:[NSString stringWithFormat:
-                                                           NSLocalizedString(@"%d minutes ago", nil), minutes]];
+						return [NSString stringWithFormat:NSLocalizedString(@"%d minutes ago", nil), minutes];
 					} else {
 						return NSLocalizedString(@"Just now", nil);
 					}
