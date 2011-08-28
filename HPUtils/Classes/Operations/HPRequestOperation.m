@@ -18,6 +18,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 @interface HPRequestOperation (PrivateMethods)
 - (void)sendErrorToBlocks:(NSError *)error;
 - (void)sendResourcesToBlocks:(id)resources;
+- (void)callUploadProgressBlockWithPercentage:(NSNumber *)percentage;
 - (void)callProgressBlockWithPercentage:(NSNumber *)percentage;
 - (void)callParserBlockWithData:(NSData *)data error:(NSError *)error;
 - (void)sendResourcesToBlocks:(id)resources withError:(NSError *)error;
@@ -30,6 +31,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 @synthesize identifier = _identifier;
 @synthesize parserBlock = _parserBlock;
 @synthesize progressBlock = _progressBlock;
+@synthesize uploadProgressBlock = _uploadProgressBlock;
 @synthesize postType = _postType;
 
 + (HPRequestOperation *)requestForURL:(NSURL *)url 
@@ -271,6 +273,20 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 	}
 }
 
+- (void)callUploadProgressBlockWithPercentage:(NSNumber *)percentage {
+	if (![NSThread isMainThread]) {
+		[self performSelectorOnMainThread:_cmd 
+							   withObject:percentage 
+							waitUntilDone:NO];
+		
+		return;
+	}
+	
+	if (![self isCancelled] && _uploadProgressBlock != nil) {
+		_uploadProgressBlock([percentage floatValue]);
+	}
+}
+
 #pragma mark - NSURLConnectionDelegate calls
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -312,6 +328,13 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 			break;
 		}
 	}
+}
+
+- (void)connection:(NSURLConnection *)connection 
+   didSendBodyData:(NSInteger)bytesWritten 
+ totalBytesWritten:(NSInteger)totalBytesWritten 
+totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+    [self callUploadProgressBlockWithPercentage:[NSNumber numberWithFloat:((float)totalBytesWritten / (float)totalBytesExpectedToWrite)]];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -412,6 +435,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 	[_parserBlock release], _parserBlock = nil;
 	[_progressBlock release], _progressBlock = nil;
     [_completionBlocks release], _completionBlocks = nil;
+    [_uploadProgressBlock release], _uploadProgressBlock = nil;
 	
 	[super dealloc];
 }

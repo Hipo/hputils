@@ -47,6 +47,7 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
 	BOOL _isFinished;
     
     id (^_parserBlock)(NSData *, NSString *);
+    void (^_uploadProgressBlock)(float progress);
     void (^_progressBlock)(float);
 }
 
@@ -55,6 +56,7 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
 @property (nonatomic, assign) HPRequestOperationPostType postType;
 
 @property (nonatomic, copy) id (^parserBlock)(NSData *, NSString *);
+@property (nonatomic, copy) void (^uploadProgressBlock)(float progress);
 @property (nonatomic, copy) void (^progressBlock)(float);
 
 + (HPRequestOperation *)requestForURL:(NSURL *)url 
