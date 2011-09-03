@@ -6,6 +6,8 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import <CrashReporter/CrashReporter.h>
+
 #import "JSON.h"
 
 #import "HPCacheManager.h"
@@ -14,6 +16,7 @@
 #import "HPRequestManager.h"
 #import "HPRequestOperation.h"
 #import "NSString+HPHashAdditions.h"
+#import "UIDevice+HPCapabilityAdditions.h"
 
 
 NSString * const HPNetworkStatusChangeNotification = @"networkStatusChange";
@@ -24,6 +27,7 @@ NSTimeInterval const kNetworkActivityCheckInterval = 30.0;
 @interface HPRequestManager (PrivateMethods)
 - (void)checkNetworkActivity;
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification;
+- (void)handleCrashReport;
 @end
 
 
@@ -57,7 +61,7 @@ static HPRequestManager *_sharedManager = nil;
     return NSUIntegerMax;
 }
 
-- (void)release {
+- (oneway void)release {
     
 }
 
@@ -537,6 +541,266 @@ static HPRequestManager *_sharedManager = nil;
 	[_processQueue addOperation:operation];
 	
 	[operation release];
+}
+
+#pragma mark - Crash reports
+
+- (void)sendAvailableCrashReports {
+    PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+    NSError *error;
+    
+    if ([crashReporter hasPendingCrashReport]) {
+        [self handleCrashReport];
+    } else {
+        NSLog(@"NO CRASH REPORTS FOUND");
+    }
+    
+    if (![crashReporter enableCrashReporterAndReturnError:&error]) {
+        NSLog(@"COULD NOT ENABLE CRASH REPORTER: %@", error);
+    }
+}
+
+- (void)handleCrashReport {
+    PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+    NSData *crashData;
+    NSError *error;
+    
+    crashData = [crashReporter loadPendingCrashReportDataAndReturnError:&error];
+    
+    if (crashData == nil) {
+        NSLog(@"COULD NOT LOAD CRASH DATA: %@", error);
+        
+        [crashReporter purgePendingCrashReport];
+        
+        return;
+    }
+    
+    PLCrashReport *report = [[PLCrashReport alloc] initWithData:crashData error:&error];
+    
+    if (report == nil) {
+        NSLog(@"COULD NOT PARSE CRASH REPORT: %@", error);
+        
+        [crashReporter purgePendingCrashReport];
+        
+        return;
+    }
+    
+    NSMutableString *xmlString = [NSMutableString string];
+	
+	/* Header */
+    boolean_t lp64;
+	
+	/* Map to apple style OS nane */
+	const char *osName;
+	switch (report.systemInfo.operatingSystem) {
+		case PLCrashReportOperatingSystemiPhoneOS:
+			osName = "iPhone OS";
+			break;
+		case PLCrashReportOperatingSystemiPhoneSimulator:
+			osName = "Mac OS X";
+			break;
+		default:
+			osName = "iPhone OS";
+			break;
+	}
+	
+	/* Map to Apple-style code type */
+	NSString *codeType;
+	switch (report.systemInfo.architecture) {
+		case PLCrashReportArchitectureARM:
+			codeType = @"ARM (Native)";
+            lp64 = false;
+			break;
+        case PLCrashReportArchitectureX86_32:
+            codeType = @"X86";
+            lp64 = false;
+            break;
+        case PLCrashReportArchitectureX86_64:
+            codeType = @"X86-64";
+            lp64 = true;
+            break;
+        case PLCrashReportArchitecturePPC:
+            codeType = @"PPC";
+            lp64 = false;
+            break;
+		default:
+			codeType = @"ARM (Native)";
+            lp64 = false;
+			break;
+	}
+	
+	[xmlString appendFormat:@"App Identifier: %@\n", 
+     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
+
+	[xmlString appendFormat:@"App Version: %@\n", 
+     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+    
+    /* Application and process info */
+    {
+        NSString *unknownString = @"???";
+        
+        NSString *processName = unknownString;
+        NSString *processId = unknownString;
+        NSString *processPath = unknownString;
+        NSString *parentProcessName = unknownString;
+        NSString *parentProcessId = unknownString;
+        
+        /* Process information was not available in earlier crash report versions */
+        if (report.hasProcessInfo) {
+            /* Process Name */
+            if (report.processInfo.processName != nil)
+                processName = report.processInfo.processName;
+            
+            /* PID */
+            processId = [[NSNumber numberWithUnsignedInteger: report.processInfo.processID] stringValue];
+            
+            /* Process Path */
+            if (report.processInfo.processPath != nil)
+                processPath = report.processInfo.processPath;
+            
+            /* Parent Process Name */
+            if (report.processInfo.parentProcessName != nil)
+                parentProcessName = report.processInfo.parentProcessName;
+            
+            /* Parent Process ID */
+            parentProcessId = [[NSNumber numberWithUnsignedInteger: report.processInfo.parentProcessID] stringValue];
+        }
+        
+        [xmlString appendFormat: @"Process:         %@ [%@]\n", processName, processId];
+        [xmlString appendFormat: @"Path:            %@\n", processPath];
+        [xmlString appendFormat: @"Identifier:      %@\n", report.applicationInfo.applicationIdentifier];
+        [xmlString appendFormat: @"Version:         %@\n", report.applicationInfo.applicationVersion];
+        [xmlString appendFormat: @"Code Type:       %@\n", codeType];
+        [xmlString appendFormat: @"Parent Process:  %@ [%@]\n", parentProcessName, parentProcessId];
+    }
+    
+	[xmlString appendString:@"\n"];
+	
+	/* System info */
+	[xmlString appendFormat:@"Date/Time:       %s\n", [[report.systemInfo.timestamp description] UTF8String]];
+    
+    NSString *buildNumber = [[UIDevice currentDevice] platformCode];
+    
+    if (buildNumber) {
+        [xmlString appendFormat:@"OS Version:      %s %s (%s)\n", osName, [report.systemInfo.operatingSystemVersion UTF8String], [buildNumber UTF8String]];
+    } else {
+        [xmlString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
+    }
+	
+    [xmlString appendString:@"Report Version:  104\n"];
+	[xmlString appendString:@"\n"];
+	
+	/* Exception code */
+	[xmlString appendFormat:@"Exception Type:  %s\n", [report.signalInfo.name UTF8String]];
+    [xmlString appendFormat:@"Exception Codes: %@ at 0x%" PRIx64 "\n", report.signalInfo.code, report.signalInfo.address];
+	
+    for (PLCrashReportThreadInfo *thread in report.threads) {
+        if (thread.crashed) {
+            [xmlString appendFormat: @"Crashed Thread:  %ld\n", (long) thread.threadNumber];
+            break;
+        }
+    }
+	
+	[xmlString appendString:@"\n"];
+	
+    if (report.hasExceptionInfo) {
+        [xmlString appendString:@"Application Specific Information:\n"];
+        [xmlString appendFormat: @"*** Terminating app due to uncaught exception '%@', reason: '%@'\n",
+         report.exceptionInfo.exceptionName, report.exceptionInfo.exceptionReason];
+        [xmlString appendString:@"\n"];
+    }
+    
+	/* Threads */
+    PLCrashReportThreadInfo *crashed_thread = nil;
+    for (PLCrashReportThreadInfo *thread in report.threads) {
+        if (thread.crashed) {
+            [xmlString appendFormat: @"Thread %ld Crashed:\n", (long) thread.threadNumber];
+            crashed_thread = thread;
+        } else {
+            [xmlString appendFormat: @"Thread %ld:\n", (long) thread.threadNumber];
+        }
+        for (NSUInteger frame_idx = 0; frame_idx < [thread.stackFrames count]; frame_idx++) {
+            PLCrashReportStackFrameInfo *frameInfo = [thread.stackFrames objectAtIndex: frame_idx];
+            PLCrashReportBinaryImageInfo *imageInfo;
+            
+            /* Base image address containing instrumention pointer, offset of the IP from that base
+             * address, and the associated image name */
+            uint64_t baseAddress = 0x0;
+            uint64_t pcOffset = 0x0;
+            NSString *imageName = @"\?\?\?";
+            
+            imageInfo = [report imageForAddress: frameInfo.instructionPointer];
+            if (imageInfo != nil) {
+                imageName = [imageInfo.imageName lastPathComponent];
+                baseAddress = imageInfo.imageBaseAddress;
+                pcOffset = frameInfo.instructionPointer - imageInfo.imageBaseAddress;
+            }
+            
+            [xmlString appendFormat: @"%-4ld%-36s0x%08" PRIx64 " 0x%" PRIx64 " + %" PRId64 "\n", 
+             (long) frame_idx, [imageName UTF8String], frameInfo.instructionPointer, baseAddress, pcOffset];
+        }
+        [xmlString appendString: @"\n"];
+    }
+    
+    /* Registers */
+    if (crashed_thread != nil) {
+        [xmlString appendFormat: @"Thread %ld crashed with %@ Thread State:\n", (long) crashed_thread.threadNumber, codeType];
+        
+        int regColumn = 1;
+        for (PLCrashReportRegisterInfo *reg in crashed_thread.registers) {
+            NSString *reg_fmt;
+            
+            /* Use 32-bit or 64-bit fixed width format for the register values */
+            if (lp64)
+                reg_fmt = @"%6s:\t0x%016" PRIx64 " ";
+            else
+                reg_fmt = @"%6s:\t0x%08" PRIx64 " ";
+            
+            [xmlString appendFormat: reg_fmt, [reg.registerName UTF8String], reg.registerValue];
+            
+            if (regColumn % 4 == 0)
+                [xmlString appendString: @"\n"];
+            regColumn++;
+        }
+        
+        if (regColumn % 3 != 0)
+            [xmlString appendString: @"\n"];
+        
+        [xmlString appendString: @"\n"];
+    }
+	
+	/* Images */
+	[xmlString appendFormat:@"Binary Images:\n"];
+	
+    for (PLCrashReportBinaryImageInfo *imageInfo in report.images) {
+		NSString *uuid;
+		/* Fetch the UUID if it exists */
+		if (imageInfo.hasImageUUID)
+			uuid = imageInfo.imageUUID;
+		else
+			uuid = @"???";
+		
+        NSString *device = @"\?\?\? (\?\?\?)";
+        
+#ifdef _ARM_ARCH_7 
+        device = @"armv7";
+#else
+        device = @"armv6";
+#endif
+        
+		/* base_address - terminating_address file_name identifier (<version>) <uuid> file_path */
+		[xmlString appendFormat:@"0x%" PRIx64 " - 0x%" PRIx64 "  %@ %@ <%@> %@\n",
+		 imageInfo.imageBaseAddress,
+		 imageInfo.imageBaseAddress + imageInfo.imageSize,
+		 [imageInfo.imageName lastPathComponent],
+		 device,
+		 uuid,
+		 imageInfo.imageName];
+	}
+    
+    NSLog(@"REPORT %@", xmlString);
+    
+    [crashReporter purgePendingCrashReport];
 }
 
 #pragma mark - Memory management

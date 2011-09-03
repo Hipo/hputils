@@ -127,4 +127,10 @@
 	}
 }
 
+- (NSDate *)dateValueForTimeIntervalKey:(NSString *)aKey {
+	NSTimeInterval interval = [self timeIntervalValueForKey:aKey];
+	
+	return [NSDate dateWithTimeIntervalSince1970:interval];
+}
+
 @end

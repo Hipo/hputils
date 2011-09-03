@@ -58,7 +58,7 @@ static HPLocationManager *_sharedManager = nil;
     return NSUIntegerMax;
 }
 
-- (void)release {
+- (oneway void)release {
     
 }
 

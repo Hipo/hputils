@@ -83,6 +83,8 @@ extern NSString * const HPNetworkStatusChangeNotification;
 - (id)parseImageData:(NSData *)loadedData;
 - (id)parseStringData:(NSData *)loadedData;
 
+- (void)sendAvailableCrashReports;
+
 - (NSString *)encodeURL:(NSString *)string;
 
 - (NSData *)dataFromDict:(NSDictionary *)dict;

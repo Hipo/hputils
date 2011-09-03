@@ -18,5 +18,6 @@
 - (NSDate *)timeValueForKey:(NSString *)aKey withDateFormat:(NSString *)dateFormat;
 - (NSDate *)dateValueForKey:(NSString *)aKey withDateFormat:(NSString *)dateFormat;
 - (NSDate *)dateValueFromString:(NSString *)string withDateFormat:(NSString *)dateFormat;
+- (NSDate *)dateValueForTimeIntervalKey:(NSString *)aKey;
 - (UIColor *)colorValueWithHexStringForKey:(NSString *)aKey;
 @end

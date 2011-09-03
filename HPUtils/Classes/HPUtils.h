@@ -35,4 +35,7 @@
 #import "UIDevice+HPCapabilityAdditions.h"
 #import "UITouch+HPTouchSorting.h"
 
+#import "HPKeychainItem.h"
+
 #import "JSON.h"
+#import "CrashReporter.h"
