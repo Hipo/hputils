@@ -789,19 +789,24 @@ static HPRequestManager *_sharedManager = nil;
 	}
     
     UIDevice *device = [UIDevice currentDevice];
-    NSData *requestData = [self dataFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                              report.applicationInfo.applicationIdentifier, @"identifier", 
-                                              report.applicationInfo.applicationVersion, @"version", 
-                                              device.systemName, @"system_name", 
-                                              device.systemVersion, @"system_version", 
-                                              device.model, @"device_model", 
-                                              reportString, @"report", nil]];
+    NSData *requestData = [self multiPartDataFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       report.applicationInfo.applicationIdentifier, @"identifier", 
+                                                       report.applicationInfo.applicationVersion, @"version", 
+                                                       device.systemName, @"system_name", 
+                                                       device.systemVersion, @"system_version", 
+                                                       device.model, @"device_model", 
+                                                       crashData, @"log_file", 
+                                                       reportString, @"report", nil] 
+                                          withFileKey:@"log_file" 
+                                      fileContentType:@"application/octet-stream"];
     
     HPRequestOperation *requestOperation = [self requestForPath:kHPReleasesAPICrashReportPath 
                                                     withBaseURL:kHPReleasesAPIBaseURL 
                                                        withData:requestData 
                                                          method:HPRequestMethodPost 
                                                          cached:NO];
+    
+    [requestOperation setPostType:HPRequestOperationPostTypeFile];
     
     [self enqueueRequest:requestOperation];
     
