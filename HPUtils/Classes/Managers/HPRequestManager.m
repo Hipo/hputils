@@ -788,9 +788,13 @@ static HPRequestManager *_sharedManager = nil;
 		 imageInfo.imageName];
 	}
     
+    UIDevice *device = [UIDevice currentDevice];
     NSData *requestData = [self dataFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
                                               report.applicationInfo.applicationIdentifier, @"identifier", 
                                               report.applicationInfo.applicationVersion, @"version", 
+                                              device.systemName, @"system_name", 
+                                              device.systemVersion, @"system_version", 
+                                              device.model, @"device_model", 
                                               reportString, @"report", nil]];
     
     HPRequestOperation *requestOperation = [self requestForPath:kHPReleasesAPICrashReportPath 
