@@ -21,7 +21,9 @@
 
 NSString * const HPNetworkStatusChangeNotification = @"networkStatusChange";
 
-NSTimeInterval const kNetworkActivityCheckInterval = 30.0;
+static NSTimeInterval const kNetworkActivityCheckInterval = 30.0;
+static NSString * const kHPReleasesAPIBaseURL = @"http://releases.hippofoundry.com/api";
+static NSString * const kHPReleasesAPICrashReportPath = @"/crash-logs/";
 
 
 @interface HPRequestManager (PrivateMethods)
@@ -585,7 +587,7 @@ static HPRequestManager *_sharedManager = nil;
         return;
     }
     
-    NSMutableString *xmlString = [NSMutableString string];
+    NSMutableString *reportString = [NSMutableString string];
 	
 	/* Header */
     boolean_t lp64;
@@ -629,12 +631,6 @@ static HPRequestManager *_sharedManager = nil;
 			break;
 	}
 	
-	[xmlString appendFormat:@"App Identifier: %@\n", 
-     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
-
-	[xmlString appendFormat:@"App Version: %@\n", 
-     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
-    
     /* Application and process info */
     {
         NSString *unknownString = @"???";
@@ -666,58 +662,58 @@ static HPRequestManager *_sharedManager = nil;
             parentProcessId = [[NSNumber numberWithUnsignedInteger: report.processInfo.parentProcessID] stringValue];
         }
         
-        [xmlString appendFormat: @"Process:         %@ [%@]\n", processName, processId];
-        [xmlString appendFormat: @"Path:            %@\n", processPath];
-        [xmlString appendFormat: @"Identifier:      %@\n", report.applicationInfo.applicationIdentifier];
-        [xmlString appendFormat: @"Version:         %@\n", report.applicationInfo.applicationVersion];
-        [xmlString appendFormat: @"Code Type:       %@\n", codeType];
-        [xmlString appendFormat: @"Parent Process:  %@ [%@]\n", parentProcessName, parentProcessId];
+        [reportString appendFormat: @"Process:         %@ [%@]\n", processName, processId];
+        [reportString appendFormat: @"Path:            %@\n", processPath];
+        [reportString appendFormat: @"Identifier:      %@\n", report.applicationInfo.applicationIdentifier];
+        [reportString appendFormat: @"Version:         %@\n", report.applicationInfo.applicationVersion];
+        [reportString appendFormat: @"Code Type:       %@\n", codeType];
+        [reportString appendFormat: @"Parent Process:  %@ [%@]\n", parentProcessName, parentProcessId];
     }
     
-	[xmlString appendString:@"\n"];
+	[reportString appendString:@"\n"];
 	
 	/* System info */
-	[xmlString appendFormat:@"Date/Time:       %s\n", [[report.systemInfo.timestamp description] UTF8String]];
+	[reportString appendFormat:@"Date/Time:       %s\n", [[report.systemInfo.timestamp description] UTF8String]];
     
     NSString *buildNumber = [[UIDevice currentDevice] platformCode];
     
     if (buildNumber) {
-        [xmlString appendFormat:@"OS Version:      %s %s (%s)\n", osName, [report.systemInfo.operatingSystemVersion UTF8String], [buildNumber UTF8String]];
+        [reportString appendFormat:@"OS Version:      %s %s (%s)\n", osName, [report.systemInfo.operatingSystemVersion UTF8String], [buildNumber UTF8String]];
     } else {
-        [xmlString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
+        [reportString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
     }
 	
-    [xmlString appendString:@"Report Version:  104\n"];
-	[xmlString appendString:@"\n"];
+    [reportString appendString:@"Report Version:  104\n"];
+	[reportString appendString:@"\n"];
 	
 	/* Exception code */
-	[xmlString appendFormat:@"Exception Type:  %s\n", [report.signalInfo.name UTF8String]];
-    [xmlString appendFormat:@"Exception Codes: %@ at 0x%" PRIx64 "\n", report.signalInfo.code, report.signalInfo.address];
+	[reportString appendFormat:@"Exception Type:  %s\n", [report.signalInfo.name UTF8String]];
+    [reportString appendFormat:@"Exception Codes: %@ at 0x%" PRIx64 "\n", report.signalInfo.code, report.signalInfo.address];
 	
     for (PLCrashReportThreadInfo *thread in report.threads) {
         if (thread.crashed) {
-            [xmlString appendFormat: @"Crashed Thread:  %ld\n", (long) thread.threadNumber];
+            [reportString appendFormat: @"Crashed Thread:  %ld\n", (long) thread.threadNumber];
             break;
         }
     }
 	
-	[xmlString appendString:@"\n"];
+	[reportString appendString:@"\n"];
 	
     if (report.hasExceptionInfo) {
-        [xmlString appendString:@"Application Specific Information:\n"];
-        [xmlString appendFormat: @"*** Terminating app due to uncaught exception '%@', reason: '%@'\n",
+        [reportString appendString:@"Application Specific Information:\n"];
+        [reportString appendFormat: @"*** Terminating app due to uncaught exception '%@', reason: '%@'\n",
          report.exceptionInfo.exceptionName, report.exceptionInfo.exceptionReason];
-        [xmlString appendString:@"\n"];
+        [reportString appendString:@"\n"];
     }
     
 	/* Threads */
     PLCrashReportThreadInfo *crashed_thread = nil;
     for (PLCrashReportThreadInfo *thread in report.threads) {
         if (thread.crashed) {
-            [xmlString appendFormat: @"Thread %ld Crashed:\n", (long) thread.threadNumber];
+            [reportString appendFormat: @"Thread %ld Crashed:\n", (long) thread.threadNumber];
             crashed_thread = thread;
         } else {
-            [xmlString appendFormat: @"Thread %ld:\n", (long) thread.threadNumber];
+            [reportString appendFormat: @"Thread %ld:\n", (long) thread.threadNumber];
         }
         for (NSUInteger frame_idx = 0; frame_idx < [thread.stackFrames count]; frame_idx++) {
             PLCrashReportStackFrameInfo *frameInfo = [thread.stackFrames objectAtIndex: frame_idx];
@@ -736,15 +732,15 @@ static HPRequestManager *_sharedManager = nil;
                 pcOffset = frameInfo.instructionPointer - imageInfo.imageBaseAddress;
             }
             
-            [xmlString appendFormat: @"%-4ld%-36s0x%08" PRIx64 " 0x%" PRIx64 " + %" PRId64 "\n", 
+            [reportString appendFormat: @"%-4ld%-36s0x%08" PRIx64 " 0x%" PRIx64 " + %" PRId64 "\n", 
              (long) frame_idx, [imageName UTF8String], frameInfo.instructionPointer, baseAddress, pcOffset];
         }
-        [xmlString appendString: @"\n"];
+        [reportString appendString: @"\n"];
     }
     
     /* Registers */
     if (crashed_thread != nil) {
-        [xmlString appendFormat: @"Thread %ld crashed with %@ Thread State:\n", (long) crashed_thread.threadNumber, codeType];
+        [reportString appendFormat: @"Thread %ld crashed with %@ Thread State:\n", (long) crashed_thread.threadNumber, codeType];
         
         int regColumn = 1;
         for (PLCrashReportRegisterInfo *reg in crashed_thread.registers) {
@@ -756,21 +752,21 @@ static HPRequestManager *_sharedManager = nil;
             else
                 reg_fmt = @"%6s:\t0x%08" PRIx64 " ";
             
-            [xmlString appendFormat: reg_fmt, [reg.registerName UTF8String], reg.registerValue];
+            [reportString appendFormat: reg_fmt, [reg.registerName UTF8String], reg.registerValue];
             
             if (regColumn % 4 == 0)
-                [xmlString appendString: @"\n"];
+                [reportString appendString: @"\n"];
             regColumn++;
         }
         
         if (regColumn % 3 != 0)
-            [xmlString appendString: @"\n"];
+            [reportString appendString: @"\n"];
         
-        [xmlString appendString: @"\n"];
+        [reportString appendString: @"\n"];
     }
 	
 	/* Images */
-	[xmlString appendFormat:@"Binary Images:\n"];
+	[reportString appendFormat:@"Binary Images:\n"];
 	
     for (PLCrashReportBinaryImageInfo *imageInfo in report.images) {
 		NSString *uuid;
@@ -789,7 +785,7 @@ static HPRequestManager *_sharedManager = nil;
 #endif
         
 		/* base_address - terminating_address file_name identifier (<version>) <uuid> file_path */
-		[xmlString appendFormat:@"0x%" PRIx64 " - 0x%" PRIx64 "  %@ %@ <%@> %@\n",
+		[reportString appendFormat:@"0x%" PRIx64 " - 0x%" PRIx64 "  %@ %@ <%@> %@\n",
 		 imageInfo.imageBaseAddress,
 		 imageInfo.imageBaseAddress + imageInfo.imageSize,
 		 [imageInfo.imageName lastPathComponent],
@@ -798,7 +794,18 @@ static HPRequestManager *_sharedManager = nil;
 		 imageInfo.imageName];
 	}
     
-    NSLog(@"REPORT %@", xmlString);
+    NSData *requestData = [self dataFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                              report.applicationInfo.applicationIdentifier, @"identifier", 
+                                              report.applicationInfo.applicationVersion, @"version", 
+                                              reportString, @"report", nil]];
+    
+    HPRequestOperation *requestOperation = [self requestForPath:kHPReleasesAPICrashReportPath 
+                                                    withBaseURL:kHPReleasesAPIBaseURL 
+                                                       withData:requestData 
+                                                         method:HPRequestMethodPost 
+                                                         cached:NO];
+    
+    [self enqueueRequest:requestOperation];
     
     [crashReporter purgePendingCrashReport];
 }
