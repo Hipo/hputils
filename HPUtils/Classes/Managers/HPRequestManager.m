@@ -553,8 +553,6 @@ static HPRequestManager *_sharedManager = nil;
     
     if ([crashReporter hasPendingCrashReport]) {
         [self handleCrashReport];
-    } else {
-        NSLog(@"NO CRASH REPORTS FOUND");
     }
     
     if (![crashReporter enableCrashReporterAndReturnError:&error]) {
@@ -570,8 +568,6 @@ static HPRequestManager *_sharedManager = nil;
     crashData = [crashReporter loadPendingCrashReportDataAndReturnError:&error];
     
     if (crashData == nil) {
-        NSLog(@"COULD NOT LOAD CRASH DATA: %@", error);
-        
         [crashReporter purgePendingCrashReport];
         
         return;
@@ -580,8 +576,6 @@ static HPRequestManager *_sharedManager = nil;
     PLCrashReport *report = [[PLCrashReport alloc] initWithData:crashData error:&error];
     
     if (report == nil) {
-        NSLog(@"COULD NOT PARSE CRASH REPORT: %@", error);
-        
         [crashReporter purgePendingCrashReport];
         
         return;
