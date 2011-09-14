@@ -346,11 +346,19 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	[self callParserBlockWithData:nil 
-                            error:[NSError errorWithDomain:kHPErrorDomain 
-                                                      code:kHPRequestConnectionFailureErrorCode 
-                                                  userInfo:[NSDictionary dictionaryWithObject:error 
-                                                                                       forKey:@"connectionError"]]];
+    if ([error code] == kHPNetworkErrorCode) {
+        [self callParserBlockWithData:nil 
+                                error:[NSError errorWithDomain:kHPErrorDomain 
+                                                          code:kHPNetworkErrorCode 
+                                                      userInfo:[NSDictionary dictionaryWithObject:error 
+                                                                                           forKey:@"connectionError"]]];
+    } else {
+        [self callParserBlockWithData:nil 
+                                error:[NSError errorWithDomain:kHPErrorDomain 
+                                                          code:kHPRequestConnectionFailureErrorCode 
+                                                      userInfo:[NSDictionary dictionaryWithObject:error 
+                                                                                           forKey:@"connectionError"]]];
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

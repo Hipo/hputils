@@ -91,6 +91,11 @@ static HPRequestManager *_sharedManager = nil;
 		
 		[_reachabilityManager startNotifier];
         
+        [self enqueueRequest:[HPRequestOperation requestForURL:[NSURL URLWithString:@"http://www.apple.com"] 
+                                                      withData:nil 
+                                                        method:HPRequestMethodGet 
+                                                        cached:NO]];
+        
         [self performSelector:@selector(checkNetworkActivity) 
                    withObject:nil 
                    afterDelay:kNetworkActivityCheckInterval];
@@ -339,7 +344,9 @@ static HPRequestManager *_sharedManager = nil;
 	return [dataString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSString *)pathFromBasePath:(NSString *)basePath withOptions:(NSDictionary *)options {
+- (NSString *)pathFromBasePath:(NSString *)basePath 
+                   withOptions:(NSDictionary *)options 
+                   specialKeys:(NSArray *)specialKeys {
 	NSMutableString *requestPath = [NSMutableString stringWithString:basePath];
     NSString *lastCharacter = [requestPath substringFromIndex:([requestPath length] - 1)];
 	
@@ -358,12 +365,23 @@ static HPRequestManager *_sharedManager = nil;
             if ([value respondsToSelector:@selector(stringValue)]) {
                 [requestPath appendFormat:@"%@=%@&", key, [value stringValue]];
             } else {
-                [requestPath appendFormat:@"%@=%@&", key, [self encodeURL:(NSString *)value]];
+                if ([specialKeys containsObject:key]) {
+                    [requestPath appendFormat:@"%@=%@&", key, (NSString *)value];
+                } else {
+                    [requestPath appendFormat:@"%@=%@&", key, [self encodeURL:(NSString *)value]];
+                }
             }
 		}
 	}
 	
 	return requestPath;
+}
+
+- (NSString *)pathFromBasePath:(NSString *)basePath 
+                   withOptions:(NSDictionary *)options {
+    return [self pathFromBasePath:basePath 
+                      withOptions:options 
+                      specialKeys:[NSArray array]];
 }
 
 #pragma mark - Reachability

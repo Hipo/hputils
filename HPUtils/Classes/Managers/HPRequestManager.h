@@ -98,6 +98,10 @@ extern NSString * const HPNetworkStatusChangeNotification;
 - (NSString *)pathFromBasePath:(NSString *)basePath 
                    withOptions:(NSDictionary *)options;
 
+- (NSString *)pathFromBasePath:(NSString *)basePath 
+                   withOptions:(NSDictionary *)options 
+                   specialKeys:(NSArray *)specialKeys;
+
 - (void)enqueueRequest:(HPRequestOperation *)request;
 
 - (HPRequestOperation *)imageRequestForURL:(NSString *)urlString;

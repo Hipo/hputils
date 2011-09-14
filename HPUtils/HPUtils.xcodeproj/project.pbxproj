@@ -34,8 +34,6 @@
 		EC1F157B1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */; };
 		EC1F157C1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */; };
 		EC1F157D1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */; };
-		EC46DF4B133409070075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
-		EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF49133408FE0075E597 /* PLBlocks.framework */; };
 		EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */; };
 		EC46DF6513340D030075E597 /* UIColor+HPColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */; };
 		EC46DF6713340D270075E597 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF6613340D270075E597 /* UIKit.framework */; };
@@ -167,7 +165,6 @@
 		EC1F156713369B6600385E05 /* HPAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAuthenticationManager.m; sourceTree = "<group>"; };
 		EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPEditableTableViewCell.h; sourceTree = "<group>"; };
 		EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPEditableTableViewCell.m; sourceTree = "<group>"; };
-		EC46DF49133408FE0075E597 /* PLBlocks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PLBlocks.framework; sourceTree = "<group>"; };
 		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
 		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
 		EC46DF6613340D270075E597 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -248,7 +245,6 @@
 				EC46DFA3133417600075E597 /* SystemConfiguration.framework in Frameworks */,
 				EC46DF6813340D2F0075E597 /* UIKit.framework in Frameworks */,
 				ECB76456133400D000451A54 /* Foundation.framework in Frameworks */,
-				EC46DF4B133409070075E597 /* PLBlocks.framework in Frameworks */,
 				EC6DCD701412DCFD0028B073 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +258,6 @@
 				EC46DFA6133417810075E597 /* CoreLocation.framework in Frameworks */,
 				EC46DFA7133417810075E597 /* SystemConfiguration.framework in Frameworks */,
 				EC1F156513369B4400385E05 /* Security.framework in Frameworks */,
-				EC46DF4C1334090B0075E597 /* PLBlocks.framework in Frameworks */,
 				EC6DCD711412DD0C0028B073 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,7 +444,6 @@
 			children = (
 				EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */,
 				EC9BB191138F5D0D00D02C28 /* JSON */,
-				EC46DF49133408FE0075E597 /* PLBlocks.framework */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -732,8 +726,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				OTHER_CFLAGS = "-D__IPHONE_OS_VERSION_MIN_REQUIRED=031300";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -752,9 +745,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies\"",
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks\"",
 				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

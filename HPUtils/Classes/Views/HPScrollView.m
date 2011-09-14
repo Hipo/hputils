@@ -13,7 +13,6 @@ static NSInteger const kHPScrollViewTagOffset = 1;
 
 
 @interface HPScrollView (PrivateMethods)
-- (void)refreshCellLayout;
 - (void)removePage:(UIView *)page withIndex:(NSInteger)pageIndex;
 - (CGRect)frameForCellAtIndex:(NSInteger)index;
 - (NSIndexSet *)indicesOfCellsInRect:(CGRect)rect;

@@ -46,6 +46,7 @@
 
 - (void)reloadData;
 - (void)removeHiddenCells;
+- (void)refreshCellLayout;
 - (void)refreshVisibleCells;
 - (void)insertCells:(NSInteger)cellCount;
 
