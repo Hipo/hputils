@@ -75,22 +75,18 @@
 }
 
 - (NSDate *)dateValueFromString:(NSString *)string withDateFormat:(NSString *)dateFormat {
-	static NSDateFormatter *formatter = nil;
-	
-    if (formatter == nil) {
-		// We enforce north american locale, otherwise it causes issues on devices with different locales set
-		NSLocale *northAmericanLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-		
-        formatter = [[NSDateFormatter alloc] init];
-		
-		[formatter setLocale:northAmericanLocale];
-		
-		[northAmericanLocale release];
-    }
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSLocale *northAmericanLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     
+    [formatter setLocale:northAmericanLocale];
 	[formatter setDateFormat:dateFormat];
     
-	return [formatter dateFromString:string];
+    NSDate *date = [formatter dateFromString:string];
+
+    [northAmericanLocale release];
+    [formatter release];
+    
+	return date;
 }
 
 - (NSDate *)dateValueForKey:(NSString *)aKey withDateFormat:(NSString *)dateFormat {
