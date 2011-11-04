@@ -46,4 +46,19 @@
     return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
+- (NSString *)md5HexDigest {
+	const char *cString = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+
+    CC_MD5(cString, strlen(cString), result);
+    
+    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH*2];
+    
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [ret appendFormat:@"%02x", result[i]];
+    }
+    
+    return ret;
+}
+
 @end
