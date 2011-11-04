@@ -29,6 +29,7 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
 	HPRequestMethod _requestMethod;
     HPRequestOperationPostType _postType;
     
+    NSMutableSet *_cookies;
     NSMutableSet *_completionBlocks;
 	NSURLConnection *_connection;
     NSMutableData *_loadedData;
@@ -70,5 +71,6 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
            cached:(BOOL)cached;
 
 - (void)addCompletionBlock:(void(^)(id resources, NSError *error))block;
+- (void)addCookie:(NSString *)cookie;
 
 @end

@@ -57,6 +57,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 		_requestURL = [url copy];
 		_requestData = [data copy];
 		_completionBlocks = [[NSMutableSet alloc] init];
+        _cookies = [[NSMutableSet alloc] init];
 		
 		_isCancelled = NO;
 		_isExecuting = NO;
@@ -119,6 +120,18 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
         }
 
         [request setValue:[NSString stringWithFormat:@"%d", [_requestData length]] forHTTPHeaderField:@"Content-Length"];
+    }
+    
+    if ([_cookies count] > 0) {
+        NSMutableString *cookieHeader = [[NSMutableString alloc] init];
+        
+        for (NSString *cookie in _cookies) {
+            [cookieHeader appendFormat:@"%@;", cookie];
+        }
+        
+        [request setValue:cookieHeader forHTTPHeaderField:@"Cookie"];
+        
+        [cookieHeader release];
     }
     
     _connection = [[NSURLConnection alloc] initWithRequest:request 
@@ -426,12 +439,18 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     }
 }
 
+#pragma mark - Cookies
+
+- (void)addCookie:(NSString *)cookie {
+    [_cookies addObject:cookie];
+}
 
 #pragma mark - Memory management
 
 - (void)dealloc {
 	[_connection cancel];
 
+    [_cookies release], _cookies = nil;
 	[_MIMEType release], _MIMEType = nil;
 	[_response release], _response = nil;
     [_indexPath release], _indexPath = nil;

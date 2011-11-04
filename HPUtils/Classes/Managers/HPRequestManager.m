@@ -367,6 +367,7 @@ static HPRequestManager *_sharedManager = nil;
             } else {
                 if ([specialKeys containsObject:key]) {
                     [requestPath appendFormat:@"%@=%@&", key, (NSString *)value];
+                    
                 } else {
                     [requestPath appendFormat:@"%@=%@&", key, [self encodeURL:(NSString *)value]];
                 }
