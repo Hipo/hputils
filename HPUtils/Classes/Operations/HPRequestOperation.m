@@ -164,6 +164,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 
 - (void)cancel {
     [_connection cancel];
+	[_connection release], _connection = nil;
 	
 	[self willChangeValueForKey:@"isCancelled"];
 	_isCancelled = YES;
@@ -359,6 +360,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	[_connection release], _connection = nil;
+
     if ([error code] == kHPNetworkErrorCode) {
         [self callParserBlockWithData:nil 
                                 error:[NSError errorWithDomain:kHPErrorDomain 
@@ -375,6 +378,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	[_connection release], _connection = nil;
+
 	NSInteger statusCode = 0;
 	
 	if ([_response respondsToSelector:@selector(statusCode)]) {
