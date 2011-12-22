@@ -24,6 +24,7 @@ static NSInteger const kHPScrollViewTagOffset = 1;
 @dynamic delegate;
 @synthesize dataSource;
 @synthesize renderEdgeInsets = _renderEdgeInsets;
+@synthesize identifier = _identifier;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -214,6 +215,19 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     }
     
 	[self setNeedsLayout];
+}
+
+- (void)resetData {
+    [_currentIndices release], _currentIndices = nil;
+    [_reusablePages release], _reusablePages = nil;
+    
+	_visibleBounds = CGRectZero;
+    _currentIndices = [[NSIndexSet alloc] init];
+    _reusablePages = [[NSMutableSet alloc] init];
+    
+	for (UIView *subview in [_cellContainer subviews]) {
+        [subview removeFromSuperview];
+	}
 }
 
 - (void)refreshCellLayout {

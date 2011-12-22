@@ -35,15 +35,18 @@
     NSInteger _horizontalPageIndex;
     UIEdgeInsets _renderEdgeInsets;
     NSMutableSet *_reusablePages;
+    NSInteger _identifier;
     
     id <HPScrollViewDataSource> dataSource;
 }
 
 @property (nonatomic, assign) UIEdgeInsets renderEdgeInsets;
+@property (nonatomic, assign) NSInteger identifier;
 
 @property (nonatomic, assign) id <HPScrollViewDelegate> delegate;
 @property (nonatomic, assign) id <HPScrollViewDataSource> dataSource;
 
+- (void)resetData;
 - (void)reloadData;
 - (void)removeHiddenCells;
 - (void)refreshCellLayout;
