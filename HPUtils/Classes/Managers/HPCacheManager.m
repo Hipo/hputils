@@ -6,6 +6,8 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#include <sys/xattr.h>
+
 #import "HPCacheManager.h"
 #import "NSString+HPHashAdditions.h"
 
@@ -33,6 +35,7 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 - (void)storeCacheWithCacheItem:(HPCacheItem *)cacheItem;
 - (NSString *)cachePathForCacheKey:(NSString *)cacheKey;
 - (NSString *)storagePathForStorageKey:(NSString *)storageKey;
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
 @end
 
 
@@ -148,7 +151,7 @@ static HPCacheManager *_sharedManager = nil;
 		_saveQueue = [[NSOperationQueue alloc] init];
 		_cacheDirectoryPath = [[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] 
 								stringByAppendingPathComponent:kURLCachePath] copy];
-		_storageDirectoryPath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] 
+		_storageDirectoryPath = [[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] 
                                   stringByAppendingPathComponent:kURLStoragePath] copy];
 		
 		[_saveQueue setMaxConcurrentOperationCount:1];
@@ -183,6 +186,17 @@ static HPCacheManager *_sharedManager = nil;
 	}
 	
 	return self;
+}
+
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL {
+    const char *filePath = [[URL path] fileSystemRepresentation];
+    
+    const char *attrName = "com.apple.MobileBackup";
+    u_int8_t attrValue = 1;
+    
+    int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
+    
+    return result == 0;
 }
 
 - (NSString *)cachePathForCacheKey:(NSString *)cacheKey {
@@ -272,6 +286,8 @@ static HPCacheManager *_sharedManager = nil;
 
 	[NSKeyedArchiver archiveRootObject:[cacheItem pickledObjectForArchive] 
 								toFile:cacheItem.cachePath];
+    
+    [self addSkipBackupAttributeToItemAtURL:[NSURL URLWithString:cacheItem.cachePath]];
 	
 	[pool drain];
 }
