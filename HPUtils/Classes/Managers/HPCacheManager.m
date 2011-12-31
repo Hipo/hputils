@@ -175,6 +175,20 @@ static HPCacheManager *_sharedManager = nil;
 									attributes:nil 
 										 error:nil];
 		}
+        
+        // Remove legacy storage directory
+        
+        NSString *legacyStorageDirectoryPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] 
+                                                 stringByAppendingPathComponent:kURLStoragePath];
+        
+        BOOL legacyStorageDirectoryExists = NO;
+		
+		if ([fileManager fileExistsAtPath:legacyStorageDirectoryPath isDirectory:&legacyStorageDirectoryExists] || legacyStorageDirectoryExists) {
+            NSError *error = nil;
+
+            [fileManager removeItemAtPath:legacyStorageDirectoryPath 
+                                    error:&error];
+		}
 		
 		URLCache *urlCache = [[URLCache alloc] initWithMemoryCapacity:kHPURLCacheMemoryCapacity 
 														 diskCapacity:kHPURLCacheDiskCapacity 
