@@ -14,6 +14,8 @@
 
 @implementation NSString (NSString_HPHashAdditions)
 
+#pragma mark - SHA1
+
 - (NSString *)SHA1Hash {
 	const char *cString = [self cStringUsingEncoding:NSUTF8StringEncoding];
 	
@@ -46,6 +48,8 @@
     return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
+#pragma mark - MD5
+
 - (NSString *)md5HexDigest {
 	const char *cString = [self cStringUsingEncoding:NSUTF8StringEncoding];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
@@ -59,6 +63,17 @@
     }
     
     return ret;
+}
+
+#pragma mark - UUID
+
++ (NSString *)stringWithUUID {
+    CFUUIDRef uuidObj = CFUUIDCreate(nil);
+    NSString *uuidString = (NSString *)CFUUIDCreateString(nil, uuidObj);
+
+    CFRelease(uuidObj);
+    
+    return [uuidString autorelease];
 }
 
 @end

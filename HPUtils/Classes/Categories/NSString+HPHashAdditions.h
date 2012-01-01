@@ -11,4 +11,6 @@
 - (NSString *)SHA1Hash;
 - (NSData *)HMACSHA1withKey:(NSString *)key;
 - (NSString *)md5HexDigest;
+
++ (NSString *)stringWithUUID;
 @end
