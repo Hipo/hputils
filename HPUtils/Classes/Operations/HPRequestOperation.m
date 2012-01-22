@@ -422,6 +422,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 	}
 }
 
+- (NSInputStream *)connection:(NSURLConnection *)connection needNewBodyStream:(NSURLRequest *)request {
+    return [NSInputStream inputStreamWithData:_requestData];
+}
+
 #pragma mark - Authentication
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
