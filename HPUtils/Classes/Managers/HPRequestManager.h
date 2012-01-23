@@ -31,6 +31,7 @@ extern NSString * const HPNetworkStatusChangeNotification;
 - (BOOL)isNetworkConnectionAvailable;
 
 - (void)cancelAllOperations;
+- (void)cancelOperationsWithIdentifier:(NSString *)identifier;
 
 - (NSArray *)activeRequestOperations;
 - (NSArray *)activeProcessOperations;
@@ -40,6 +41,19 @@ extern NSString * const HPNetworkStatusChangeNotification;
 	   completionBlock:(void (^)(id, NSError *))block 
 			scaleToFit:(CGSize)targetSize 
 		   contentMode:(UIViewContentMode)contentMode;
+
+- (void)loadImageAtURL:(NSString *)imageURL 
+		 withIndexPath:(NSIndexPath *)indexPath 
+			scaleToFit:(CGSize)targetSize 
+		   contentMode:(UIViewContentMode)contentMode
+	   completionBlock:(void (^)(id, NSError *))block;
+
+- (void)loadImageAtURL:(NSString *)imageURL 
+		 withIndexPath:(NSIndexPath *)indexPath 
+            identifier:(NSString *)identifier 
+			scaleToFit:(CGSize)targetSize 
+		   contentMode:(UIViewContentMode)contentMode
+	   completionBlock:(void (^)(id, NSError *))block;
 
 - (void)loadStoredImageWithKey:(NSString *)storageKey 
                      indexPath:(NSIndexPath *)indexPath 

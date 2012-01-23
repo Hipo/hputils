@@ -70,9 +70,15 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 #pragma mark - Operation handling
 
 - (void)start {
-	if ([self isCancelled] || [self isFinished]) {
+	if ([self isCancelled]) {
+        [self callParserBlockWithData:nil 
+                                error:[NSError errorWithDomain:kHPErrorDomain 
+                                                          code:kHPRequestConnectionCancelledErrorCode 
+                                                      userInfo:nil]];
 		return;
-	}
+	} else if ([self isFinished]) {
+        return;
+    }
 	
 	[self willChangeValueForKey:@"isExecuting"];
 	_isExecuting = YES;
@@ -164,16 +170,17 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 
 - (void)cancel {
     [_connection cancel];
-	[_connection release], _connection = nil;
 	
 	[self willChangeValueForKey:@"isCancelled"];
 	_isCancelled = YES;
 	[self didChangeValueForKey:@"isCancelled"];
-	
-	[self callParserBlockWithData:nil 
-                            error:[NSError errorWithDomain:kHPErrorDomain 
-                                                      code:kHPRequestConnectionCancelledErrorCode 
-                                                  userInfo:nil]];
+    
+    if ([self isExecuting]) {
+        [self callParserBlockWithData:nil 
+                                error:[NSError errorWithDomain:kHPErrorDomain 
+                                                          code:kHPRequestConnectionCancelledErrorCode 
+                                                      userInfo:nil]];
+    }
 }
 
 - (BOOL)isConcurrent {

@@ -111,6 +111,16 @@ static HPRequestManager *_sharedManager = nil;
 	[_processQueue cancelAllOperations];
 }
 
+- (void)cancelOperationsWithIdentifier:(NSString *)identifier {
+	for (HPRequestOperation *request in [self activeRequestOperations]) {
+		if ([request.identifier isEqualToString:identifier]) {
+			[request cancel];
+            
+            return;
+		}
+	}
+}
+
 - (NSArray *)activeRequestOperations {
 	return [_requestQueue operations];
 }
@@ -401,13 +411,15 @@ static HPRequestManager *_sharedManager = nil;
 #pragma mark - Image loaders
 
 - (void)loadImageAtURL:(NSString *)imageURL 
-		 withIndexPath:(NSIndexPath *)indexPath 
-	   completionBlock:(void (^)(id, NSError *))block 
-			scaleToFit:(CGSize)targetSize 
-		   contentMode:(UIViewContentMode)contentMode {
-	HPRequestOperation *request = [self imageRequestForURL:imageURL];
+         withIndexPath:(NSIndexPath *)indexPath 
+            identifier:(NSString *)identifier 
+            scaleToFit:(CGSize)targetSize 
+           contentMode:(UIViewContentMode)contentMode 
+       completionBlock:(void (^)(id, NSError *))block {
+    HPRequestOperation *request = [self imageRequestForURL:imageURL];
 	
 	[request setIndexPath:indexPath];
+    [request setIdentifier:identifier];
     [request setQueuePriority:NSOperationQueuePriorityLow];
     
 	if (CGSizeEqualToSize(targetSize, CGSizeZero)) {
@@ -435,6 +447,32 @@ static HPRequestManager *_sharedManager = nil;
 	}
     
 	[self enqueueRequest:request];
+}
+
+- (void)loadImageAtURL:(NSString *)imageURL 
+		 withIndexPath:(NSIndexPath *)indexPath 
+	   completionBlock:(void (^)(id, NSError *))block 
+			scaleToFit:(CGSize)targetSize 
+		   contentMode:(UIViewContentMode)contentMode {
+	[self loadImageAtURL:imageURL 
+           withIndexPath:indexPath 
+              identifier:nil 
+              scaleToFit:targetSize 
+             contentMode:contentMode 
+         completionBlock:block];
+}
+
+- (void)loadImageAtURL:(NSString *)imageURL 
+         withIndexPath:(NSIndexPath *)indexPath 
+            scaleToFit:(CGSize)targetSize 
+           contentMode:(UIViewContentMode)contentMode 
+       completionBlock:(void (^)(id, NSError *))block {
+    [self loadImageAtURL:imageURL 
+           withIndexPath:indexPath 
+              identifier:nil 
+              scaleToFit:targetSize 
+             contentMode:contentMode 
+         completionBlock:block];
 }
 
 - (void)loadStoredImageWithKey:(NSString *)storageKey 
