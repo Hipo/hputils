@@ -16,6 +16,7 @@ static NSString * const kHPPlatformCodeiPhone1G = @"iPhone1,1";
 static NSString * const kHPPlatformCodeiPhone3G = @"iPhone1,2";
 static NSString * const kHPPlatformCodeiPhone3GS = @"iPhone2,1";
 static NSString * const kHPPlatformCodeiPhone4G = @"iPhone3,1";
+static NSString * const kHPPlatformCodeiPhone4GS = @"iPhone4,1";
 static NSString * const kHPPlatformCodeiPodTouch1G = @"iPod1,1";
 static NSString * const kHPPlatformCodeiPodTouch2G = @"iPod2,1";
 static NSString * const kHPPlatformCodeiPodTouch3G = @"iPod3,1";
@@ -59,6 +60,8 @@ static NSString * const kHPPlatformCodeSimulator = @"i386";
         return HPDeviceTypeiPhone3GS;
     } else if ([platform isEqualToString:kHPPlatformCodeiPhone4G]) {
         return HPDeviceTypeiPhone4G;
+    } else if ([platform isEqualToString:kHPPlatformCodeiPhone4GS]) {
+        return HPDeviceTypeiPhone4GS;
     } else if ([platform isEqualToString:kHPPlatformCodeiPodTouch1G]) {
         return HPDeviceTypeiPodTouch1G;
     } else if ([platform isEqualToString:kHPPlatformCodeiPodTouch2G]) {

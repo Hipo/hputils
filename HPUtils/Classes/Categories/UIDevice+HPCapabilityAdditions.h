@@ -13,6 +13,7 @@ typedef enum {
     HPDeviceTypeiPhone3G,
     HPDeviceTypeiPhone3GS,
     HPDeviceTypeiPhone4G,
+    HPDeviceTypeiPhone4GS,
     HPDeviceTypeiPodTouch1G,
     HPDeviceTypeiPodTouch2G,
     HPDeviceTypeiPodTouch3G,
