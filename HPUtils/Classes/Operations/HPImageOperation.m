@@ -26,6 +26,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize storageKey = _storageKey;
 @synthesize outputFormat = _outputFormat;
 @synthesize storePermanently = _storePermanently;
+@synthesize identifier = _identifier;
 
 + (NSString *)cacheKeyWithHash:(NSString *)hash 
                     targetSize:(CGSize)targetSize 
@@ -351,6 +352,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 	[_sourceImage release], _sourceImage = nil;
 	[_completionBlocks release], _completionBlocks = nil;
     [_storageKey release], _storageKey = nil;
+    [_identifier release], _identifier = nil;
 	
 	[super dealloc];
 }

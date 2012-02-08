@@ -157,7 +157,7 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
 
 /** Adds a completion block for this operation
  
- Request operations can have more than one completion blocks. A block that will 
+ Request operations can have more than one completion block. A block that will 
  be called when this operation is complete can be added using this method.
  
  @param block A completion block that receives the resource object and an 

@@ -1,0 +1,639 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HPImageOperation Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">HPUtils </a></h1>
+				<a id="developerHome" href="../index.html">Hippo Foundry</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HPImageOperation Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/identifier">&nbsp;&nbsp;&nbsp;&nbsp;identifier</option>
+	
+	<option value="//api/name/indexPath">&nbsp;&nbsp;&nbsp;&nbsp;indexPath</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/cacheKeyWithHash:targetSize:contentMode:imageFormat:">&nbsp;&nbsp;&nbsp;&nbsp;+ cacheKeyWithHash:targetSize:contentMode:imageFormat:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addCompletionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- addCompletionBlock:</option>
+	
+	<option value="//api/name/initWithImage:targetSize:contentMode:cacheKey:imageFormat:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithImage:targetSize:contentMode:cacheKey:imageFormat:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/identifier">identifier</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/indexPath">indexPath</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheKeyWithHash:targetSize:contentMode:imageFormat:">cacheKeyWithHash:targetSize:contentMode:imageFormat:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addCompletionBlock:">addCompletionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithImage:targetSize:contentMode:cacheKey:imageFormat:">initWithImage:targetSize:contentMode:cacheKey:imageFormat:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HPImageOperation Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HPImageOperation Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSOperation</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HPImageOperation.h<br />HPImageOperation.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>An image operation that gets queued and run by <a href="../Classes/HPRequestManager.html">HPRequestManager</a></p>
+
+<p>This is an NSOperation subclass that&rsquo;s capable of resizing a given image file
+according to target dimensions and a scaling method, caching the resulting
+image using <a href="../Classes/HPCacheManager.html">HPCacheManager</a> and returning it either as raw
+data or as a UIImage instance.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/identifier">&nbsp;&nbsp;identifier</a></code>
+		<span class="tooltip"><p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/indexPath">&nbsp;&nbsp;indexPath</a></code>
+		<span class="tooltip"><p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheKeyWithHash:targetSize:contentMode:imageFormat:">+&nbsp;cacheKeyWithHash:targetSize:contentMode:imageFormat:</a></code>
+		<span class="tooltip"><p>Generates a cache key with the given options</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithImage:targetSize:contentMode:cacheKey:imageFormat:">&ndash;&nbsp;initWithImage:targetSize:contentMode:cacheKey:imageFormat:</a></code>
+		<span class="tooltip"><p>Initializes an image operation</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addCompletionBlock:">&ndash;&nbsp;addCompletionBlock:</a></code>
+		<span class="tooltip"><p>Adds a completion block for this operation</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/identifier" title="identifier"></a>
+	<h3 class="subsubtitle method-title">identifier</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *identifier</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p>
+
+<p>This property can be used to cancel load operations for specific actions.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPImageOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/indexPath" title="indexPath"></a>
+	<h3 class="subsubtitle method-title">indexPath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSIndexPath *indexPath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p>
+
+<p>This can be used to cancel load operations for specific UITableView rows as
+the scroll view is moving.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPImageOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheKeyWithHash:targetSize:contentMode:imageFormat:" title="cacheKeyWithHash:targetSize:contentMode:imageFormat:"></a>
+	<h3 class="subsubtitle method-title">cacheKeyWithHash:targetSize:contentMode:imageFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates a cache key with the given options</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSString *)cacheKeyWithHash:(NSString *)<em>hash</em> targetSize:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> imageFormat:(HPImageFormat)<em>format</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>hash</em></dt>
+			<dd><p>A unique NSString hash that can be generated from the image URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>targetSize</em></dt>
+			<dd><p>Target dimensions for scaling</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentMode</em></dt>
+			<dd><p>Scaling mode, available options are:</p>
+
+<ul>
+<li>UIViewContentModeScaleAspectFit: Scale to fit into the dimensions, this
+approach might leave empty areas around the image</li>
+<li>UIViewContentModeScaleAspectFill: Scale to fill the target dimensions, this
+approach might crop the image</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>format</em></dt>
+			<dd><p>Image format, available options are:</p>
+
+<ul>
+<li>HPImageFormatJPEG: JPEG</li>
+<li>HPImageFormatPNG: PNG</li>
+</ul>
+</dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Generates a cache key with the given options</p>
+
+<p>Class method for generating a unique cache key for a URL hash, with the target
+size, content mode and image format.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPImageOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addCompletionBlock:" title="addCompletionBlock:"></a>
+	<h3 class="subsubtitle method-title">addCompletionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a completion block for this operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addCompletionBlock:(void ( ^ ) ( id resources , NSError *error ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A completion block that receives the resource object and an
+NSError instance</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Adds a completion block for this operation</p>
+
+<p>Image operations can have more than one completion block. A block that will
+be called when this operation is complete can be added using this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPImageOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithImage:targetSize:contentMode:cacheKey:imageFormat:" title="initWithImage:targetSize:contentMode:cacheKey:imageFormat:"></a>
+	<h3 class="subsubtitle method-title">initWithImage:targetSize:contentMode:cacheKey:imageFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes an image operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithImage:(UIImage *)<em>image</em> targetSize:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> cacheKey:(NSString *)<em>cacheKey</em> imageFormat:(HPImageFormat)<em>format</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>image</em></dt>
+			<dd><p>UIImage instance to be processed</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>targetSize</em></dt>
+			<dd><p>Target dimensions for scaling</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentMode</em></dt>
+			<dd><p>Scaling mode, available options are:</p>
+
+<ul>
+<li>UIViewContentModeScaleAspectFit: Scale to fit into the dimensions, this
+approach might leave empty areas around the image</li>
+<li>UIViewContentModeScaleAspectFill: Scale to fill the target dimensions, this
+approach might crop the image</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cacheKey</em></dt>
+			<dd><p>A unique cache key, if not nil, the image will be cached
+using this key</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>format</em></dt>
+			<dd><p>Image format, available options are:</p>
+
+<ul>
+<li>HPImageFormatJPEG: JPEG</li>
+<li>HPImageFormatPNG: PNG</li>
+</ul>
+</dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Initializes an image operation</p>
+
+<p>Initializes the operation for scaling the given image.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPImageOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-02-08)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

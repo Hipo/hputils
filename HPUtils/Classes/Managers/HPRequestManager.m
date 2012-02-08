@@ -119,6 +119,14 @@ static HPRequestManager *_sharedManager = nil;
             return;
 		}
 	}
+
+	for (HPImageOperation *request in [self activeProcessOperations]) {
+		if ([request.identifier isEqualToString:identifier]) {
+			[request cancel];
+            
+            return;
+		}
+	}
 }
 
 - (NSArray *)activeRequestOperations {
