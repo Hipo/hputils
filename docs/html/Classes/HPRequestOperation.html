@@ -1,0 +1,913 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HPRequestOperation Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">HPUtils </a></h1>
+				<a id="developerHome" href="../index.html">Hippo Foundry</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HPRequestOperation Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/identifier">&nbsp;&nbsp;&nbsp;&nbsp;identifier</option>
+	
+	<option value="//api/name/indexPath">&nbsp;&nbsp;&nbsp;&nbsp;indexPath</option>
+	
+	<option value="//api/name/parserBlock">&nbsp;&nbsp;&nbsp;&nbsp;parserBlock</option>
+	
+	<option value="//api/name/postType">&nbsp;&nbsp;&nbsp;&nbsp;postType</option>
+	
+	<option value="//api/name/progressBlock">&nbsp;&nbsp;&nbsp;&nbsp;progressBlock</option>
+	
+	<option value="//api/name/uploadProgressBlock">&nbsp;&nbsp;&nbsp;&nbsp;uploadProgressBlock</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/requestForURL:withData:method:cached:">&nbsp;&nbsp;&nbsp;&nbsp;+ requestForURL:withData:method:cached:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addCompletionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- addCompletionBlock:</option>
+	
+	<option value="//api/name/addCookie:">&nbsp;&nbsp;&nbsp;&nbsp;- addCookie:</option>
+	
+	<option value="//api/name/initWithURL:data:method:cached:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:data:method:cached:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/identifier">identifier</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/indexPath">indexPath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parserBlock">parserBlock</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postType">postType</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/progressBlock">progressBlock</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadProgressBlock">uploadProgressBlock</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestForURL:withData:method:cached:">requestForURL:withData:method:cached:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addCompletionBlock:">addCompletionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addCookie:">addCookie:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:data:method:cached:">initWithURL:data:method:cached:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HPRequestOperation Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HPRequestOperation Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSOperation</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HPRequestOperation.h<br />HPRequestOperation.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A request operation that gets queued and run by <a href="../Classes/HPRequestManager.html">HPRequestManager</a></p>
+
+<p>This class is an NSOperation wrapper around NSURLConnection that uses blocks
+to communicate with its delegates. Provides easy access to all kinds of HTTP
+calls, authentication methods, custom parsing, progress and completion handling.
+It can also be identified and cancelled very easily.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/identifier">&nbsp;&nbsp;identifier</a></code>
+		<span class="tooltip"><p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/indexPath">&nbsp;&nbsp;indexPath</a></code>
+		<span class="tooltip"><p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/postType">&nbsp;&nbsp;postType</a></code>
+		<span class="tooltip"><p>Type of POST operation attached to this request</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parserBlock">&nbsp;&nbsp;parserBlock</a></code>
+		<span class="tooltip"><p>Parser block for this request operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadProgressBlock">&nbsp;&nbsp;uploadProgressBlock</a></code>
+		<span class="tooltip"><p>Upload progress block for this request operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/progressBlock">&nbsp;&nbsp;progressBlock</a></code>
+		<span class="tooltip"><p>Progress block for this request operation</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestForURL:withData:method:cached:">+&nbsp;requestForURL:withData:method:cached:</a></code>
+		<span class="tooltip"><p>Returns an autoreleased request operation</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithURL:data:method:cached:">&ndash;&nbsp;initWithURL:data:method:cached:</a></code>
+		<span class="tooltip"><p>Initializes a request operation</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addCompletionBlock:">&ndash;&nbsp;addCompletionBlock:</a></code>
+		<span class="tooltip"><p>Adds a completion block for this operation</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addCookie:">&ndash;&nbsp;addCookie:</a></code>
+		<span class="tooltip"><p>Adds a cookie for this request</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/identifier" title="identifier"></a>
+	<h3 class="subsubtitle method-title">identifier</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *identifier</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p>
+
+<p>This property can be used to <a href="#//api/name/cancel">cancel</a> load operations for specific actions.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/indexPath" title="indexPath"></a>
+	<h3 class="subsubtitle method-title">indexPath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSIndexPath *indexPath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p>
+
+<p>This can be used to <a href="#//api/name/cancel">cancel</a> load operations for specific UITableView rows as
+the scroll view is moving.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parserBlock" title="parserBlock"></a>
+	<h3 class="subsubtitle method-title">parserBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parser block for this request operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) id ^ ) ( NSData *loadedData , NSString *MIMEType ) parserBlock</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parser block for this request operation</p>
+
+<p>This can be any piece of code that takes the loadedData and its MIMEType, and
+returns an object parsed from the incoming data. By default,
+<a href="../Classes/HPRequestManager.html">HPRequestManager</a> will set this property to a JSON parser
+block that will convert the data to a JSON object.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/postType" title="postType"></a>
+	<h3 class="subsubtitle method-title">postType</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Type of POST operation attached to this request</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) HPRequestOperationPostType postType</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Type of POST operation attached to this request</p>
+
+<p>Value of this property determines the Content-Type header for the request.
+Available options are:</p>
+
+<ul>
+<li>HPRequestOperationPostTypeForm: Form post type, uses Content-Type
+application/x-www-form-urlencoded</li>
+<li>HPRequestOperationPostTypeJSON: JSON post type, uses Content-Type
+application/json</li>
+<li>HPRequestOperationPostTypeFile: File post type, uses Content-Type
+multipart/form-data</li>
+</ul>
+
+
+<p>Default value is HPRequestOperationPostTypeForm.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/progressBlock" title="progressBlock"></a>
+	<h3 class="subsubtitle method-title">progressBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Progress block for this request operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( float progress ) progressBlock</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Progress block for this request operation</p>
+
+<p>If set, this block will get called with the progress of the download operation
+whenever the NSURLConnection reports an update. Value of the progress parameter
+will be between 0.0 and 1.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadProgressBlock" title="uploadProgressBlock"></a>
+	<h3 class="subsubtitle method-title">uploadProgressBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Upload progress block for this request operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( float progress ) uploadProgressBlock</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Upload progress block for this request operation</p>
+
+<p>If set, this block will get called with the progress of the upload operation
+whenever the NSURLConnection reports an update. Value of the progress parameter
+will be between 0.0 and 1.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/requestForURL:withData:method:cached:" title="requestForURL:withData:method:cached:"></a>
+	<h3 class="subsubtitle method-title">requestForURL:withData:method:cached:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an autoreleased request operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (HPRequestOperation *)requestForURL:(NSURL *)<em>url</em> withData:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>NSURL that determines the target URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>Optional NSData attribute for uploading data with the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>method</em></dt>
+			<dd><p>Method type for this request, available options are:</p>
+
+<ul>
+<li>HPRequestMethodGet: Request method GET</li>
+<li>HPRequestMethodPost: Request method POST</li>
+<li>HPRequestMethodPut: Request method PUT</li>
+<li>HPRequestMethodDelete: Request method DELETE</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cached</em></dt>
+			<dd><p>Boolean that determines whether the response to this request
+should be cached. Passing YES to this parameter will also make the operation
+check for an available cached item for this request before starting.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns an autoreleased request operation</p>
+
+<p>See <a href="#//api/name/initWithURL:data:method:cached:">initWithURL:data:method:cached:</a> for more details.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addCompletionBlock:" title="addCompletionBlock:"></a>
+	<h3 class="subsubtitle method-title">addCompletionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a completion block for this operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addCompletionBlock:(void ( ^ ) ( id resources , NSError *error ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A completion block that receives the resource object and an
+NSError instance</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Adds a completion block for this operation</p>
+
+<p>Request operations can have more than one completion blocks. A block that will
+be called when this operation is complete can be added using this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addCookie:" title="addCookie:"></a>
+	<h3 class="subsubtitle method-title">addCookie:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a cookie for this request</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addCookie:(NSString *)<em>cookie</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cookie</em></dt>
+			<dd><p>A valid HTTP cookie that will get appended to the Cookie header</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Adds a cookie for this request</p>
+
+<p>In rare cases when cookies are required for authentication or for other
+purposes, this method can be used to add an NSString cookie header to the request</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithURL:data:method:cached:" title="initWithURL:data:method:cached:"></a>
+	<h3 class="subsubtitle method-title">initWithURL:data:method:cached:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes a request operation</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithURL:(NSURL *)<em>url</em> data:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>NSURL that determines the target URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>Optional NSData attribute for uploading data with the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>method</em></dt>
+			<dd><p>Method type for this request, available options are:</p>
+
+<ul>
+<li>HPRequestMethodGet: Request method GET</li>
+<li>HPRequestMethodPost: Request method POST</li>
+<li>HPRequestMethodPut: Request method PUT</li>
+<li>HPRequestMethodDelete: Request method DELETE</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cached</em></dt>
+			<dd><p>Boolean that determines whether the response to this request
+should be cached. Passing YES to this parameter will also make the operation
+check for an available cached item for this request before starting.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Initializes a request operation</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-02-08)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

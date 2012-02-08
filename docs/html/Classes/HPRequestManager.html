@@ -1,0 +1,1743 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HPRequestManager Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">HPUtils </a></h1>
+				<a id="developerHome" href="../index.html">Hippo Foundry</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HPRequestManager Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/sharedManager">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedManager</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/activeProcessOperations">&nbsp;&nbsp;&nbsp;&nbsp;- activeProcessOperations</option>
+	
+	<option value="//api/name/activeRequestOperations">&nbsp;&nbsp;&nbsp;&nbsp;- activeRequestOperations</option>
+	
+	<option value="//api/name/cancelAllOperations">&nbsp;&nbsp;&nbsp;&nbsp;- cancelAllOperations</option>
+	
+	<option value="//api/name/cancelOperationsWithIdentifier:">&nbsp;&nbsp;&nbsp;&nbsp;- cancelOperationsWithIdentifier:</option>
+	
+	<option value="//api/name/dataFromArray:withKey:">&nbsp;&nbsp;&nbsp;&nbsp;- dataFromArray:withKey:</option>
+	
+	<option value="//api/name/dataFromDict:">&nbsp;&nbsp;&nbsp;&nbsp;- dataFromDict:</option>
+	
+	<option value="//api/name/encodeURL:">&nbsp;&nbsp;&nbsp;&nbsp;- encodeURL:</option>
+	
+	<option value="//api/name/enqueueRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- enqueueRequest:</option>
+	
+	<option value="//api/name/imageRequestForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- imageRequestForURL:</option>
+	
+	<option value="//api/name/isNetworkConnectionAvailable">&nbsp;&nbsp;&nbsp;&nbsp;- isNetworkConnectionAvailable</option>
+	
+	<option value="//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</option>
+	
+	<option value="//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</option>
+	
+	<option value="//api/name/multiPartDataFromDict:withFileKey:fileContentType:">&nbsp;&nbsp;&nbsp;&nbsp;- multiPartDataFromDict:withFileKey:fileContentType:</option>
+	
+	<option value="//api/name/pathFromBasePath:withOptions:">&nbsp;&nbsp;&nbsp;&nbsp;- pathFromBasePath:withOptions:</option>
+	
+	<option value="//api/name/pathFromBasePath:withOptions:specialKeys:">&nbsp;&nbsp;&nbsp;&nbsp;- pathFromBasePath:withOptions:specialKeys:</option>
+	
+	<option value="//api/name/requestForPath:withBaseURL:withData:method:cached:">&nbsp;&nbsp;&nbsp;&nbsp;- requestForPath:withBaseURL:withData:method:cached:</option>
+	
+	<option value="//api/name/requestForURL:withData:method:cached:">&nbsp;&nbsp;&nbsp;&nbsp;- requestForURL:withData:method:cached:</option>
+	
+	<option value="//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</option>
+	
+	<option value="//api/name/sendAvailableCrashReports">&nbsp;&nbsp;&nbsp;&nbsp;- sendAvailableCrashReports</option>
+	
+	<option value="//api/name/uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedManager">sharedManager</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/activeProcessOperations">activeProcessOperations</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/activeRequestOperations">activeRequestOperations</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelAllOperations">cancelAllOperations</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelOperationsWithIdentifier:">cancelOperationsWithIdentifier:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataFromArray:withKey:">dataFromArray:withKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataFromDict:">dataFromDict:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/encodeURL:">encodeURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/enqueueRequest:">enqueueRequest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageRequestForURL:">imageRequestForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isNetworkConnectionAvailable">isNetworkConnectionAvailable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:">loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:">loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/multiPartDataFromDict:withFileKey:fileContentType:">multiPartDataFromDict:withFileKey:fileContentType:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pathFromBasePath:withOptions:">pathFromBasePath:withOptions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pathFromBasePath:withOptions:specialKeys:">pathFromBasePath:withOptions:specialKeys:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestForPath:withBaseURL:withData:method:cached:">requestForPath:withBaseURL:withData:method:cached:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestForURL:withData:method:cached:">requestForURL:withData:method:cached:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:">resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendAvailableCrashReports">sendAvailableCrashReports</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:">uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HPRequestManager Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HPRequestManager Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HPRequestManager.h<br />HPRequestManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Common manager class that handles all network communication, reachability
+and image processing tasks. Contains two operation queues that execute
+<a href="../Classes/HPImageOperation.html">HPImageOperation</a> and <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>
+subclasses.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sharedManager">+&nbsp;sharedManager</a></code>
+		<span class="tooltip"><p>Returns the shared instance of the request manager</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isNetworkConnectionAvailable">&ndash;&nbsp;isNetworkConnectionAvailable</a></code>
+		<span class="tooltip"><p>Returns network availability info</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelAllOperations">&ndash;&nbsp;cancelAllOperations</a></code>
+		<span class="tooltip"><p>Cancels all running and queued operations</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelOperationsWithIdentifier:">&ndash;&nbsp;cancelOperationsWithIdentifier:</a></code>
+		<span class="tooltip"><p>Cancels all running and queued operations that match an identifier</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/activeRequestOperations">&ndash;&nbsp;activeRequestOperations</a></code>
+		<span class="tooltip"><p>Returns all running and queued request operations</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/activeProcessOperations">&ndash;&nbsp;activeProcessOperations</a></code>
+		<span class="tooltip"><p>Returns all running and queued process operations</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:">&ndash;&nbsp;loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</a></code>
+		<span class="tooltip"><p>Loads an image from the given URL and calls the completion block</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:">&ndash;&nbsp;loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</a></code>
+		<span class="tooltip"><p>Loads a stored image resource from the local file cache</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:">&ndash;&nbsp;resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</a></code>
+		<span class="tooltip"><p>Resizes a source image to a target size</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:">&ndash;&nbsp;uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:</a></code>
+		<span class="tooltip"><p>Utility method for uploading a UIImage instance to an Amazon S3 Bucket</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendAvailableCrashReports">&ndash;&nbsp;sendAvailableCrashReports</a></code>
+		<span class="tooltip"><p>Uploads generated crash reports to the Hippo Foundry crash log server</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/encodeURL:">&ndash;&nbsp;encodeURL:</a></code>
+		<span class="tooltip"><p>URL encodes an NSString</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataFromDict:">&ndash;&nbsp;dataFromDict:</a></code>
+		<span class="tooltip"><p>Generates NSData from an NSDictionary</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/multiPartDataFromDict:withFileKey:fileContentType:">&ndash;&nbsp;multiPartDataFromDict:withFileKey:fileContentType:</a></code>
+		<span class="tooltip"><p>Generates multi part data from an NSDictionary</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataFromArray:withKey:">&ndash;&nbsp;dataFromArray:withKey:</a></code>
+		<span class="tooltip"><p>Generates NSData from an NSArray</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pathFromBasePath:withOptions:">&ndash;&nbsp;pathFromBasePath:withOptions:</a></code>
+		<span class="tooltip"><p>Utility method for generating query parameters</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pathFromBasePath:withOptions:specialKeys:">&ndash;&nbsp;pathFromBasePath:withOptions:specialKeys:</a></code>
+		<span class="tooltip"><p>Utility method for generating query parameters with special keys</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/enqueueRequest:">&ndash;&nbsp;enqueueRequest:</a></code>
+		<span class="tooltip"><p>Adds an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> to the queue</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageRequestForURL:">&ndash;&nbsp;imageRequestForURL:</a></code>
+		<span class="tooltip"><p>Utility method for generating an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>
+that loads a remote image resource</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestForPath:withBaseURL:withData:method:cached:">&ndash;&nbsp;requestForPath:withBaseURL:withData:method:cached:</a></code>
+		<span class="tooltip"><p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a path and a
+base URL</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestForURL:withData:method:cached:">&ndash;&nbsp;requestForURL:withData:method:cached:</a></code>
+		<span class="tooltip"><p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a URL</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/sharedManager" title="sharedManager"></a>
+	<h3 class="subsubtitle method-title">sharedManager</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the shared instance of the request manager</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (HPRequestManager *)sharedManager</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="HPRequestManager.html">HPRequestManager</a> shared instance</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns the shared instance of the request manager</p>
+
+<p>You should always use this call and never instantiate the <a href="HPRequestManager.html">HPRequestManager</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/activeProcessOperations" title="activeProcessOperations"></a>
+	<h3 class="subsubtitle method-title">activeProcessOperations</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns all running and queued process operations</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)activeProcessOperations</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An array of active <a href="../Classes/HPImageOperation.html">HPImageOperation</a> subclasses</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns all running and queued process operations</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/activeRequestOperations" title="activeRequestOperations"></a>
+	<h3 class="subsubtitle method-title">activeRequestOperations</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns all running and queued request operations</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)activeRequestOperations</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An array of active <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> subclasses</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns all running and queued request operations</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelAllOperations" title="cancelAllOperations"></a>
+	<h3 class="subsubtitle method-title">cancelAllOperations</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancels all running and queued operations</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelAllOperations</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancels all running and queued operations</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelOperationsWithIdentifier:" title="cancelOperationsWithIdentifier:"></a>
+	<h3 class="subsubtitle method-title">cancelOperationsWithIdentifier:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancels all running and queued operations that match an identifier</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelOperationsWithIdentifier:(NSString *)<em>identifier</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>identifier</em></dt>
+			<dd><p>NSString that will be used to identify operations</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancels all running and queued operations that match an identifier</p>
+
+<p>You can use this call to cancel a subset of active and queued operations. This
+method will check both the request and process queues and cancel all operations
+that match the identifier. You can use <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>&rsquo;s
+identifier attribute determine an identifier when you are creating a request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataFromArray:withKey:" title="dataFromArray:withKey:"></a>
+	<h3 class="subsubtitle method-title">dataFromArray:withKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates NSData from an NSArray</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSData *)dataFromArray:(NSArray *)<em>array</em> withKey:(NSString *)<em>key</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>array</em></dt>
+			<dd><p>NSArray to be encoded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>Property key for the resulting object</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Generates NSData from an NSArray</p>
+
+<p>Generates an NSData instance that can be used in POST or PUT operations from an
+NSArray object.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataFromDict:" title="dataFromDict:"></a>
+	<h3 class="subsubtitle method-title">dataFromDict:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates NSData from an NSDictionary</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSData *)dataFromDict:(NSDictionary *)<em>dict</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dict</em></dt>
+			<dd><p>NSDictionary to be encoded</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Generates NSData from an NSDictionary</p>
+
+<p>Generates an NSData instance that can be used in POST or PUT operations from an
+NSDictionary object.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/encodeURL:" title="encodeURL:"></a>
+	<h3 class="subsubtitle method-title">encodeURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>URL encodes an NSString</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)encodeURL:(NSString *)<em>string</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>string</em></dt>
+			<dd><p>String to be encoded</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>URL encodes an NSString</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/enqueueRequest:" title="enqueueRequest:"></a>
+	<h3 class="subsubtitle method-title">enqueueRequest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> to the queue</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)enqueueRequest:(HPRequestOperation *)<em>request</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>request</em></dt>
+			<dd><p>Operation to be queued</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Adds an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> to the queue</p>
+
+<p>Enqueues an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> instance.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageRequestForURL:" title="imageRequestForURL:"></a>
+	<h3 class="subsubtitle method-title">imageRequestForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Utility method for generating an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>
+that loads a remote image resource</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (HPRequestOperation *)imageRequestForURL:(NSString *)<em>urlString</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>urlString</em></dt>
+			<dd><p>Image URL</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Utility method for generating an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>
+that loads a remote image resource</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isNetworkConnectionAvailable" title="isNetworkConnectionAvailable"></a>
+	<h3 class="subsubtitle method-title">isNetworkConnectionAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns network availability info</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isNetworkConnectionAvailable</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Boolean that determines whether a network connection is available</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns network availability info</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:" title="loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Loads an image from the given URL and calls the completion block</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)loadImageAtURL:(NSString *)<em>imageURL</em> withIndexPath:(NSIndexPath *)<em>indexPath</em> identifier:(NSString *)<em>identifier</em> scaleToFit:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> completionBlock:(void ( ^ ) ( id resource , NSError *error ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>imageURL</em></dt>
+			<dd><p>NSString URL for the image resource</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>indexPath</em></dt>
+			<dd><p>An optional indexPath identifier for the operation</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>identifier</em></dt>
+			<dd><p>An optional NSString identifier for the operation</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>targetSize</em></dt>
+			<dd><p>Target dimensions for image processing. To disable image
+resizing, pass CGSizeZero. Values will be automatically converted for
+retina display.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentMode</em></dt>
+			<dd><p>Scaling strategy for image processing. Options are:</p>
+
+<ul>
+<li>UIViewContentModeScaleAspectFit: Scale to fit into the dimensions, this
+approach might leave empty areas around the image</li>
+<li>UIViewContentModeScaleAspectFill: Scale to fill the target dimensions, this
+approach might crop the image</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>Completion block that will get called with the final image resource</p>
+
+<pre><code>and an NSError instance
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Loads an image from the given URL and calls the completion block</p>
+
+<p>This method can be used to load a remote image resource at the given URL and
+to scale it to fit the given dimensions.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:" title="loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Loads a stored image resource from the local file cache</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)loadStoredImageWithKey:(NSString *)<em>storageKey</em> indexPath:(NSIndexPath *)<em>indexPath</em> outputFormat:(HPImageOperationOutputFormat)<em>outputFormat</em> scaleToFit:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>storageKey</em></dt>
+			<dd><p>Unique storage identifier for the file</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>indexPath</em></dt>
+			<dd><p>An optional indexPath identifier for the operation</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>outputFormat</em></dt>
+			<dd><p>Format for the outputted resource. Options are:</p>
+
+<ul>
+<li>HPImageOperationOutputFormatImage: UIImage instance</li>
+<li>HPImageOperationOutputFormatRawData: NSData instance</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>targetSize</em></dt>
+			<dd><p>Target dimensions for image processing. To disable image
+resizing, pass CGSizeZero. Values will be automatically converted for
+retina display.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentMode</em></dt>
+			<dd><p>Scaling strategy for image processing. Options are:</p>
+
+<ul>
+<li>UIViewContentModeScaleAspectFit: Scale to fit into the dimensions, this
+approach might leave empty areas around the image</li>
+<li>UIViewContentModeScaleAspectFill: Scale to fill the target dimensions, this
+approach might crop the image</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>Completion block that will get called with the final image resource
+and an NSError instance</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Loads a stored image resource from the local file cache</p>
+
+<p>This method can be used to load an image from the local file cache, while
+processing it to be resized.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/multiPartDataFromDict:withFileKey:fileContentType:" title="multiPartDataFromDict:withFileKey:fileContentType:"></a>
+	<h3 class="subsubtitle method-title">multiPartDataFromDict:withFileKey:fileContentType:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates multi part data from an NSDictionary</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSData *)multiPartDataFromDict:(NSDictionary *)<em>dict</em> withFileKey:(NSString *)<em>fileKey</em> fileContentType:(NSString *)<em>contentType</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dict</em></dt>
+			<dd><p>NSDictionary to be encoded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileKey</em></dt>
+			<dd><p>Key for the NSData file object that can be found in the dictionary</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentType</em></dt>
+			<dd><p>MIME type for the file</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Generates multi part data from an NSDictionary</p>
+
+<p>Generates an NSData instance that can be used in a POST or PUT operation with a
+file upload.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pathFromBasePath:withOptions:" title="pathFromBasePath:withOptions:"></a>
+	<h3 class="subsubtitle method-title">pathFromBasePath:withOptions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Utility method for generating query parameters</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pathFromBasePath:(NSString *)<em>basePath</em> withOptions:(NSDictionary *)<em>options</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>basePath</em></dt>
+			<dd><p>NSString path that will be used as the base for the URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>NSDictionary parameters that will be converted for the query</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Utility method for generating query parameters</p>
+
+<p>Generates a full path with URL encoded query parameters from an NSDictionary.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pathFromBasePath:withOptions:specialKeys:" title="pathFromBasePath:withOptions:specialKeys:"></a>
+	<h3 class="subsubtitle method-title">pathFromBasePath:withOptions:specialKeys:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Utility method for generating query parameters with special keys</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pathFromBasePath:(NSString *)<em>basePath</em> withOptions:(NSDictionary *)<em>options</em> specialKeys:(NSArray *)<em>specialKeys</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>basePath</em></dt>
+			<dd><p>NSString path that will be used as the base for the URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>NSDictionary parameters that will be converted for the query</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>specialKeys</em></dt>
+			<dd><p>Keys to be skipped during the URL encoding process</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Utility method for generating query parameters with special keys</p>
+
+<p>Generates a full path with URL encoded query parameters from an NSDictionary,
+skips special keys during the URL encoding process</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestForPath:withBaseURL:withData:method:cached:" title="requestForPath:withBaseURL:withData:method:cached:"></a>
+	<h3 class="subsubtitle method-title">requestForPath:withBaseURL:withData:method:cached:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a path and a
+base URL</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (HPRequestOperation *)requestForPath:(NSString *)<em>path</em> withBaseURL:(NSString *)<em>baseURL</em> withData:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>path</em></dt>
+			<dd><p>Path that will be appended to the base URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>baseURL</em></dt>
+			<dd><p>A base URL for the remote service</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>An optional NSData instance that will be sent with the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>method</em></dt>
+			<dd><p>Method type for this request. See <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cached</em></dt>
+			<dd><p>Boolean that determines whether the response to this request is cached</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a path and a
+base URL</p>
+
+<p>Utility method for quickly generating an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>
+instance with the given parameters.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestForURL:withData:method:cached:" title="requestForURL:withData:method:cached:"></a>
+	<h3 class="subsubtitle method-title">requestForURL:withData:method:cached:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a URL</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (HPRequestOperation *)requestForURL:(NSURL *)<em>path</em> withData:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>path</em></dt>
+			<dd><p>Request URL</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>An optional NSData instance that will be sent with the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>method</em></dt>
+			<dd><p>Method type for this request. See <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cached</em></dt>
+			<dd><p>Boolean that determines whether the response to this request is cached</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a URL</p>
+
+<p>Utility method for quickly generating an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a>
+instance with the given parameters.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:" title="resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resizes a source image to a target size</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)resizeImage:(UIImage *)<em>sourceImage</em> toTargetSize:(CGSize)<em>targetSize</em> withCacheKey:(NSString *)<em>cacheKey</em> outputFormat:(HPImageOperationOutputFormat)<em>outputFormat</em> storePermanently:(BOOL)<em>storePermanently</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sourceImage</em></dt>
+			<dd><p>UIImage instance to be stored</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>targetSize</em></dt>
+			<dd><p>Target dimensions for image processing. To disable image
+resizing, pass CGSizeZero. Values will be automatically converted for
+retina display.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cacheKey</em></dt>
+			<dd><p>NSString key to identify the stored image with</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>outputFormat</em></dt>
+			<dd><p>Format for the outputted resource. Options are:</p>
+
+<ul>
+<li>HPImageOperationOutputFormatImage: UIImage instance</li>
+<li>HPImageOperationOutputFormatRawData: NSData instance</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>storePermanently</em></dt>
+			<dd><p>Boolean that determines whether the image should be
+stored in a temporary directory or permanently</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>Completion block that will get called with the final image resource
+and an NSError instance</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Resizes a source image to a target size</p>
+
+<p>This method can be used to resize a given UIImage instance to a target size and
+optionally cache it with an NSString cache key.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendAvailableCrashReports" title="sendAvailableCrashReports"></a>
+	<h3 class="subsubtitle method-title">sendAvailableCrashReports</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uploads generated crash reports to the Hippo Foundry crash log server</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)sendAvailableCrashReports</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uploads generated crash reports to the Hippo Foundry crash log server</p>
+
+<p>This method should be called at the end of the application:didFinishLaunchingWithOptions:
+method of the UIApplicationDelegate to upload any available crash reports to the
+Hippo Foundry crash log center.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:" title="uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">uploadImageToS3:toBucket:atPath:withAccessKey:secret:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Utility method for uploading a UIImage instance to an Amazon S3 Bucket</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)uploadImageToS3:(UIImage *)<em>image</em> toBucket:(NSString *)<em>bucket</em> atPath:(NSString *)<em>path</em> withAccessKey:(NSString *)<em>accessKey</em> secret:(NSString *)<em>secret</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>image</em></dt>
+			<dd><p>UIImage instance to be uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bucket</em></dt>
+			<dd><p>S3 bucket name</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>path</em></dt>
+			<dd><p>Absolute path to upload to inside the S3 bucket</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>accessKey</em></dt>
+			<dd><p>Amazon S3 access key</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>secret</em></dt>
+			<dd><p>Amazon S3 access secret</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>Completion block that will get called with the final response
+and an NSError instance</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Utility method for uploading a UIImage instance to an Amazon S3 Bucket</p>
+
+<p>Uploads a UIImage to the specified Amazon S3 bucket, at the given path. Needs
+S3 access key and secret values.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-02-08)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
