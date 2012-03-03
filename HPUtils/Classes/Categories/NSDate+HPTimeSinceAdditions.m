@@ -11,7 +11,7 @@
 
 @implementation NSDate (NSDate_HPTimeSinceAdditions)
 
-- (NSString *)timeSince {
+- (NSString *)stringWithHumanizedTimeDifference {
 	NSInteger minute = 60;
 	NSInteger hour = minute * 60;
 	NSInteger day = hour * 24;

@@ -7,6 +7,19 @@
 //
 
 
+/** NSDate category for adding a utility method that generates a humanized
+ * time difference string
+ */
 @interface NSDate (NSDate_HPTimeSinceAdditions)
-- (NSString *)timeSince;
+
+/** Generates a humanized time difference string from an NSDate instance:
+ * 2 years ago
+ * A month ago
+ * 5 days ago
+ * An hour ago
+ * 2 minutes ago
+ * Just now
+ */
+- (NSString *)stringWithHumanizedTimeDifference;
+
 @end
