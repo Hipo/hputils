@@ -103,7 +103,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
             break;
     }
     
-    [request setValue:@"text/javascript" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     
     if (_requestData) {
@@ -245,6 +245,12 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 
 - (void)callParserBlockWithData:(NSData *)data error:(NSError *)error {
 	if (data != nil) {
+        if ([data length] == 0) {
+            [self sendResourcesToBlocks:nil];
+            
+            return;
+        }
+        
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         
 		if (![self isCancelled] && _parserBlock != nil) {
