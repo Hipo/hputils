@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>NSDate(NSDate_HPTimeSinceAdditions) Category Reference</title>
+		<title>HPScrollViewDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">NSDate(NSDate_HPTimeSinceAdditions) Category Reference</h1>
+				<h1 class="hideInXcode">HPScrollViewDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -44,7 +44,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/stringWithHumanizedTimeDifference">&nbsp;&nbsp;&nbsp;&nbsp;- stringWithHumanizedTimeDifference</option>
+	<option value="//api/name/scrollView:didRemovePageWithIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:didRemovePageWithIndex:</option>
 	
 	
 	
@@ -74,7 +74,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringWithHumanizedTimeDifference">stringWithHumanizedTimeDifference</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:didRemovePageWithIndex:">scrollView:didRemovePageWithIndex:</a></span></li>
 	
 </ul></li>
 
@@ -83,7 +83,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="NSDate(NSDate_HPTimeSinceAdditions) Category Reference" name="top"></a>
+				<a title="HPScrollViewDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,15 +92,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">NSDate(NSDate_HPTimeSinceAdditions) Category Reference</h1>
+						<h1 class="title title-header">HPScrollViewDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIScrollViewDelegate</td>
+</tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">NSDate+HPTimeSinceAdditions.h<br />NSDate+HPTimeSinceAdditions.m</td>
+	<td class="specification-value">HPScrollView.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -110,8 +113,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>NSDate category for adding a utility method that generates a humanized
-time difference string</p>
+						<p>Delegate protocol for <a href="../Classes/HPScrollView.html">HPScrollView</a></p>
 					</div>
 					
 					
@@ -129,14 +131,8 @@ time difference string</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/stringWithHumanizedTimeDifference">&ndash;&nbsp;stringWithHumanizedTimeDifference</a></code>
-		<span class="tooltip"><p>Generates a humanized time difference string from an NSDate instance:
-2 years ago
-A month ago
-5 days ago
-An hour ago
-2 minutes ago
-Just now</p></span>
+		<code><a href="#//api/name/scrollView:didRemovePageWithIndex:">&ndash;&nbsp;scrollView:didRemovePageWithIndex:</a></code>
+		<span class="tooltip"><p>Delegate call that gets made when a cell within the scroll view is removed</p></span>
 	</span>
 	
 	
@@ -158,24 +154,33 @@ Just now</p></span>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/stringWithHumanizedTimeDifference" title="stringWithHumanizedTimeDifference"></a>
-	<h3 class="subsubtitle method-title">stringWithHumanizedTimeDifference</h3>
+	<a name="//api/name/scrollView:didRemovePageWithIndex:" title="scrollView:didRemovePageWithIndex:"></a>
+	<h3 class="subsubtitle method-title">scrollView:didRemovePageWithIndex:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Generates a humanized time difference string from an NSDate instance:
-2 years ago
-A month ago
-5 days ago
-An hour ago
-2 minutes ago
-Just now</p>
+		<p>Delegate call that gets made when a cell within the scroll view is removed</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSString *)stringWithHumanizedTimeDifference</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)scrollView:(HPScrollView *)<em>scrollView</em> didRemovePageWithIndex:(NSInteger)<em>pageIndex</em></code></div>
 	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>scrollView</em></dt>
+			<dd><p>Active scroll view</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pageIndex</em></dt>
+			<dd><p>Index for the removed cell</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -185,13 +190,7 @@ Just now</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Generates a humanized time difference string from an NSDate instance:
-2 years ago
-A month ago
-5 days ago
-An hour ago
-2 minutes ago
-Just now</p>
+		<p>Delegate call that gets made when a cell within the scroll view is removed</p>
 	</div>
 	
 	
@@ -202,7 +201,7 @@ Just now</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">NSDate+HPTimeSinceAdditions.h</code><br />
+		<code class="declared-in-ref">HPScrollView.h</code><br />
 	</div>				
 	
 	
