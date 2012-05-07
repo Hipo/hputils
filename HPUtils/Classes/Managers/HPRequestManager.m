@@ -8,7 +8,7 @@
 
 #import <CrashReporter/CrashReporter.h>
 
-#import "JSON.h"
+#import "JSONKit.h"
 
 #import "HPCacheManager.h"
 #import "HPErrors.h"
@@ -140,20 +140,7 @@ static HPRequestManager *_sharedManager = nil;
 #pragma mark - Parsers
 
 - (id)parseJSONData:(NSData *)loadedData {
-	NSString *resource = [[NSString alloc] initWithBytesNoCopy:(void *)[loadedData bytes]
-														length:[loadedData length]
-													  encoding:NSUTF8StringEncoding
-												  freeWhenDone:NO];
-	
-	id ret = [resource JSONValue];
-    
-	if (ret == nil) {
-		NSLog(@"FAILED TO PARSE: %@", resource);
-	}
-	
-	[resource release];
-	
-	return ret;
+	return [loadedData objectFromJSONData];
 }
 
 - (id)parseImageData:(NSData *)loadedData {
@@ -563,9 +550,25 @@ static HPRequestManager *_sharedManager = nil;
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
    storePermanently:(BOOL)storePermanently 
     completionBlock:(void (^)(id, NSError *))block {
+    [self resizeImage:sourceImage 
+         toTargetSize:targetSize 
+         withCacheKey:cacheKey 
+         outputFormat:outputFormat 
+          contentMode:UIViewContentModeScaleAspectFill 
+     storePermanently:storePermanently 
+      completionBlock:block];
+}
+
+- (void)resizeImage:(UIImage *)sourceImage 
+       toTargetSize:(CGSize)targetSize 
+       withCacheKey:(NSString *)cacheKey 
+       outputFormat:(HPImageOperationOutputFormat)outputFormat 
+        contentMode:(UIViewContentMode)contentMode 
+   storePermanently:(BOOL)storePermanently 
+    completionBlock:(void (^)(id, NSError *))block {
     HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:sourceImage 
                                                                targetSize:targetSize 
-                                                              contentMode:UIViewContentModeScaleAspectFill 
+                                                              contentMode:contentMode 
                                                                  cacheKey:cacheKey 
                                                               imageFormat:HPImageFormatJPEG];
 	

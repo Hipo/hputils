@@ -83,7 +83,7 @@
 	
 	<option value="//api/name/requestForURL:withData:method:cached:">&nbsp;&nbsp;&nbsp;&nbsp;- requestForURL:withData:method:cached:</option>
 	
-	<option value="//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</option>
+	<option value="//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:</option>
 	
 	<option value="//api/name/sendAvailableCrashReports">&nbsp;&nbsp;&nbsp;&nbsp;- sendAvailableCrashReports</option>
 	
@@ -157,7 +157,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestForURL:withData:method:cached:">requestForURL:withData:method:cached:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:">resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:">resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendAvailableCrashReports">sendAvailableCrashReports</a></span></li>
 	
@@ -277,7 +277,7 @@ subclasses.</p>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:">&ndash;&nbsp;resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</a></code>
+		<code><a href="#//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:">&ndash;&nbsp;resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:</a></code>
 		<span class="tooltip"><p>Resizes a source image to a target size</p></span>
 	</span>
 	
@@ -1428,8 +1428,8 @@ instance with the given parameters.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:" title="resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:"></a>
-	<h3 class="subsubtitle method-title">resizeImage:toTargetSize:withCacheKey:outputFormat:storePermanently:completionBlock:</h3>
+	<a name="//api/name/resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:" title="resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">resizeImage:toTargetSize:withCacheKey:outputFormat:contentMode:storePermanently:completionBlock:</h3>
 	
 	
 	
@@ -1438,7 +1438,7 @@ instance with the given parameters.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)resizeImage:(UIImage *)<em>sourceImage</em> toTargetSize:(CGSize)<em>targetSize</em> withCacheKey:(NSString *)<em>cacheKey</em> outputFormat:(HPImageOperationOutputFormat)<em>outputFormat</em> storePermanently:(BOOL)<em>storePermanently</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)resizeImage:(UIImage *)<em>sourceImage</em> toTargetSize:(CGSize)<em>targetSize</em> withCacheKey:(NSString *)<em>cacheKey</em> outputFormat:(HPImageOperationOutputFormat)<em>outputFormat</em> contentMode:(UIViewContentMode)<em>contentMode</em> storePermanently:(BOOL)<em>storePermanently</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
 	
 	
 	<div class="method-subsection arguments-section parameters">
@@ -1468,6 +1468,17 @@ retina display.</p></dd>
 <ul>
 <li>HPImageOperationOutputFormatImage: UIImage instance</li>
 <li>HPImageOperationOutputFormatRawData: NSData instance</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentMode</em></dt>
+			<dd><p>Content mode to identify whether image will be cropped or not:</p>
+
+<ul>
+<li>UIViewContentModeScaleAspectFit: No cropping</li>
+<li>UIViewContentModeScaleAspectFill: Crop to fill target size</li>
 </ul>
 </dd>
 		</dl>
@@ -1648,7 +1659,7 @@ S3 access key and secret values.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-03-13)</span><br />
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-05-07)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						

@@ -27,7 +27,7 @@ static NSString * const kCacheInfoDateKey = @"cacheDate";
 static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 
 
-@interface URLCache : NSURLCache
+@interface HPURLCache : NSURLCache
 @end
 
 
@@ -190,9 +190,9 @@ static HPCacheManager *_sharedManager = nil;
                                     error:&error];
 		}
 		
-		URLCache *urlCache = [[URLCache alloc] initWithMemoryCapacity:kHPURLCacheMemoryCapacity 
-														 diskCapacity:kHPURLCacheDiskCapacity 
-															 diskPath:_cacheDirectoryPath];
+		HPURLCache *urlCache = [[HPURLCache alloc] initWithMemoryCapacity:kHPURLCacheMemoryCapacity 
+                                                             diskCapacity:kHPURLCacheDiskCapacity 
+                                                                 diskPath:_cacheDirectoryPath];
 		
 		[NSURLCache setSharedURLCache:urlCache];
 		
@@ -334,7 +334,7 @@ static HPCacheManager *_sharedManager = nil;
 @end
 
 
-@implementation URLCache
+@implementation HPURLCache
 
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)request {
 	NSCachedURLResponse *memoryResponse = [super cachedResponseForRequest:request];

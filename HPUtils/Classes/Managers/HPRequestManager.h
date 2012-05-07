@@ -168,6 +168,13 @@ extern NSString * const HPNetworkStatusChangeNotification;
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
 	completionBlock:(void (^)(id, NSError *))block;
 
+- (void)resizeImage:(UIImage *)sourceImage 
+	   toTargetSize:(CGSize)targetSize 
+	   withCacheKey:(NSString *)cacheKey 
+       outputFormat:(HPImageOperationOutputFormat)outputFormat 
+   storePermanently:(BOOL)storePermanently 
+	completionBlock:(void (^)(id, NSError *))block;
+
 /** Resizes a source image to a target size
  
  This method can be used to resize a given UIImage instance to a target size and 
@@ -178,6 +185,11 @@ extern NSString * const HPNetworkStatusChangeNotification;
  resizing, pass CGSizeZero. Values will be automatically converted for 
  retina display.
  @param cacheKey NSString key to identify the stored image with
+ @param contentMode Content mode to identify whether image will be cropped or not:
+ 
+ * UIViewContentModeScaleAspectFit: No cropping
+ * UIViewContentModeScaleAspectFill: Crop to fill target size
+ 
  @param outputFormat Format for the outputted resource. Options are:
  
  * HPImageOperationOutputFormatImage: UIImage instance
@@ -192,6 +204,7 @@ extern NSString * const HPNetworkStatusChangeNotification;
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
+        contentMode:(UIViewContentMode)contentMode 
    storePermanently:(BOOL)storePermanently 
 	completionBlock:(void (^)(id, NSError *))block;
 

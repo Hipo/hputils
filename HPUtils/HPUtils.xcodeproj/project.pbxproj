@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		EC1BA20B1557C13900A03925 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1BA2081557C13900A03925 /* JSONKit.h */; };
+		EC1BA20C1557C13900A03925 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1BA2081557C13900A03925 /* JSONKit.h */; };
+		EC1BA20D1557C13900A03925 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1BA2091557C13900A03925 /* JSONKit.m */; };
+		EC1BA20E1557C13900A03925 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1BA2091557C13900A03925 /* JSONKit.m */; };
 		EC1F156113369AB100385E05 /* HPKeychainItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F155F13369AB100385E05 /* HPKeychainItem.h */; };
 		EC1F156213369AB100385E05 /* HPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156013369AB100385E05 /* HPKeychainItem.m */; };
 		EC1F156413369B3C00385E05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1F156313369B3C00385E05 /* Security.framework */; };
@@ -109,32 +113,6 @@
 		EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC79140C13668A3E0099AD73 /* HPWebViewController.h */; };
 		EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC79140D13668A3E0099AD73 /* HPWebViewController.m */; };
 		EC791429136691370099AD73 /* HPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC79140D13668A3E0099AD73 /* HPWebViewController.m */; };
-		EC9BB19F138F5D0D00D02C28 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB192138F5D0D00D02C28 /* JSON.h */; };
-		EC9BB1A0138F5D0D00D02C28 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB192138F5D0D00D02C28 /* JSON.h */; };
-		EC9BB1A1138F5D0D00D02C28 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB193138F5D0D00D02C28 /* NSObject+SBJSON.h */; };
-		EC9BB1A2138F5D0D00D02C28 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB193138F5D0D00D02C28 /* NSObject+SBJSON.h */; };
-		EC9BB1A3138F5D0D00D02C28 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB194138F5D0D00D02C28 /* NSObject+SBJSON.m */; };
-		EC9BB1A4138F5D0D00D02C28 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB194138F5D0D00D02C28 /* NSObject+SBJSON.m */; };
-		EC9BB1A5138F5D0D00D02C28 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB195138F5D0D00D02C28 /* NSString+SBJSON.h */; };
-		EC9BB1A6138F5D0D00D02C28 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB195138F5D0D00D02C28 /* NSString+SBJSON.h */; };
-		EC9BB1A7138F5D0D00D02C28 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB196138F5D0D00D02C28 /* NSString+SBJSON.m */; };
-		EC9BB1A8138F5D0D00D02C28 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB196138F5D0D00D02C28 /* NSString+SBJSON.m */; };
-		EC9BB1A9138F5D0D00D02C28 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB197138F5D0D00D02C28 /* SBJSON.h */; };
-		EC9BB1AA138F5D0D00D02C28 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB197138F5D0D00D02C28 /* SBJSON.h */; };
-		EC9BB1AB138F5D0D00D02C28 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB198138F5D0D00D02C28 /* SBJSON.m */; };
-		EC9BB1AC138F5D0D00D02C28 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB198138F5D0D00D02C28 /* SBJSON.m */; };
-		EC9BB1AD138F5D0D00D02C28 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB199138F5D0D00D02C28 /* SBJsonBase.h */; };
-		EC9BB1AE138F5D0D00D02C28 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB199138F5D0D00D02C28 /* SBJsonBase.h */; };
-		EC9BB1AF138F5D0D00D02C28 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB19A138F5D0D00D02C28 /* SBJsonBase.m */; };
-		EC9BB1B0138F5D0D00D02C28 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB19A138F5D0D00D02C28 /* SBJsonBase.m */; };
-		EC9BB1B1138F5D0D00D02C28 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB19B138F5D0D00D02C28 /* SBJsonParser.h */; };
-		EC9BB1B2138F5D0D00D02C28 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB19B138F5D0D00D02C28 /* SBJsonParser.h */; };
-		EC9BB1B3138F5D0D00D02C28 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB19C138F5D0D00D02C28 /* SBJsonParser.m */; };
-		EC9BB1B4138F5D0D00D02C28 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB19C138F5D0D00D02C28 /* SBJsonParser.m */; };
-		EC9BB1B5138F5D0D00D02C28 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB19D138F5D0D00D02C28 /* SBJsonWriter.h */; };
-		EC9BB1B6138F5D0D00D02C28 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9BB19D138F5D0D00D02C28 /* SBJsonWriter.h */; };
-		EC9BB1B7138F5D0D00D02C28 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB19E138F5D0D00D02C28 /* SBJsonWriter.m */; };
-		EC9BB1B8138F5D0D00D02C28 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9BB19E138F5D0D00D02C28 /* SBJsonWriter.m */; };
 		ECB55F72135B770900E8ED26 /* HPScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB55F70135B770900E8ED26 /* HPScrollView.h */; };
 		ECB55F73135B770900E8ED26 /* HPScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = ECB55F70135B770900E8ED26 /* HPScrollView.h */; };
 		ECB55F74135B770900E8ED26 /* HPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB55F71135B770900E8ED26 /* HPScrollView.m */; };
@@ -158,6 +136,10 @@
 		EC0EC7861335636D00BD383A /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		EC0EC7871335636D00BD383A /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
 		EC0EC7881335636D00BD383A /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
+		EC1BA2071557C13900A03925 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		EC1BA2081557C13900A03925 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		EC1BA2091557C13900A03925 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		EC1BA20A1557C13900A03925 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EC1F155F13369AB100385E05 /* HPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPKeychainItem.h; sourceTree = "<group>"; };
 		EC1F156013369AB100385E05 /* HPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPKeychainItem.m; sourceTree = "<group>"; };
 		EC1F156313369B3C00385E05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -208,19 +190,6 @@
 		EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
 		EC79140C13668A3E0099AD73 /* HPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPWebViewController.h; sourceTree = "<group>"; };
 		EC79140D13668A3E0099AD73 /* HPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPWebViewController.m; sourceTree = "<group>"; };
-		EC9BB192138F5D0D00D02C28 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		EC9BB193138F5D0D00D02C28 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		EC9BB194138F5D0D00D02C28 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		EC9BB195138F5D0D00D02C28 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		EC9BB196138F5D0D00D02C28 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		EC9BB197138F5D0D00D02C28 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		EC9BB198138F5D0D00D02C28 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		EC9BB199138F5D0D00D02C28 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		EC9BB19A138F5D0D00D02C28 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		EC9BB19B138F5D0D00D02C28 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		EC9BB19C138F5D0D00D02C28 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		EC9BB19D138F5D0D00D02C28 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		EC9BB19E138F5D0D00D02C28 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		ECB55F70135B770900E8ED26 /* HPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPScrollView.h; sourceTree = "<group>"; };
 		ECB55F71135B770900E8ED26 /* HPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPScrollView.m; sourceTree = "<group>"; };
 		ECB76452133400D000451A54 /* libHPUtils-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +247,17 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		EC1BA2061557C13900A03925 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				EC1BA2071557C13900A03925 /* CHANGELOG.md */,
+				EC1BA2081557C13900A03925 /* JSONKit.h */,
+				EC1BA2091557C13900A03925 /* JSONKit.m */,
+				EC1BA20A1557C13900A03925 /* README.md */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 		EC1F155D13369A9500385E05 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,26 +301,6 @@
 				EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */,
 			);
 			path = Operations;
-			sourceTree = "<group>";
-		};
-		EC9BB191138F5D0D00D02C28 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				EC9BB192138F5D0D00D02C28 /* JSON.h */,
-				EC9BB193138F5D0D00D02C28 /* NSObject+SBJSON.h */,
-				EC9BB194138F5D0D00D02C28 /* NSObject+SBJSON.m */,
-				EC9BB195138F5D0D00D02C28 /* NSString+SBJSON.h */,
-				EC9BB196138F5D0D00D02C28 /* NSString+SBJSON.m */,
-				EC9BB197138F5D0D00D02C28 /* SBJSON.h */,
-				EC9BB198138F5D0D00D02C28 /* SBJSON.m */,
-				EC9BB199138F5D0D00D02C28 /* SBJsonBase.h */,
-				EC9BB19A138F5D0D00D02C28 /* SBJsonBase.m */,
-				EC9BB19B138F5D0D00D02C28 /* SBJsonParser.h */,
-				EC9BB19C138F5D0D00D02C28 /* SBJsonParser.m */,
-				EC9BB19D138F5D0D00D02C28 /* SBJsonWriter.h */,
-				EC9BB19E138F5D0D00D02C28 /* SBJsonWriter.m */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		ECB76447133400D000451A54 = {
@@ -442,8 +402,8 @@
 		ECB764631334015400451A54 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				EC1BA2061557C13900A03925 /* JSONKit */,
 				EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */,
-				EC9BB191138F5D0D00D02C28 /* JSON */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -515,13 +475,7 @@
 				EC6AEE5413381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */,
 				ECB55F72135B770900E8ED26 /* HPScrollView.h in Headers */,
 				EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */,
-				EC9BB19F138F5D0D00D02C28 /* JSON.h in Headers */,
-				EC9BB1A1138F5D0D00D02C28 /* NSObject+SBJSON.h in Headers */,
-				EC9BB1A5138F5D0D00D02C28 /* NSString+SBJSON.h in Headers */,
-				EC9BB1A9138F5D0D00D02C28 /* SBJSON.h in Headers */,
-				EC9BB1AD138F5D0D00D02C28 /* SBJsonBase.h in Headers */,
-				EC9BB1B1138F5D0D00D02C28 /* SBJsonParser.h in Headers */,
-				EC9BB1B5138F5D0D00D02C28 /* SBJsonWriter.h in Headers */,
+				EC1BA20B1557C13900A03925 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,13 +495,7 @@
 				EC6AEE221337C7F200D4CF26 /* HPInteractiveView.h in Headers */,
 				EC6AEE5513381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */,
 				ECB55F73135B770900E8ED26 /* HPScrollView.h in Headers */,
-				EC9BB1A0138F5D0D00D02C28 /* JSON.h in Headers */,
-				EC9BB1A2138F5D0D00D02C28 /* NSObject+SBJSON.h in Headers */,
-				EC9BB1A6138F5D0D00D02C28 /* NSString+SBJSON.h in Headers */,
-				EC9BB1AA138F5D0D00D02C28 /* SBJSON.h in Headers */,
-				EC9BB1AE138F5D0D00D02C28 /* SBJsonBase.h in Headers */,
-				EC9BB1B2138F5D0D00D02C28 /* SBJsonParser.h in Headers */,
-				EC9BB1B6138F5D0D00D02C28 /* SBJsonWriter.h in Headers */,
+				EC1BA20C1557C13900A03925 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,12 +610,7 @@
 				EC6AEE5613381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */,
 				ECB55F74135B770900E8ED26 /* HPScrollView.m in Sources */,
 				EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */,
-				EC9BB1A3138F5D0D00D02C28 /* NSObject+SBJSON.m in Sources */,
-				EC9BB1A7138F5D0D00D02C28 /* NSString+SBJSON.m in Sources */,
-				EC9BB1AB138F5D0D00D02C28 /* SBJSON.m in Sources */,
-				EC9BB1AF138F5D0D00D02C28 /* SBJsonBase.m in Sources */,
-				EC9BB1B3138F5D0D00D02C28 /* SBJsonParser.m in Sources */,
-				EC9BB1B7138F5D0D00D02C28 /* SBJsonWriter.m in Sources */,
+				EC1BA20D1557C13900A03925 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,12 +643,7 @@
 				EC6AEE241337C7F200D4CF26 /* HPInteractiveView.m in Sources */,
 				EC6AEE5713381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */,
 				ECB55F75135B770900E8ED26 /* HPScrollView.m in Sources */,
-				EC9BB1A4138F5D0D00D02C28 /* NSObject+SBJSON.m in Sources */,
-				EC9BB1A8138F5D0D00D02C28 /* NSString+SBJSON.m in Sources */,
-				EC9BB1AC138F5D0D00D02C28 /* SBJSON.m in Sources */,
-				EC9BB1B0138F5D0D00D02C28 /* SBJsonBase.m in Sources */,
-				EC9BB1B4138F5D0D00D02C28 /* SBJsonParser.m in Sources */,
-				EC9BB1B8138F5D0D00D02C28 /* SBJsonWriter.m in Sources */,
+				EC1BA20E1557C13900A03925 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

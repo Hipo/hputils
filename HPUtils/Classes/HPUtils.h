@@ -37,5 +37,5 @@
 
 #import "HPKeychainItem.h"
 
-#import "JSON.h"
+#import "JSONKit.h"
 #import "CrashReporter.h"
