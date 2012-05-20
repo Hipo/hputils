@@ -24,6 +24,8 @@
 #import "HPLoadingViewController.h"
 #import "HPImageLoadingTableViewController.h"
 #import "HPWebViewController.h"
+#import "HPGalleryView.h"
+#import "HPPhotoView.h"
 
 #import "HPEditableTableViewCell.h"
 

@@ -38,6 +38,14 @@
 		EC1F157B1336ABD000385E05 /* HPEditableTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */; };
 		EC1F157C1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */; };
 		EC1F157D1336ABD000385E05 /* HPEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */; };
+		EC24F0F81561723200628299 /* HPGalleryView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC24F0F61561723200628299 /* HPGalleryView.h */; };
+		EC24F0F91561723200628299 /* HPGalleryView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC24F0F61561723200628299 /* HPGalleryView.h */; };
+		EC24F0FA1561723200628299 /* HPGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC24F0F71561723200628299 /* HPGalleryView.m */; };
+		EC24F0FB1561723200628299 /* HPGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC24F0F71561723200628299 /* HPGalleryView.m */; };
+		EC24F10715624B4100628299 /* HPPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC24F10515624B4100628299 /* HPPhotoView.h */; };
+		EC24F10815624B4100628299 /* HPPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC24F10515624B4100628299 /* HPPhotoView.h */; };
+		EC24F10915624B4100628299 /* HPPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC24F10615624B4100628299 /* HPPhotoView.m */; };
+		EC24F10A15624B4100628299 /* HPPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC24F10615624B4100628299 /* HPPhotoView.m */; };
 		EC46DF6413340D030075E597 /* UIColor+HPColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */; };
 		EC46DF6513340D030075E597 /* UIColor+HPColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */; };
 		EC46DF6713340D270075E597 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC46DF6613340D270075E597 /* UIKit.framework */; };
@@ -147,6 +155,10 @@
 		EC1F156713369B6600385E05 /* HPAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAuthenticationManager.m; sourceTree = "<group>"; };
 		EC1F15781336ABD000385E05 /* HPEditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPEditableTableViewCell.h; sourceTree = "<group>"; };
 		EC1F15791336ABD000385E05 /* HPEditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPEditableTableViewCell.m; sourceTree = "<group>"; };
+		EC24F0F61561723200628299 /* HPGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGalleryView.h; sourceTree = "<group>"; };
+		EC24F0F71561723200628299 /* HPGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGalleryView.m; sourceTree = "<group>"; };
+		EC24F10515624B4100628299 /* HPPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPPhotoView.h; sourceTree = "<group>"; };
+		EC24F10615624B4100628299 /* HPPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPPhotoView.m; sourceTree = "<group>"; };
 		EC46DF6213340D030075E597 /* UIColor+HPColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HPColorAdditions.h"; sourceTree = "<group>"; };
 		EC46DF6313340D030075E597 /* UIColor+HPColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HPColorAdditions.m"; sourceTree = "<group>"; };
 		EC46DF6613340D270075E597 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -385,6 +397,10 @@
 		ECB764621334015400451A54 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EC24F10515624B4100628299 /* HPPhotoView.h */,
+				EC24F10615624B4100628299 /* HPPhotoView.m */,
+				EC24F0F61561723200628299 /* HPGalleryView.h */,
+				EC24F0F71561723200628299 /* HPGalleryView.m */,
 				ECB7646D1334027F00451A54 /* HPLoadingView.h */,
 				ECB7646E1334027F00451A54 /* HPLoadingView.m */,
 				EC46DFEB133516320075E597 /* HPLoadingWindow.h */,
@@ -476,6 +492,8 @@
 				ECB55F72135B770900E8ED26 /* HPScrollView.h in Headers */,
 				EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */,
 				EC1BA20B1557C13900A03925 /* JSONKit.h in Headers */,
+				EC24F0F81561723200628299 /* HPGalleryView.h in Headers */,
+				EC24F10715624B4100628299 /* HPPhotoView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +514,8 @@
 				EC6AEE5513381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */,
 				ECB55F73135B770900E8ED26 /* HPScrollView.h in Headers */,
 				EC1BA20C1557C13900A03925 /* JSONKit.h in Headers */,
+				EC24F0F91561723200628299 /* HPGalleryView.h in Headers */,
+				EC24F10815624B4100628299 /* HPPhotoView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +631,8 @@
 				ECB55F74135B770900E8ED26 /* HPScrollView.m in Sources */,
 				EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */,
 				EC1BA20D1557C13900A03925 /* JSONKit.m in Sources */,
+				EC24F0FA1561723200628299 /* HPGalleryView.m in Sources */,
+				EC24F10915624B4100628299 /* HPPhotoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +666,8 @@
 				EC6AEE5713381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */,
 				ECB55F75135B770900E8ED26 /* HPScrollView.m in Sources */,
 				EC1BA20E1557C13900A03925 /* JSONKit.m in Sources */,
+				EC24F0FB1561723200628299 /* HPGalleryView.m in Sources */,
+				EC24F10A15624B4100628299 /* HPPhotoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

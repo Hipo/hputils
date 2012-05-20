@@ -379,6 +379,10 @@ static HPRequestManager *_sharedManager = nil;
             }
 		}
 	}
+    
+    if ([requestPath hasSuffix:@"&"]) {
+        return [requestPath substringToIndex:[requestPath length] - 1];
+    }
 	
 	return requestPath;
 }
