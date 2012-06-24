@@ -18,6 +18,8 @@
 #import "HPRequestOperation.h"
 #import "HPS3UploadOperation.h"
 
+#import "HPModalViewControllerDelegate.h"
+
 #import "HPLoadingWindow.h"
 #import "HPInteractiveView.h"
 #import "HPScrollView.h"
@@ -26,6 +28,7 @@
 #import "HPWebViewController.h"
 #import "HPGalleryView.h"
 #import "HPPhotoView.h"
+#import "HPGalleryViewController.h"
 
 #import "HPEditableTableViewCell.h"
 

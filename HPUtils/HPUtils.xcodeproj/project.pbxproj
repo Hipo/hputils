@@ -135,6 +135,12 @@
 		ECB7647A133405FC00451A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB76455133400D000451A54 /* Foundation.framework */; };
 		ECB764841334076500451A54 /* HPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB7646E1334027F00451A54 /* HPLoadingView.m */; };
 		ECB764851334076900451A54 /* HPLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB76472133402CB00451A54 /* HPLoadingViewController.m */; };
+		ECE709651585FC5400DFE9E8 /* HPGalleryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE709631585FC5400DFE9E8 /* HPGalleryViewController.h */; };
+		ECE709661585FC5400DFE9E8 /* HPGalleryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE709631585FC5400DFE9E8 /* HPGalleryViewController.h */; };
+		ECE709671585FC5400DFE9E8 /* HPGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE709641585FC5400DFE9E8 /* HPGalleryViewController.m */; };
+		ECE709681585FC5400DFE9E8 /* HPGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE709641585FC5400DFE9E8 /* HPGalleryViewController.m */; };
+		ECE7096E158601F500DFE9E8 /* HPModalViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE7096D158601F500DFE9E8 /* HPModalViewControllerDelegate.h */; };
+		ECE7096F158601F500DFE9E8 /* HPModalViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE7096D158601F500DFE9E8 /* HPModalViewControllerDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -214,6 +220,9 @@
 		ECB76472133402CB00451A54 /* HPLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLoadingViewController.m; sourceTree = "<group>"; };
 		ECB76479133405FC00451A54 /* libHPUtils-Simulator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libHPUtils-Simulator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB7647D133405FC00451A54 /* HPUtils-Simulator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HPUtils-Simulator-Prefix.pch"; sourceTree = "<group>"; };
+		ECE709631585FC5400DFE9E8 /* HPGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGalleryViewController.h; sourceTree = "<group>"; };
+		ECE709641585FC5400DFE9E8 /* HPGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGalleryViewController.m; sourceTree = "<group>"; };
+		ECE7096D158601F500DFE9E8 /* HPModalViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPModalViewControllerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +363,7 @@
 			children = (
 				ECB7646B1334020300451A54 /* HPUtils.h */,
 				EC46DFAD133418960075E597 /* HPErrors.h */,
+				ECE7096C158601D000DFE9E8 /* Delegates */,
 				EC46DF6113340CEA0075E597 /* Categories */,
 				ECB764601334015400451A54 /* Controllers */,
 				ECB764611334015400451A54 /* Managers */,
@@ -373,6 +383,8 @@
 				EC46DFBD133420E40075E597 /* HPImageLoadingTableViewController.m */,
 				EC79140C13668A3E0099AD73 /* HPWebViewController.h */,
 				EC79140D13668A3E0099AD73 /* HPWebViewController.m */,
+				ECE709631585FC5400DFE9E8 /* HPGalleryViewController.h */,
+				ECE709641585FC5400DFE9E8 /* HPGalleryViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -456,6 +468,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ECE7096C158601D000DFE9E8 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				ECE7096D158601F500DFE9E8 /* HPModalViewControllerDelegate.h */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -494,6 +514,8 @@
 				EC1BA20B1557C13900A03925 /* JSONKit.h in Headers */,
 				EC24F0F81561723200628299 /* HPGalleryView.h in Headers */,
 				EC24F10715624B4100628299 /* HPPhotoView.h in Headers */,
+				ECE709651585FC5400DFE9E8 /* HPGalleryViewController.h in Headers */,
+				ECE7096E158601F500DFE9E8 /* HPModalViewControllerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +538,8 @@
 				EC1BA20C1557C13900A03925 /* JSONKit.h in Headers */,
 				EC24F0F91561723200628299 /* HPGalleryView.h in Headers */,
 				EC24F10815624B4100628299 /* HPPhotoView.h in Headers */,
+				ECE709661585FC5400DFE9E8 /* HPGalleryViewController.h in Headers */,
+				ECE7096F158601F500DFE9E8 /* HPModalViewControllerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +657,7 @@
 				EC1BA20D1557C13900A03925 /* JSONKit.m in Sources */,
 				EC24F0FA1561723200628299 /* HPGalleryView.m in Sources */,
 				EC24F10915624B4100628299 /* HPPhotoView.m in Sources */,
+				ECE709671585FC5400DFE9E8 /* HPGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +693,7 @@
 				EC1BA20E1557C13900A03925 /* JSONKit.m in Sources */,
 				EC24F0FB1561723200628299 /* HPGalleryView.m in Sources */,
 				EC24F10A15624B4100628299 /* HPPhotoView.m in Sources */,
+				ECE709681585FC5400DFE9E8 /* HPGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
