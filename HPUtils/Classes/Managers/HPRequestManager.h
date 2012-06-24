@@ -232,14 +232,6 @@ extern NSString * const HPNetworkStatusChangeNotification;
 - (id)parseImageData:(NSData *)loadedData;
 - (id)parseStringData:(NSData *)loadedData;
 
-/** Uploads generated crash reports to the Hippo Foundry crash log server
- 
- This method should be called at the end of the application:didFinishLaunchingWithOptions: 
- method of the UIApplicationDelegate to upload any available crash reports to the 
- Hippo Foundry crash log center.
- */
-- (void)sendAvailableCrashReports;
-
 /** URL encodes an NSString
  
  @param string String to be encoded

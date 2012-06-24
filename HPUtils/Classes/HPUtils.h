@@ -43,4 +43,3 @@
 #import "HPKeychainItem.h"
 
 #import "JSONKit.h"
-#import "CrashReporter.h"

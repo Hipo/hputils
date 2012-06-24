@@ -116,8 +116,6 @@
 		EC6AEE5513381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EC6AEE5213381D5900D4CF26 /* HPS3UploadOperation.h */; };
 		EC6AEE5613381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */; };
 		EC6AEE5713381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */; };
-		EC6DCD701412DCFD0028B073 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */; };
-		EC6DCD711412DD0C0028B073 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */; };
 		EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC79140C13668A3E0099AD73 /* HPWebViewController.h */; };
 		EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC79140D13668A3E0099AD73 /* HPWebViewController.m */; };
 		EC791429136691370099AD73 /* HPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC79140D13668A3E0099AD73 /* HPWebViewController.m */; };
@@ -205,7 +203,6 @@
 		EC6AEE4E13381BDA00D4CF26 /* NSData+HPBase64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HPBase64Additions.m"; sourceTree = "<group>"; };
 		EC6AEE5213381D5900D4CF26 /* HPS3UploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPS3UploadOperation.h; sourceTree = "<group>"; };
 		EC6AEE5313381D5900D4CF26 /* HPS3UploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPS3UploadOperation.m; sourceTree = "<group>"; };
-		EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
 		EC79140C13668A3E0099AD73 /* HPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPWebViewController.h; sourceTree = "<group>"; };
 		EC79140D13668A3E0099AD73 /* HPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPWebViewController.m; sourceTree = "<group>"; };
 		ECB55F70135B770900E8ED26 /* HPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPScrollView.h; sourceTree = "<group>"; };
@@ -235,7 +232,6 @@
 				EC46DFA3133417600075E597 /* SystemConfiguration.framework in Frameworks */,
 				EC46DF6813340D2F0075E597 /* UIKit.framework in Frameworks */,
 				ECB76456133400D000451A54 /* Foundation.framework in Frameworks */,
-				EC6DCD701412DCFD0028B073 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +244,6 @@
 				EC46DFA6133417810075E597 /* CoreLocation.framework in Frameworks */,
 				EC46DFA7133417810075E597 /* SystemConfiguration.framework in Frameworks */,
 				EC1F156513369B4400385E05 /* Security.framework in Frameworks */,
-				EC6DCD711412DD0C0028B073 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				EC1BA2061557C13900A03925 /* JSONKit */,
-				EC6DCD6F1412DCFD0028B073 /* CrashReporter.framework */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
