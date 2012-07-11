@@ -14,6 +14,8 @@
 
 NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 
+static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
+
 
 @interface HPRequestOperation (PrivateMethods)
 - (void)sendErrorToBlocks:(NSError *)error;
@@ -33,6 +35,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 @synthesize progressBlock = _progressBlock;
 @synthesize uploadProgressBlock = _uploadProgressBlock;
 @synthesize postType = _postType;
+@synthesize loggingEnabled = _loggingEnabled;
 
 + (HPRequestOperation *)requestForURL:(NSURL *)url 
                              withData:(NSData *)data 
@@ -58,6 +61,7 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
 		_requestData = [data copy];
 		_completionBlocks = [[NSMutableSet alloc] init];
         _cookies = [[NSMutableSet alloc] init];
+        _loggingEnabled = NO;
 		
 		_isCancelled = NO;
 		_isExecuting = NO;
@@ -101,6 +105,19 @@ NSString * const HPRequestOperationMultiPartFormBoundary = @"0xKhTmLbOuNdArY";
         case HPRequestMethodPut:
             [request setHTTPMethod:@"PUT"];
             break;
+    }
+    
+    if (_loggingEnabled) {
+        NSMutableString *requestLog = [NSMutableString stringWithFormat:@"%@ %@", 
+                                       request.HTTPMethod, [request.URL absoluteString]];
+        
+        if (_requestData != nil && [_requestData length] < HPRequestOperationDataLoggingLimit) {
+            [requestLog appendFormat:@"\n%@", 
+             [[[NSString alloc] initWithData:_requestData 
+                                    encoding:NSUTF8StringEncoding] autorelease]];
+        }
+        
+        NSLog(@"%@", requestLog);
     }
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];

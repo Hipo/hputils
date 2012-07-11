@@ -54,10 +54,18 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
 	BOOL _isCancelled;
 	BOOL _isFinished;
     
+    BOOL _loggingEnabled;
+    
     id (^_parserBlock)(NSData *, NSString *);
     void (^_uploadProgressBlock)(float progress);
     void (^_progressBlock)(float);
 }
+
+/** Logging mode for this operation
+ 
+ If enabled, request details will be logged in the debugger
+ */
+@property (nonatomic, assign, getter=isLoggingEnabled) BOOL loggingEnabled;
 
 /** NSString identifier for this operation
  

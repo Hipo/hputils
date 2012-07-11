@@ -29,7 +29,14 @@ extern NSString * const HPNetworkStatusChangeNotification;
     HPReachabilityManager *_reachabilityManager;
     
     BOOL _networkConnectionAvailable;
+    BOOL _loggingEnabled;
 }
+
+/** Logging mode for all operations
+ 
+ If enabled, request details for all operations will be logged in the debugger
+ */
+@property (nonatomic, assign, getter=isLoggingEnabled) BOOL loggingEnabled;
 
 /** Returns the shared instance of the request manager
  

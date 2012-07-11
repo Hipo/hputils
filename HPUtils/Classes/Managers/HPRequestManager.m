@@ -35,6 +35,8 @@ static NSString * const kHPReleasesAPICrashReportPath = @"/crash-logs/";
 
 #pragma mark - Singleton and init management
 
+@synthesize loggingEnabled = _loggingEnabled;
+
 static HPRequestManager *_sharedManager = nil;
 
 + (HPRequestManager *)sharedManager {
@@ -73,6 +75,7 @@ static HPRequestManager *_sharedManager = nil;
     self = [super init];
     
 	if (self) {
+        _loggingEnabled = NO;
 		_networkConnectionAvailable = YES;
 		_requestQueue = [[NSOperationQueue alloc] init];
 		_processQueue = [[NSOperationQueue alloc] init];
@@ -181,6 +184,8 @@ static HPRequestManager *_sharedManager = nil;
 	[request setParserBlock:^ id (NSData *loadedData, NSString *MIMEType) {
 		return [self parseJSONData:loadedData];
 	}];
+    
+    [request setLoggingEnabled:_loggingEnabled];
 	
 	return request;
 }
