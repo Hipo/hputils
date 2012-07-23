@@ -83,13 +83,13 @@ extern NSString * const HPNetworkStatusChangeNotification;
 		 withIndexPath:(NSIndexPath *)indexPath 
 	   completionBlock:(void (^)(id, NSError *))block 
 			scaleToFit:(CGSize)targetSize 
-		   contentMode:(UIViewContentMode)contentMode;
+		   contentMode:(UIViewContentMode)contentMode DEPRECATED_ATTRIBUTE;
 
 - (void)loadImageAtURL:(NSString *)imageURL 
 		 withIndexPath:(NSIndexPath *)indexPath 
 			scaleToFit:(CGSize)targetSize 
 		   contentMode:(UIViewContentMode)contentMode
-	   completionBlock:(void (^)(id, NSError *))block;
+	   completionBlock:(void (^)(id, NSError *))block DEPRECATED_ATTRIBUTE;
 
 /** Loads an image from the given URL and calls the completion block
  
@@ -123,14 +123,14 @@ extern NSString * const HPNetworkStatusChangeNotification;
                      indexPath:(NSIndexPath *)indexPath 
                completionBlock:(void (^)(id, NSError *))block 
                     scaleToFit:(CGSize)targetSize 
-                   contentMode:(UIViewContentMode)contentMode;
+                   contentMode:(UIViewContentMode)contentMode DEPRECATED_ATTRIBUTE;
 
 - (void)loadStoredImageWithKey:(NSString *)storageKey 
                      indexPath:(NSIndexPath *)indexPath 
                completionBlock:(void (^)(id, NSError *))block 
                   outputFormat:(HPImageOperationOutputFormat)outputFormat 
                     scaleToFit:(CGSize)targetSize 
-                   contentMode:(UIViewContentMode)contentMode;
+                   contentMode:(UIViewContentMode)contentMode DEPRECATED_ATTRIBUTE;
 
 /** Loads a stored image resource from the local file cache
  
@@ -167,20 +167,20 @@ extern NSString * const HPNetworkStatusChangeNotification;
 - (void)resizeImage:(UIImage *)sourceImage 
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
-	completionBlock:(void (^)(id, NSError *))block;
+	completionBlock:(void (^)(id, NSError *))block DEPRECATED_ATTRIBUTE;
 
 - (void)resizeImage:(UIImage *)sourceImage 
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
-	completionBlock:(void (^)(id, NSError *))block;
+	completionBlock:(void (^)(id, NSError *))block DEPRECATED_ATTRIBUTE;
 
 - (void)resizeImage:(UIImage *)sourceImage 
 	   toTargetSize:(CGSize)targetSize 
 	   withCacheKey:(NSString *)cacheKey 
        outputFormat:(HPImageOperationOutputFormat)outputFormat 
    storePermanently:(BOOL)storePermanently 
-	completionBlock:(void (^)(id, NSError *))block;
+	completionBlock:(void (^)(id, NSError *))block DEPRECATED_ATTRIBUTE;
 
 /** Resizes a source image to a target size
  
