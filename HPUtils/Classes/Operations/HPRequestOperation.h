@@ -46,6 +46,10 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
 	NSData *_requestData;
 	NSString *_MIMEType;
 	NSURL *_requestURL;
+    NSDate *_startTime;
+    
+    NSString *_username;
+    NSString *_password;
 	
 	long long _expectedSize;
 	
@@ -60,6 +64,12 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
     void (^_uploadProgressBlock)(float progress);
     void (^_progressBlock)(float);
 }
+
+/** Start time of the request operation
+ 
+ This attribute will be populated when the connection actually begins
+ */
+@property (nonatomic, readonly, retain) NSDate *startTime;
 
 /** Logging mode for this operation
  
@@ -120,6 +130,14 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
  will be between 0.0 and 1.0
  */
 @property (nonatomic, copy) void (^progressBlock)(float progress);
+
+/** Username for Basic Authentication
+ */
+@property (nonatomic, copy) NSString *username;
+
+/** Password for Basic Authentication
+ */
+@property (nonatomic, copy) NSString *password;
 
 /** Returns an autoreleased request operation
  

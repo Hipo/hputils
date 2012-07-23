@@ -25,6 +25,8 @@ static NSInteger const kHPScrollViewTagOffset = 1;
 @synthesize dataSource;
 @synthesize renderEdgeInsets = _renderEdgeInsets;
 @synthesize identifier = _identifier;
+@synthesize headerView = _headerView;
+@synthesize footerView = _footerView;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -203,6 +205,10 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     _reusablePages = [[NSMutableSet alloc] init];
     
 	for (UIView *subview in [_cellContainer subviews]) {
+        if (subview == _headerView || subview == _footerView) {
+            continue;
+        }
+        
         [subview removeFromSuperview];
 	}
 	
@@ -231,7 +237,7 @@ static NSInteger const kHPScrollViewTagOffset = 1;
 }
 
 - (void)refreshCellLayout {
-	CGRect contentRect = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
+	CGRect contentRect = CGRectZero;
 	
     if (dataSource) {
         _totalCells = [dataSource numberOfPagesInScrollView:self];
@@ -240,14 +246,37 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     }
     
 	_cellRects = NSZoneRealloc(NULL, _cellRects, _totalCells * sizeof(*_cellRects));
+    
+    if (_headerView != nil) {
+        CGRect headerViewFrame = CGRectMake(0.0, 0.0, _headerView.frame.size.width, 
+                                            _headerView.frame.size.height);
+        
+        contentRect = CGRectUnion(contentRect, headerViewFrame);
+        
+        [_headerView setFrame:headerViewFrame];
+    }
 	
 	for (NSInteger i = 0; i < _totalCells; i++) {
 		CGRect cellRect = [dataSource scrollView:self frameForPageWithIndex:i];
+        
+        if (_headerView != nil) {
+            cellRect.origin.y += _headerView.frame.size.height;
+        }
 		
 		contentRect = CGRectUnion(contentRect, cellRect);
 		
 		_cellRects[i] = cellRect;
 	}
+    
+    if (_footerView != nil) {
+        CGRect footerViewFrame = CGRectMake(0.0, contentRect.size.height, 
+                                            _footerView.frame.size.width, 
+                                            _footerView.frame.size.height);
+        
+        contentRect = CGRectUnion(contentRect, footerViewFrame);
+        
+        [_footerView setFrame:footerViewFrame];
+    }
 	
 	[self setContentSize:contentRect.size];
     
@@ -312,6 +341,42 @@ static NSInteger const kHPScrollViewTagOffset = 1;
     return [_cellContainer viewWithTag:(cellIndex + kHPScrollViewTagOffset)];
 }
 
+#pragma mark - Header and Footer
+
+- (void)setHeaderView:(UIView *)headerView {
+    if (_headerView != nil) {
+        [_headerView removeFromSuperview];
+        
+        [_headerView release], _headerView = nil;
+    }
+    
+    if (headerView != nil) {
+        _headerView = [headerView retain];
+        
+        [_cellContainer addSubview:_headerView];
+    }
+    
+    [self refreshCellLayout];
+}
+
+- (void)setFooterView:(UIView *)footerView {
+    if (_footerView != nil) {
+        [_footerView removeFromSuperview];
+        
+        [_footerView release], _footerView = nil;
+    }
+    
+    if (footerView != nil) {
+        _footerView = [footerView retain];
+        
+        [_cellContainer addSubview:_footerView];
+    }
+    
+    [self refreshCellLayout];
+}
+
+#pragma mark - Memory management
+
 - (void)dealloc {
 	if (_cellRects != NULL) {
 		NSZoneFree(NULL, _cellRects);
@@ -321,6 +386,8 @@ static NSInteger const kHPScrollViewTagOffset = 1;
 	[_currentIndices release], _currentIndices = nil;
 	[_cellContainer release], _cellContainer = nil;
     [_insertedIndices release], _insertedIndices = nil;
+    [_headerView release], _headerView = nil;
+    [_footerView release], _footerView = nil;
 	
     [super dealloc];
 }

@@ -20,14 +20,18 @@
 NSString * const HPNetworkStatusChangeNotification = @"networkStatusChange";
 
 static NSTimeInterval const kNetworkActivityCheckInterval = 30.0;
+static NSTimeInterval const kNetworkConnectivityCheckInterval = 8.0;
 static NSString * const kHPReleasesAPIBaseURL = @"http://releases.hippofoundry.com/api";
 static NSString * const kHPReleasesAPICrashReportPath = @"/crash-logs/";
 
 
 @interface HPRequestManager (PrivateMethods)
+
 - (void)checkNetworkActivity;
+- (void)checkNetworkConnectivity;
+
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification;
-- (void)handleCrashReport;
+
 @end
 
 
@@ -92,10 +96,7 @@ static HPRequestManager *_sharedManager = nil;
 		
 		[_reachabilityManager startNotifier];
         
-        [self enqueueRequest:[HPRequestOperation requestForURL:[NSURL URLWithString:@"http://www.apple.com"] 
-                                                      withData:nil 
-                                                        method:HPRequestMethodGet 
-                                                        cached:NO]];
+        [self checkNetworkConnectivity];
         
         [self performSelector:@selector(checkNetworkActivity) 
                    withObject:nil 
@@ -230,8 +231,22 @@ static HPRequestManager *_sharedManager = nil;
         
 		[request addCompletionBlock:^(id resources, NSError *error) {
 			if (error != nil && [error code] == kHPNetworkErrorCode) {
+                if (_networkConnectionAvailable) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
+                                                                        object:self];
+
+                    [self performSelector:@selector(checkNetworkConnectivity) 
+                               withObject:nil 
+                               afterDelay:kNetworkConnectivityCheckInterval];
+                }
+                
 				_networkConnectionAvailable = NO;
 			} else {
+                if (!_networkConnectionAvailable) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
+                                                                        object:self];
+                }
+                
 				_networkConnectionAvailable = YES;
 			}
             
@@ -408,6 +423,13 @@ static HPRequestManager *_sharedManager = nil;
     
 	[[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
 														object:self];
+}
+
+- (void)checkNetworkConnectivity {
+    [self enqueueRequest:[HPRequestOperation requestForURL:[NSURL URLWithString:@"http://www.apple.com"] 
+                                                  withData:nil 
+                                                    method:HPRequestMethodGet 
+                                                    cached:NO]];
 }
 
 #pragma mark - Image loaders

@@ -66,8 +66,21 @@
     NSMutableSet *_reusablePages;
     NSInteger _identifier;
     
+    UIView *_headerView;
+    UIView *_footerView;
+    
     id <HPScrollViewDataSource> dataSource;
 }
+
+/** Header view that will be placed on top of all other scrolling content 
+
+ */
+@property (nonatomic, retain) UIView *headerView;
+
+/** Footer view that will be placed at the bottom of all other scrolling content 
+ 
+ */
+@property (nonatomic, retain) UIView *footerView;
 
 /** Edge insets for the rendered area
  

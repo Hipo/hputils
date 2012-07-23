@@ -36,6 +36,9 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
 @synthesize uploadProgressBlock = _uploadProgressBlock;
 @synthesize postType = _postType;
 @synthesize loggingEnabled = _loggingEnabled;
+@synthesize startTime = _startTime;
+@synthesize username = _username;
+@synthesize password = _password;
 
 + (HPRequestOperation *)requestForURL:(NSURL *)url 
                              withData:(NSData *)data 
@@ -62,6 +65,8 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
 		_completionBlocks = [[NSMutableSet alloc] init];
         _cookies = [[NSMutableSet alloc] init];
         _loggingEnabled = NO;
+        _username = nil;
+        _password = nil;
 		
 		_isCancelled = NO;
 		_isExecuting = NO;
@@ -88,6 +93,8 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
 	_isExecuting = YES;
 	[self didChangeValueForKey:@"isExecuting"];
     
+    _startTime = [[NSDate date] retain];
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_requestURL 
                                                            cachePolicy:(_isCached) ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringCacheData 
                                                        timeoutInterval:30.0];
@@ -459,13 +466,34 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 #pragma mark - Authentication
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    if (_username != nil && _password != nil) {
+        return YES;
+    }
+    
 	return [[HPAuthenticationManager sharedManager] isAuthenticated];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    if ([challenge previousFailureCount] >= 2) {
+        [self callParserBlockWithData:nil 
+                                error:[NSError errorWithDomain:kHPErrorDomain 
+                                                          code:kHPRequestAuthenticationFailureErrorCode 
+                                                      userInfo:nil]];
+        return;
+    }
+    
+    if (_username != nil && _password != nil) {
+		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:_username 
+																	 password:_password 
+																  persistence:NSURLCredentialPersistenceNone] 
+			   forAuthenticationChallenge:challenge];
+
+        return;
+    }
+    
     NSDictionary *userCredentials = [[HPAuthenticationManager sharedManager] userCredentials];
 
-	if ([challenge previousFailureCount] < 2 && userCredentials != nil && [userCredentials count] > 0) {
+	if (userCredentials != nil && [userCredentials count] > 0) {
 		[[challenge sender] useCredential:[NSURLCredential credentialWithUser:[userCredentials objectForKey:HPAuthenticationManagerUsernameKey] 
 																	 password:[userCredentials objectForKey:HPAuthenticationManagerPasswordKey] 
 																  persistence:NSURLCredentialPersistenceNone] 
@@ -502,6 +530,9 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 	[_progressBlock release], _progressBlock = nil;
     [_completionBlocks release], _completionBlocks = nil;
     [_uploadProgressBlock release], _uploadProgressBlock = nil;
+    [_startTime release], _startTime = nil;
+    [_username release], _username = nil;
+    [_password release], _password = nil;
 	
 	[super dealloc];
 }
