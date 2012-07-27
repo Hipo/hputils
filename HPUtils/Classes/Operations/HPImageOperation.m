@@ -196,7 +196,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                             targetRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
                             break;
                     }
-                    
+
                     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
                     CGSize contextSize;
                     
@@ -212,8 +212,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                             break;
                     }
                     
-                    CGContextRef context = CGBitmapContextCreate(NULL, contextSize.width, contextSize.height, 8, 0, 
-                                                                 colorSpace, (kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Host));
+                    CGContextRef context = CGBitmapContextCreate(NULL, // Image data
+                                                                 contextSize.width, // Width
+                                                                 contextSize.height, // Height
+                                                                 8, // Bits per component
+                                                                 4 * contextSize.width, // Bits per row
+                                                                 colorSpace, // Color space
+                                                                 kCGImageAlphaPremultipliedLast // Alpha mode
+                                                                 );
                     
                     switch (_sourceImage.imageOrientation) {
                         case UIImageOrientationLeft: {

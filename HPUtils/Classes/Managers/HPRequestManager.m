@@ -451,11 +451,19 @@ static HPRequestManager *_sharedManager = nil;
 	} else {
 		[request addCompletionBlock:^ void (id resources, NSError *error) {
 			if (resources != nil) {
-				HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:(UIImage *)resources 
+                UIImage *sourceImage = (UIImage *)resources;
+                CGBitmapInfo imageInfo = CGImageGetBitmapInfo([sourceImage CGImage]);
+                HPImageFormat imageFormat = HPImageFormatJPEG;
+                
+                if (imageInfo & kCGBitmapAlphaInfoMask) {
+                    imageFormat = HPImageFormatPNG;
+                }
+                
+				HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:sourceImage
                                                                            targetSize:targetSize 
                                                                           contentMode:contentMode 
                                                                              cacheKey:[imageURL SHA1Hash] 
-                                                                          imageFormat:HPImageFormatJPEG];
+                                                                          imageFormat:imageFormat];
 				
 				[operation setIndexPath:indexPath];
 				[operation addCompletionBlock:block];
