@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>HPScrollViewDelegate Protocol Reference</title>
+		<title>UIColor(UIColor_HPColorAdditions) Category Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">HPScrollViewDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">UIColor(UIColor_HPColorAdditions) Category Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,11 +40,11 @@
 	
 	
 	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/colorFromHexString:">&nbsp;&nbsp;&nbsp;&nbsp;+ colorFromHexString:</option>
 	
 	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/scrollView:didRemovePageWithIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:didRemovePageWithIndex:</option>
 	
 	
 	
@@ -70,20 +70,20 @@
 
 
 
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:didRemovePageWithIndex:">scrollView:didRemovePageWithIndex:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorFromHexString:">colorFromHexString:</a></span></li>
 	
 </ul></li>
+
+
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="HPScrollViewDelegate Protocol Reference" name="top"></a>
+				<a title="UIColor(UIColor_HPColorAdditions) Category Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,18 +92,15 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">HPScrollViewDelegate Protocol Reference</h1>
+						<h1 class="title title-header">UIColor(UIColor_HPColorAdditions) Category Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">UIScrollViewDelegate</td>
-</tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">HPScrollView.h</td>
+	<td class="specification-value">UIColor+HPColorAdditions.h<br />UIColor+HPColorAdditions.m</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,7 +110,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate protocol for <a href="../Classes/HPScrollView.html">HPScrollView</a></p>
+						<p>UIColor extension that adds convenience methods</p>
 					</div>
 					
 					
@@ -131,8 +128,8 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/scrollView:didRemovePageWithIndex:">&ndash;&nbsp;scrollView:didRemovePageWithIndex:</a></code>
-		<span class="tooltip"><p>Delegate call that gets made when a cell within the scroll view is removed</p></span>
+		<code><a href="#//api/name/colorFromHexString:">+&nbsp;colorFromHexString:</a></code>
+		<span class="tooltip"><p>Generates a UIColor instance from any hex color code</p></span>
 	</span>
 	
 	
@@ -147,25 +144,23 @@
 					
 					
 					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/scrollView:didRemovePageWithIndex:" title="scrollView:didRemovePageWithIndex:"></a>
-	<h3 class="subsubtitle method-title">scrollView:didRemovePageWithIndex:</h3>
+	<a name="//api/name/colorFromHexString:" title="colorFromHexString:"></a>
+	<h3 class="subsubtitle method-title">colorFromHexString:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Delegate call that gets made when a cell within the scroll view is removed</p>
+		<p>Generates a UIColor instance from any hex color code</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)scrollView:(HPScrollView *)<em>scrollView</em> didRemovePageWithIndex:(NSInteger)<em>pageIndex</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (UIColor *)colorFromHexString:(NSString *)<em>hexString</em></code></div>
 
     
 	
@@ -173,13 +168,8 @@
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>scrollView</em></dt>
-			<dd><p>Active scroll view</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>pageIndex</em></dt>
-			<dd><p>Index for the removed cell</p></dd>
+			<dt><em>hexString</em></dt>
+			<dd><p>hex string for the target color, can be in #aaa or #aaabbb format</p></dd>
 		</dl>
 		
 	</div>
@@ -192,7 +182,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Delegate call that gets made when a cell within the scroll view is removed</p>
+		<p>Generates a UIColor instance from any hex color code</p>
 	</div>
 	
 	
@@ -203,13 +193,15 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HPScrollView.h</code><br />
+		<code class="declared-in-ref">UIColor+HPColorAdditions.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
+					
+					
 					
 					
 				</div>

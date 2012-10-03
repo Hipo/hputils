@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -217,7 +217,7 @@ It can also be identified and cancelled very easily.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/identifier">&nbsp;&nbsp;identifier</a></code>
-		<span class="tooltip"><p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p></span>
+		<span class="tooltip"><p>NSString identifier for this operation</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -318,12 +318,14 @@ It can also be identified and cancelled very easily.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p>
+		<p>NSString identifier for this operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *identifier</code></div>
-	
+
+    
 	
 	
 	
@@ -333,7 +335,7 @@ It can also be identified and cancelled very easily.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>NSString <a href="#//api/name/identifier">identifier</a> for this operation</p>
+		<p>NSString identifier for this operation</p>
 
 <p>This property can be used to <a href="#//api/name/cancel">cancel</a> load operations for specific actions.</p>
 	</div>
@@ -362,9 +364,11 @@ It can also be identified and cancelled very easily.</p>
 		<p>NSIndexPath <a href="#//api/name/identifier">identifier</a> for this operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSIndexPath *indexPath</code></div>
-	
+
+    
 	
 	
 	
@@ -404,9 +408,11 @@ the scroll view is moving.</p>
 		<p>Logging mode for this operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isLoggingEnabled) BOOL loggingEnabled</code></div>
-	
+
+    
 	
 	
 	
@@ -445,9 +451,11 @@ the scroll view is moving.</p>
 		<p>Parser block for this request operation</p>
 	</div>		
 	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) id ^ ) ( NSData *loadedData , NSString *MIMEType ) parserBlock</code></div>
-	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) id ( ^ ) ( NSData *loadedData , NSString *MIMEType ) parserBlock</code></div>
+
+    
 	
 	
 	
@@ -489,9 +497,11 @@ block that will convert the data to a JSON object.</p>
 		<p>Password for Basic Authentication</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *password</code></div>
-	
+
+    
 	
 	
 	
@@ -528,9 +538,11 @@ block that will convert the data to a JSON object.</p>
 		<p>Type of POST operation attached to this request</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) HPRequestOperationPostType postType</code></div>
-	
+
+    
 	
 	
 	
@@ -582,9 +594,11 @@ multipart/form-data</li>
 		<p>Progress block for this request operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( float progress ) progressBlock</code></div>
-	
+
+    
 	
 	
 	
@@ -625,9 +639,11 @@ will be between 0.0 and 1.0</p>
 		<p>Start time of the request operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, retain) NSDate *startTime</code></div>
-	
+
+    
 	
 	
 	
@@ -666,9 +682,11 @@ will be between 0.0 and 1.0</p>
 		<p>Upload progress block for this request operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( float progress ) uploadProgressBlock</code></div>
-	
+
+    
 	
 	
 	
@@ -709,9 +727,11 @@ will be between 0.0 and 1.0</p>
 		<p>Username for Basic Authentication</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *username</code></div>
-	
+
+    
 	
 	
 	
@@ -756,9 +776,11 @@ will be between 0.0 and 1.0</p>
 		<p>Returns an autoreleased request operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>+ (HPRequestOperation *)requestForURL:(NSURL *)<em>url</em> withData:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -840,9 +862,11 @@ check for an available cached item for this request before starting.</p></dd>
 		<p>Adds a completion block for this operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)addCompletionBlock:(void ( ^ ) ( id resources , NSError *error ))<em>block</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -893,9 +917,11 @@ be called when this operation is complete can be added using this method.</p>
 		<p>Adds a cookie for this request</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)addCookie:(NSString *)<em>cookie</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -945,9 +971,11 @@ purposes, this method can be used to add an NSString cookie header to the reques
 		<p>Initializes a request operation</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (id)initWithURL:(NSURL *)<em>url</em> data:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1022,9 +1050,9 @@ check for an available cached item for this request before starting.</p></dd>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-07-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-09-19)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>
@@ -1112,6 +1140,14 @@ check for an available cached item for this request before starting.</p></dd>
 			}
 			
 			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
 		</script>
 	</body>
 </html>

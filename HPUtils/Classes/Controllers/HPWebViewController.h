@@ -20,6 +20,7 @@
 	id <HPWebViewControllerDelegate> delegate;
 }
 
+@property (nonatomic, readonly, retain) UIWebView *webView;
 @property (nonatomic, assign) id <HPWebViewControllerDelegate> delegate;
 
 - (id)initWithURL:(NSURL *)url;

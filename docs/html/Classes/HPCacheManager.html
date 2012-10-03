@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -159,7 +159,7 @@ cache routines to store some responses on disk instead of live memory. This
 allows images and other long-term data to be stored in a temporary directory
 so they can persist across app launches and memory warnings.</p>
 
-<p><a href="../Classes/HPRequestManager.html">HPRequestManager</a> uses <a href="HPCacheManager.html">HPCacheManager</a> behind the scenes and
+<p><a href="../Classes/HPRequestManager.html">HPRequestManager</a> uses HPCacheManager behind the scenes and
 no direct interaction is necessary unless access to the cache database is
 necessary.</p>
 					</div>
@@ -265,15 +265,17 @@ necessary.</p>
 		<p>Returns the shared instance of the cache manager</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>+ (HPCacheManager *)sharedManager</code></div>
-	
+
+    
 	
 	
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><a href="HPCacheManager.html">HPCacheManager</a> shared instance</p>
+		<p>HPCacheManager shared instance</p>
 	</div>
 	
 	
@@ -284,7 +286,7 @@ necessary.</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Returns the shared instance of the cache manager</p>
 
-<p>You should always use this call and never instantiate the <a href="HPCacheManager.html">HPCacheManager</a>.</p>
+<p>You should always use this call and never instantiate the HPCacheManager.</p>
 	</div>
 	
 	
@@ -319,9 +321,11 @@ necessary.</p>
 		<p>Temporarily caches an NSData and MIMEType combination for a given cache key</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)cacheData:(NSData *)<em>cacheData</em> forCacheKey:(NSString *)<em>cacheKey</em> withMIMEType:(NSString *)<em>MIMEType</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -378,9 +382,11 @@ necessary.</p>
 		<p>Temporarily caches an NSData and MIMEType combination for a given URL</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)cacheData:(NSData *)<em>cacheData</em> forURL:(NSURL *)<em>url</em> withMIMEType:(NSString *)<em>MIMEType</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -437,9 +443,11 @@ necessary.</p>
 		<p>Finds a temporary cache item associated with a given cache key</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (HPCacheItem *)cachedItemForCacheKey:(NSString *)<em>cacheKey</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -491,9 +499,11 @@ necessary.</p>
 		<p>Finds a temporary cache item associated with a given URL</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (HPCacheItem *)cachedItemForURL:(NSURL *)<em>url</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -545,9 +555,11 @@ necessary.</p>
 		<p>Clears a cached item for a given cache key</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)clearCacheForCacheKey:(NSString *)<em>cacheKey</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -594,9 +606,11 @@ necessary.</p>
 		<p>Clears a cached item for a given URL</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)clearCacheForURL:(NSURL *)<em>url</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -643,9 +657,11 @@ necessary.</p>
 		<p>Permanently stores an NSData and MIMEType combination for a given storage key</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)storeData:(NSData *)<em>storageData</em> forStorageKey:(NSString *)<em>storageKey</em> withMIMEType:(NSString *)<em>MIMEType</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -702,9 +718,11 @@ necessary.</p>
 		<p>Finds the permanently stored cache item associated with a given storage key</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (HPCacheItem *)storedItemForStorageKey:(NSString *)<em>storageKey</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -759,9 +777,9 @@ necessary.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-07-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-09-19)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>
@@ -849,6 +867,14 @@ necessary.</p>
 			}
 			
 			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
 		</script>
 	</body>
 </html>

@@ -7,7 +7,15 @@
 //
 
 
+/** UIColor extension that adds convenience methods
+ */
 @interface UIColor (UIColor_HPColorAdditions)
 + (UIColor *)lightBlueBackgroundColor;
 + (UIColor *)darkBlueForegroundColor;
+
+/** Generates a UIColor instance from any hex color code
+ 
+ @param hexString hex string for the target color, can be in #aaa or #aaabbb format
+ */
++ (UIColor *)colorFromHexString:(NSString *)hexString;
 @end

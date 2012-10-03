@@ -580,7 +580,7 @@
 		ECB76449133400D000451A54 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Hippo Foundry";
 			};
 			buildConfigurationList = ECB7644C133400D000451A54 /* Build configuration list for PBXProject "HPUtils" */;
@@ -698,9 +698,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
-					armv7,
-					armv6,
 					i386,
+					armv6,
+					armv7s,
+					armv7,
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -730,6 +731,7 @@
 					"\"$(SRCROOT)/Dependencies\"",
 				);
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -744,7 +746,7 @@
 					"\"$(SRCROOT)/Dependencies\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphonesimulator;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

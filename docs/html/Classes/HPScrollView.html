@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -323,9 +323,11 @@ are no cells available, will return nil.</p></span>
 		<p>Data source for this scroll view</p>
 	</div>		
 	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;&gt; dataSource</code></div>
-	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;HPScrollViewDataSource&gt; dataSource</code></div>
+
+    
 	
 	
 	
@@ -362,9 +364,11 @@ are no cells available, will return nil.</p></span>
 		<p>Delegate for this scroll view</p>
 	</div>		
 	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;&gt; delegate</code></div>
-	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;HPScrollViewDelegate&gt; delegate</code></div>
+
+    
 	
 	
 	
@@ -401,9 +405,11 @@ are no cells available, will return nil.</p></span>
 		<p>Footer view that will be placed at the bottom of all other scrolling content</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIView *footerView</code></div>
-	
+
+    
 	
 	
 	
@@ -440,9 +446,11 @@ are no cells available, will return nil.</p></span>
 		<p>Header view that will be placed on top of all other scrolling content</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIView *headerView</code></div>
-	
+
+    
 	
 	
 	
@@ -479,9 +487,11 @@ are no cells available, will return nil.</p></span>
 		<p>Identifier for this scroll view</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger identifier</code></div>
-	
+
+    
 	
 	
 	
@@ -518,9 +528,11 @@ are no cells available, will return nil.</p></span>
 		<p>Edge insets for the rendered area</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) UIEdgeInsets renderEdgeInsets</code></div>
-	
+
+    
 	
 	
 	
@@ -570,9 +582,11 @@ scroll view.</p>
 		<p>Returns the cell view that matches the given index</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (UIView *)cellViewWithIndex:(NSInteger)<em>cellIndex</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -620,9 +634,11 @@ scroll view.</p>
 are no cells available, will return nil.</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (UIView *)dequeueReusablePage</code></div>
-	
+
+    
 	
 	
 	
@@ -660,9 +676,11 @@ are no cells available, will return nil.</p>
 		<p>Returns the index of the given cell view</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSInteger)indexOfCellView:(UIView *)<em>cellView</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -709,9 +727,11 @@ are no cells available, will return nil.</p>
 		<p>Inserts new cells to the scroll view without reloading or refreshing</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)insertCells:(NSInteger)<em>cellCount</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -758,9 +778,11 @@ are no cells available, will return nil.</p>
 		<p>Refreshes the frames for all cells without reloading them</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)refreshCellLayout</code></div>
-	
+
+    
 	
 	
 	
@@ -797,9 +819,11 @@ are no cells available, will return nil.</p>
 		<p>Refreshes the frames for all visible cells</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)refreshVisibleCells</code></div>
-	
+
+    
 	
 	
 	
@@ -837,9 +861,11 @@ are no cells available, will return nil.</p>
 data source for updated number of cells</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)reloadData</code></div>
-	
+
+    
 	
 	
 	
@@ -877,9 +903,11 @@ data source for updated number of cells</p>
 		<p>Removed cells that are not within the visible bounds of the scroll view</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)removeHiddenCells</code></div>
-	
+
+    
 	
 	
 	
@@ -916,9 +944,11 @@ data source for updated number of cells</p>
 		<p>Resets the contents of the scroll view by removing all cells</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)resetData</code></div>
-	
+
+    
 	
 	
 	
@@ -958,9 +988,9 @@ data source for updated number of cells</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-07-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-09-19)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>
@@ -1048,6 +1078,14 @@ data source for updated number of cells</p>
 			}
 			
 			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
 		</script>
 	</body>
 </html>

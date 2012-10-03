@@ -21,6 +21,7 @@
 
 @implementation HPWebViewController
 
+@synthesize webView = _webView;
 @synthesize delegate;
 
 - (id)initWithURL:(NSURL *)url {
@@ -50,13 +51,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
-                                                                                 target:self 
-                                                                                 action:@selector(didTapCloseButton:)];
-    
-    [self.navigationItem setLeftBarButtonItem:closeButton];
-    
-    [closeButton release];
+    if (self.delegate != nil) {
+        UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                     target:self
+                                                                                     action:@selector(didTapCloseButton:)];
+        
+        [self.navigationItem setLeftBarButtonItem:closeButton];
+        
+        [closeButton release];
+    }
 	
 	_loadIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     
@@ -182,7 +185,7 @@
             
             NSMutableArray *toolbarItems = [self.toolbarItems mutableCopy];
             
-            [toolbarItems replaceObjectAtIndex:([toolbarItems count] - 1) 
+            [toolbarItems replaceObjectAtIndex:4
                                     withObject:stopBarButton];
             
             [self setToolbarItems:toolbarItems animated:YES];
@@ -209,7 +212,7 @@
         
         NSMutableArray *toolbarItems = [self.toolbarItems mutableCopy];
         
-        [toolbarItems replaceObjectAtIndex:([toolbarItems count] - 1) 
+        [toolbarItems replaceObjectAtIndex:4
                                 withObject:reloadBarButton];
         
         [self setToolbarItems:toolbarItems animated:YES];

@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -398,9 +398,11 @@ base URL</p></span>
 		<p>Logging mode for all operations</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isLoggingEnabled) BOOL loggingEnabled</code></div>
-	
+
+    
 	
 	
 	
@@ -447,15 +449,17 @@ base URL</p></span>
 		<p>Returns the shared instance of the request manager</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>+ (HPRequestManager *)sharedManager</code></div>
-	
+
+    
 	
 	
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><a href="HPRequestManager.html">HPRequestManager</a> shared instance</p>
+		<p>HPRequestManager shared instance</p>
 	</div>
 	
 	
@@ -466,7 +470,7 @@ base URL</p></span>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Returns the shared instance of the request manager</p>
 
-<p>You should always use this call and never instantiate the <a href="HPRequestManager.html">HPRequestManager</a>.</p>
+<p>You should always use this call and never instantiate the HPRequestManager.</p>
 	</div>
 	
 	
@@ -501,9 +505,11 @@ base URL</p></span>
 		<p>Returns all running and queued process operations</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSArray *)activeProcessOperations</code></div>
-	
+
+    
 	
 	
 	
@@ -545,9 +551,11 @@ base URL</p></span>
 		<p>Returns all running and queued request operations</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSArray *)activeRequestOperations</code></div>
-	
+
+    
 	
 	
 	
@@ -589,9 +597,11 @@ base URL</p></span>
 		<p>Cancels all running and queued operations</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)cancelAllOperations</code></div>
-	
+
+    
 	
 	
 	
@@ -628,9 +638,11 @@ base URL</p></span>
 		<p>Cancels all running and queued operations that match an identifier</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)cancelOperationsWithIdentifier:(NSString *)<em>identifier</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -682,9 +694,11 @@ identifier attribute determine an identifier when you are creating a request.</p
 		<p>Generates NSData from an NSArray</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSData *)dataFromArray:(NSArray *)<em>array</em> withKey:(NSString *)<em>key</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -739,9 +753,11 @@ NSArray object.</p>
 		<p>Generates NSData from an NSDictionary</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSData *)dataFromDict:(NSDictionary *)<em>dict</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -791,9 +807,11 @@ NSDictionary object.</p>
 		<p>URL encodes an NSString</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSString *)encodeURL:(NSString *)<em>string</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -840,9 +858,11 @@ NSDictionary object.</p>
 		<p>Adds an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> to the queue</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)enqueueRequest:(HPRequestOperation *)<em>request</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -892,9 +912,11 @@ NSDictionary object.</p>
 that loads a remote image resource</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (HPRequestOperation *)imageRequestForURL:(NSString *)<em>urlString</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -942,9 +964,11 @@ that loads a remote image resource</p>
 		<p>Returns network availability info</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (BOOL)isNetworkConnectionAvailable</code></div>
-	
+
+    
 	
 	
 	
@@ -986,9 +1010,11 @@ that loads a remote image resource</p>
 		<p>Loads an image from the given URL and calls the completion block</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)loadImageAtURL:(NSString *)<em>imageURL</em> withIndexPath:(NSIndexPath *)<em>indexPath</em> identifier:(NSString *)<em>identifier</em> scaleToFit:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> completionBlock:(void ( ^ ) ( id resource , NSError *error ))<em>block</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1076,9 +1102,11 @@ to scale it to fit the given dimensions.</p>
 		<p>Loads a stored image resource from the local file cache</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)loadStoredImageWithKey:(NSString *)<em>storageKey</em> indexPath:(NSIndexPath *)<em>indexPath</em> outputFormat:(HPImageOperationOutputFormat)<em>outputFormat</em> scaleToFit:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1170,9 +1198,11 @@ processing it to be resized.</p>
 		<p>Generates multi part data from an NSDictionary</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSData *)multiPartDataFromDict:(NSDictionary *)<em>dict</em> withFileKey:(NSString *)<em>fileKey</em> fileContentType:(NSString *)<em>contentType</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1232,9 +1262,11 @@ file upload.</p>
 		<p>Utility method for generating query parameters</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSString *)pathFromBasePath:(NSString *)<em>basePath</em> withOptions:(NSDictionary *)<em>options</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1288,9 +1320,11 @@ file upload.</p>
 		<p>Utility method for generating query parameters with special keys</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (NSString *)pathFromBasePath:(NSString *)<em>basePath</em> withOptions:(NSDictionary *)<em>options</em> specialKeys:(NSArray *)<em>specialKeys</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1351,9 +1385,11 @@ skips special keys during the URL encoding process</p>
 base URL</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (HPRequestOperation *)requestForPath:(NSString *)<em>path</em> withBaseURL:(NSString *)<em>baseURL</em> withData:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1424,9 +1460,11 @@ instance with the given parameters.</p>
 		<p>Generates an <a href="../Classes/HPRequestOperation.html">HPRequestOperation</a> using a URL</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (HPRequestOperation *)requestForURL:(NSURL *)<em>path</em> withData:(NSData *)<em>data</em> method:(HPRequestMethod)<em>method</em> cached:(BOOL)<em>cached</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1491,9 +1529,11 @@ instance with the given parameters.</p>
 		<p>Resizes a source image to a target size</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)resizeImage:(UIImage *)<em>sourceImage</em> toTargetSize:(CGSize)<em>targetSize</em> withCacheKey:(NSString *)<em>cacheKey</em> outputFormat:(HPImageOperationOutputFormat)<em>outputFormat</em> contentMode:(UIViewContentMode)<em>contentMode</em> storePermanently:(BOOL)<em>storePermanently</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1589,9 +1629,11 @@ optionally cache it with an NSString cache key.</p>
 		<p>Utility method for uploading a UIImage instance to an Amazon S3 Bucket</p>
 	</div>		
 	
-	
+    
+
 	<div class="method-subsection method-declaration"><code>- (void)uploadImageToS3:(UIImage *)<em>image</em> toBucket:(NSString *)<em>bucket</em> atPath:(NSString *)<em>path</em> withAccessKey:(NSString *)<em>accessKey</em> secret:(NSString *)<em>secret</em> completionBlock:(void ( ^ ) ( id , NSError *))<em>block</em></code></div>
-	
+
+    
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
@@ -1670,9 +1712,9 @@ S3 access key and secret values.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-07-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-09-19)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>
@@ -1760,6 +1802,14 @@ S3 access key and secret values.</p>
 			}
 			
 			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
 		</script>
 	</body>
 </html>
