@@ -284,12 +284,6 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
                 [self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
                                                             code:kHPRequestParserFailureErrorCode 
                                                         userInfo:nil]];
-			} else if ([parsedData respondsToSelector:@selector(objectForKey:)] && 
-                [parsedData objectForKey:@"error"] != nil) {
-				[self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
-                                                            code:kHPRequestServerFailureErrorCode 
-                                                        userInfo:[NSDictionary dictionaryWithObject:parsedData 
-                                                                                             forKey:@"serverError"]]];
             } else if (error != nil) {
 				[self sendErrorToBlocks:[NSError errorWithDomain:kHPErrorDomain 
                                                             code:kHPRequestServerFailureErrorCode 
