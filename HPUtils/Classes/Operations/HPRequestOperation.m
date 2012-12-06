@@ -39,6 +39,7 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
 @synthesize startTime = _startTime;
 @synthesize username = _username;
 @synthesize password = _password;
+@synthesize requestURL = _requestURL;
 
 + (HPRequestOperation *)requestForURL:(NSURL *)url 
                              withData:(NSData *)data 

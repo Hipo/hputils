@@ -167,8 +167,7 @@ static HPRequestManager *_sharedManager = nil;
                               withData:(NSData *)data 
                                 method:(HPRequestMethod)method 
                                 cached:(BOOL)cached {
-	NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@", baseURL, path] 
-                                       stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseURL, path]];
     
     return [self requestForURL:url withData:data method:method cached:cached];
 }
@@ -232,22 +231,20 @@ static HPRequestManager *_sharedManager = nil;
 		[request addCompletionBlock:^(id resources, NSError *error) {
 			if (error != nil && [error code] == kHPNetworkErrorCode) {
                 if (_networkConnectionAvailable) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
+                    _networkConnectionAvailable = NO;
+
+                    [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
                                                                         object:self];
 
                     [self performSelector:@selector(checkNetworkConnectivity) 
                                withObject:nil 
                                afterDelay:kNetworkConnectivityCheckInterval];
                 }
-                
-				_networkConnectionAvailable = NO;
-			} else {
-                if (!_networkConnectionAvailable) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
-                                                                        object:self];
-                }
-                
-				_networkConnectionAvailable = YES;
+			} else if (!_networkConnectionAvailable) {
+                _networkConnectionAvailable = YES;
+
+                [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
+                                                                    object:self];
 			}
             
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] - 1 > 0)];
@@ -420,8 +417,8 @@ static HPRequestManager *_sharedManager = nil;
 
 - (void)didReceiveReachabilityNotification:(NSNotification *)notification {
 	_networkConnectionAvailable = ([_reachabilityManager currentReachabilityStatus] != NotReachable);
-    
-	[[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification 
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
 														object:self];
 }
 

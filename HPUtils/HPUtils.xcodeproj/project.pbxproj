@@ -580,7 +580,7 @@
 		ECB76449133400D000451A54 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Hippo Foundry";
 			};
 			buildConfigurationList = ECB7644C133400D000451A54 /* Build configuration list for PBXProject "HPUtils" */;
@@ -745,6 +745,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies\"",
 				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};

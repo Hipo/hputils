@@ -65,6 +65,14 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
     void (^_progressBlock)(float);
 }
 
+/** HTTP request method
+ */
+@property (nonatomic, readonly, assign) HPRequestMethod requestMethod;
+
+/** Target request URL
+ */
+@property (nonatomic, readonly, retain) NSURL *requestURL;
+
 /** Start time of the request operation
  
  This attribute will be populated when the connection actually begins

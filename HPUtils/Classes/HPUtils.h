@@ -39,6 +39,7 @@
 #import "NSObject+HPKVCAdditions.h"
 #import "UIDevice+HPCapabilityAdditions.h"
 #import "UITouch+HPTouchSorting.h"
+#import "NSData+HPBase64Additions.h"
 
 #import "HPKeychainItem.h"
 
