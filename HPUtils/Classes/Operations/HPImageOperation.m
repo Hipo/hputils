@@ -171,6 +171,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                     case UIViewContentModeScaleAspectFill:
                         scale = MAX(_targetSize.width / imageSize.width, _targetSize.height / imageSize.height);
                         break;
+                    case UIViewContentModeCenter:
+                        scale = 1.0;
+                        break;
                     default:
                         scale = MIN(_targetSize.width / imageSize.width, _targetSize.height / imageSize.height);
                         break;
@@ -188,6 +191,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                             targetSize = _targetSize;
                             targetRect = CGRectMake(floor((_targetSize.width - imageSize.width) / 2), 
                                                     floor((_targetSize.height - imageSize.height) / 2), 
+                                                    imageSize.width, imageSize.height);
+                            
+                            break;
+                        case UIViewContentModeCenter:
+                            targetSize = _targetSize;
+                            targetRect = CGRectMake(floor((_targetSize.width - imageSize.width) / 2),
+                                                    floor((_targetSize.height - imageSize.height) / 2),
                                                     imageSize.width, imageSize.height);
                             
                             break;

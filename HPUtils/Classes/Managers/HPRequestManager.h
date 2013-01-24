@@ -119,7 +119,39 @@ extern NSString * const HPNetworkStatusChangeNotification;
 		   contentMode:(UIViewContentMode)contentMode
 	   completionBlock:(void (^)(id resource, NSError *error))block;
 
-- (void)loadStoredImageWithKey:(NSString *)storageKey 
+/** Loads an image from the given URL and calls the completion block, as well as
+ calling the progress block while the image is loading
+ 
+ This method can be used to load a remote image resource at the given URL and
+ to scale it to fit the given dimensions.
+ 
+ @param imageURL NSString URL for the image resource
+ @param indexPath An optional indexPath identifier for the operation
+ @param identifier An optional NSString identifier for the operation
+ @param targetSize Target dimensions for image processing. To disable image
+ resizing, pass CGSizeZero. Values will be automatically converted for
+ retina display.
+ @param contentMode Scaling strategy for image processing. Options are:
+ 
+ * UIViewContentModeScaleAspectFit: Scale to fit into the dimensions, this
+ approach might leave empty areas around the image
+ * UIViewContentModeScaleAspectFill: Scale to fill the target dimensions, this
+ approach might crop the image
+ 
+ @param block Completion block that will get called with the final image resource
+ and an NSError instance
+ @param progressBlock Progress block that will get called with the percentage of
+ the download progress
+ */
+- (void)loadImageAtURL:(NSString *)imageURL
+		 withIndexPath:(NSIndexPath *)indexPath
+            identifier:(NSString *)identifier
+			scaleToFit:(CGSize)targetSize
+		   contentMode:(UIViewContentMode)contentMode
+       completionBlock:(void (^)(id resource, NSError *error))block
+         progressBlock:(void (^)(float progress))progressBlock;
+
+- (void)loadStoredImageWithKey:(NSString *)storageKey
                      indexPath:(NSIndexPath *)indexPath 
                completionBlock:(void (^)(id, NSError *))block 
                     scaleToFit:(CGSize)targetSize 

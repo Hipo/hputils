@@ -76,6 +76,8 @@
 	
 	<option value="//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</option>
 	
+	<option value="//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:</option>
+	
 	<option value="//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</option>
 	
 	<option value="//api/name/multiPartDataFromDict:withFileKey:fileContentType:">&nbsp;&nbsp;&nbsp;&nbsp;- multiPartDataFromDict:withFileKey:fileContentType:</option>
@@ -153,6 +155,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isNetworkConnectionAvailable">isNetworkConnectionAvailable</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:">loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:">loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:">loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</a></span></li>
 	
@@ -279,6 +283,14 @@ subclasses.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:">&ndash;&nbsp;loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:</a></code>
 		<span class="tooltip"><p>Loads an image from the given URL and calls the completion block</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:">&ndash;&nbsp;loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Loads an image from the given URL and calls the completion block, as well as
+calling the progress block while the image is loading</p></span>
 	</span>
 	
 	
@@ -1093,6 +1105,104 @@ to scale it to fit the given dimensions.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:" title="loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">loadImageAtURL:withIndexPath:identifier:scaleToFit:contentMode:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Loads an image from the given URL and calls the completion block, as well as
+calling the progress block while the image is loading</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)loadImageAtURL:(NSString *)<em>imageURL</em> withIndexPath:(NSIndexPath *)<em>indexPath</em> identifier:(NSString *)<em>identifier</em> scaleToFit:(CGSize)<em>targetSize</em> contentMode:(UIViewContentMode)<em>contentMode</em> completionBlock:(void ( ^ ) ( id resource , NSError *error ))<em>block</em> progressBlock:(void ( ^ ) ( float progress ))<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>imageURL</em></dt>
+			<dd><p>NSString URL for the image resource</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>indexPath</em></dt>
+			<dd><p>An optional indexPath identifier for the operation</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>identifier</em></dt>
+			<dd><p>An optional NSString identifier for the operation</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>targetSize</em></dt>
+			<dd><p>Target dimensions for image processing. To disable image
+resizing, pass CGSizeZero. Values will be automatically converted for
+retina display.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>contentMode</em></dt>
+			<dd><p>Scaling strategy for image processing. Options are:</p>
+
+<ul>
+<li>UIViewContentModeScaleAspectFit: Scale to fit into the dimensions, this
+approach might leave empty areas around the image</li>
+<li>UIViewContentModeScaleAspectFill: Scale to fill the target dimensions, this
+approach might crop the image</li>
+</ul>
+</dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>Completion block that will get called with the final image resource
+and an NSError instance</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>Progress block that will get called with the percentage of
+the download progress</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Loads an image from the given URL and calls the completion block, as well as
+calling the progress block while the image is loading</p>
+
+<p>This method can be used to load a remote image resource at the given URL and
+to scale it to fit the given dimensions.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:" title="loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:"></a>
 	<h3 class="subsubtitle method-title">loadStoredImageWithKey:indexPath:outputFormat:scaleToFit:contentMode:completionBlock:</h3>
 	
@@ -1712,7 +1822,7 @@ S3 access key and secret values.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Hippo Foundry. All rights reserved. (Last updated: 2012-12-06)</span><br />
+						<p><span class="copyright">&copy; 2013 Hippo Foundry. All rights reserved. (Last updated: 2013-01-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

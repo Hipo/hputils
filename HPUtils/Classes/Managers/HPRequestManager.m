@@ -431,12 +431,14 @@ static HPRequestManager *_sharedManager = nil;
 
 #pragma mark - Image loaders
 
-- (void)loadImageAtURL:(NSString *)imageURL 
-         withIndexPath:(NSIndexPath *)indexPath 
-            identifier:(NSString *)identifier 
-            scaleToFit:(CGSize)targetSize 
-           contentMode:(UIViewContentMode)contentMode 
-       completionBlock:(void (^)(id, NSError *))block {
+- (void)loadImageAtURL:(NSString *)imageURL
+         withIndexPath:(NSIndexPath *)indexPath
+            identifier:(NSString *)identifier
+            scaleToFit:(CGSize)targetSize
+           contentMode:(UIViewContentMode)contentMode
+       completionBlock:(void (^)(id, NSError *))block
+         progressBlock:(void (^)(float))progressBlock {
+
     HPRequestOperation *request = [self imageRequestForURL:imageURL];
 	
 	[request setIndexPath:indexPath];
@@ -457,9 +459,9 @@ static HPRequestManager *_sharedManager = nil;
                 }
                 
 				HPImageOperation *operation = [[HPImageOperation alloc] initWithImage:sourceImage
-                                                                           targetSize:targetSize 
-                                                                          contentMode:contentMode 
-                                                                             cacheKey:[imageURL SHA1Hash] 
+                                                                           targetSize:targetSize
+                                                                          contentMode:contentMode
+                                                                             cacheKey:[imageURL SHA1Hash]
                                                                           imageFormat:imageFormat];
 				
 				[operation setIndexPath:indexPath];
@@ -473,9 +475,29 @@ static HPRequestManager *_sharedManager = nil;
 				block(resources, error);
 			}
 		}];
+        
+        if (progressBlock != nil) {
+            [request setProgressBlock:progressBlock];
+        }
 	}
     
 	[self enqueueRequest:request];
+
+}
+
+- (void)loadImageAtURL:(NSString *)imageURL 
+         withIndexPath:(NSIndexPath *)indexPath 
+            identifier:(NSString *)identifier 
+            scaleToFit:(CGSize)targetSize 
+           contentMode:(UIViewContentMode)contentMode 
+       completionBlock:(void (^)(id, NSError *))block {
+    [self loadImageAtURL:imageURL
+           withIndexPath:indexPath
+              identifier:identifier
+              scaleToFit:targetSize
+             contentMode:contentMode
+         completionBlock:block
+           progressBlock:nil];
 }
 
 - (void)loadImageAtURL:(NSString *)imageURL 

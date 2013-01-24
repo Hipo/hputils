@@ -113,6 +113,9 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
         case HPRequestMethodPut:
             [request setHTTPMethod:@"PUT"];
             break;
+        case HPRequestMethodPatch:
+            [request setHTTPMethod:@"PATCH"];
+            break;
     }
     
     if (_loggingEnabled) {

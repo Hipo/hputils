@@ -11,7 +11,8 @@ typedef enum {
 	HPRequestMethodGet,
 	HPRequestMethodPost,
 	HPRequestMethodPut,
-	HPRequestMethodDelete
+	HPRequestMethodDelete,
+	HPRequestMethodPatch,
 } HPRequestMethod;
 
 typedef enum {
