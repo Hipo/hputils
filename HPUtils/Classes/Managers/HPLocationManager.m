@@ -10,6 +10,9 @@
 #import "HPLocationManager.h"
 
 
+NSString * const HPLocationManagerLocationUpdateNotification = @"HPLocationManagerLocationUpdateNotification";
+NSString * const HPLocationManagerLocationUpdateNotificationLocationKey = @"location";
+
 double const kMaximumAllowedLocationInterval = 60.0 * 5.0;
 double const kLocationAccuracyHundredMetersTimeOut = 4.0;
 double const kLocationAccuracyKilometerTimeOut = 8.0;
@@ -19,9 +22,13 @@ double const kLocationCheckInterval = 4.0;
 
 
 @interface HPLocationManager (PrivateMethods)
+
 - (void)cancelLocationCheck;
 - (void)checkLocationStatus;
 - (void)sendLocationToBlocks:(CLLocation *)location withError:(NSError *)error;
+
+- (void)processNewLocation:(CLLocation *)newLocation;
+
 @end
 
 
@@ -74,10 +81,11 @@ static HPLocationManager *_sharedManager = nil;
 		_executionBlocks = [[NSMutableSet alloc] init];
 		_locationManager = [[CLLocationManager alloc] init];
         _desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        _updateContinuously = NO;
         _intervalModifier = 1.0;
 		
 		[_locationManager setDelegate:self];
-		[_locationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+		[_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
 	}
 	
 	return self;
@@ -103,20 +111,11 @@ static HPLocationManager *_sharedManager = nil;
 - (void)locationManager:(CLLocationManager *)manager 
     didUpdateToLocation:(CLLocation *)newLocation 
            fromLocation:(CLLocation *)oldLocation {
-	if (-1 * [newLocation.timestamp timeIntervalSinceNow] > kMaximumAllowedLocationInterval) {
-		return;
-	}
-	
-	CLLocationAccuracy accuracy = newLocation.horizontalAccuracy;
-	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
+	[self processNewLocation:newLocation];
+}
 
-	if (accuracy <= _desiredAccuracy || accuracy <= kCLLocationAccuracyNearestTenMeters || 
-		(accuracy <= kCLLocationAccuracyHundredMeters && interval > kLocationAccuracyHundredMetersTimeOut * _intervalModifier) || 
-		(accuracy <= kCLLocationAccuracyKilometer && interval > kLocationAccuracyKilometerTimeOut * _intervalModifier) || 
-		(accuracy <= kCLLocationAccuracyThreeKilometers && interval > kLocationAccuracyThreeKilometersTimeOut * _intervalModifier) || 
-		interval > kLocationTimeOut * _intervalModifier) {
-		[self sendLocationToBlocks:newLocation withError:nil];
-	}
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [self processNewLocation:[locations lastObject]];
 }
 
 #pragma mark - Location update calls
@@ -141,14 +140,15 @@ static HPLocationManager *_sharedManager = nil;
 	} else if (_locationManager.location == nil || 
                (_locationManager.location != nil && 
                 (-1 * [_locationManager.location.timestamp timeIntervalSinceNow]) > kMaximumAllowedLocationInterval)) {
-		_queryStartTime = [[NSDate date] retain];
+
+                   _queryStartTime = [[NSDate date] retain];
         
-		[_executionBlocks addObject:[[block copy] autorelease]];
-		[_locationManager startUpdatingLocation];
-		
-		[self performSelector:@selector(checkLocationStatus) 
-				   withObject:nil 
-				   afterDelay:kLocationCheckInterval];
+                   [_executionBlocks addObject:[[block copy] autorelease]];
+                   [_locationManager startUpdatingLocation];
+                   
+                   [self performSelector:@selector(checkLocationStatus)
+                              withObject:nil 
+                              afterDelay:kLocationCheckInterval];
 	} else {
 		block(_locationManager.location, nil);
 	}
@@ -210,7 +210,10 @@ static HPLocationManager *_sharedManager = nil;
     
     if (accuracy <= kCLLocationAccuracyNearestTenMeters || interval >= kLocationTimeOut) {
         [_queryStartTime release], _queryStartTime = nil;
-        [_locationManager stopUpdatingLocation];
+        
+        if (!_updateContinuously) {
+            [_locationManager stopUpdatingLocation];
+        }
     } else {
         [self performSelector:@selector(checkLocationStatus) 
                    withObject:nil 
@@ -224,6 +227,35 @@ static HPLocationManager *_sharedManager = nil;
 	[_executionBlocks removeAllObjects];
 }
 
+- (void)processNewLocation:(CLLocation *)newLocation {
+    if (-1 * [newLocation.timestamp timeIntervalSinceNow] > kMaximumAllowedLocationInterval) {
+		return;
+	}
+	
+	CLLocationAccuracy accuracy = newLocation.horizontalAccuracy;
+	NSTimeInterval interval = -1 * [_queryStartTime timeIntervalSinceNow];
+    
+	if (accuracy <= _desiredAccuracy
+        || accuracy <= kCLLocationAccuracyNearestTenMeters
+        || (accuracy <= kCLLocationAccuracyHundredMeters
+            && interval > kLocationAccuracyHundredMetersTimeOut * _intervalModifier)
+        || (accuracy <= kCLLocationAccuracyKilometer
+            && interval > kLocationAccuracyKilometerTimeOut * _intervalModifier)
+        || (accuracy <= kCLLocationAccuracyThreeKilometers
+            && interval > kLocationAccuracyThreeKilometersTimeOut * _intervalModifier)
+        || interval > kLocationTimeOut * _intervalModifier) {
+
+		[self sendLocationToBlocks:newLocation withError:nil];
+	}
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:HPLocationManagerLocationUpdateNotification
+     object:self
+     userInfo:@{
+       HPLocationManagerLocationUpdateNotificationLocationKey : newLocation
+     }];
+}
+
 #pragma mark - Accuracy
 
 - (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy {
@@ -233,7 +265,9 @@ static HPLocationManager *_sharedManager = nil;
     
     _desiredAccuracy = desiredAccuracy;
     
-    [_locationManager setDesiredAccuracy:_desiredAccuracy];
+    if (!_updateContinuously) {
+        [_locationManager setDesiredAccuracy:_desiredAccuracy];
+    }
     
     [self refreshLocation];
 }
@@ -241,9 +275,30 @@ static HPLocationManager *_sharedManager = nil;
 #pragma mark - Cancellation
 
 - (void)cancelLocationQuery {
-    [_locationManager stopUpdatingLocation];
+    if (!_updateContinuously) {
+        [_locationManager stopUpdatingLocation];
+    }
+
     [_queryStartTime release], _queryStartTime = nil;
     [_executionBlocks removeAllObjects];
+}
+
+#pragma mark - Continuous updates
+
+- (void)setUpdateContinuously:(BOOL)updateContinuously {
+    if (_updateContinuously == updateContinuously) {
+        return;
+    }
+    
+    _updateContinuously = updateContinuously;
+    
+    if (!_updateContinuously && _queryStartTime == nil) {
+        [_locationManager stopUpdatingLocation];
+    } else if (_updateContinuously) {
+        [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        
+        [self refreshLocation];
+    }
 }
 
 #pragma mark - Memory management

@@ -9,6 +9,10 @@
 #import <CoreLocation/CoreLocation.h>
 
 
+extern NSString * const HPLocationManagerLocationUpdateNotification;
+extern NSString * const HPLocationManagerLocationUpdateNotificationLocationKey;
+
+
 /** A custom location manager for determining user coordinates
  
  This is a light wrapper around CLLocationManager that adds some caching 
@@ -25,7 +29,15 @@
 	CLLocationManager *_locationManager;
     CLLocationAccuracy _desiredAccuracy;
     double _intervalModifier;
+    BOOL _updateContinuously;
 }
+
+/** Update location continuously
+ 
+ If this flag is set to YES, location manager will never stop receiving new 
+ location updates. By default it's NO.
+ */
+@property (nonatomic, assign, getter=isUpdatingContinuously) BOOL updateContinuously;
 
 /** Desired accuracy for the location requests
  
