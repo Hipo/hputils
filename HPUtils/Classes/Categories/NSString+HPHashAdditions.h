@@ -8,9 +8,12 @@
 
 
 @interface NSString (NSString_HPHashAdditions)
+
 - (NSString *)SHA1Hash;
+- (NSData *)SHA1HashWithSalt:(NSString *)salt;
 - (NSData *)HMACSHA1withKey:(NSString *)key;
 - (NSString *)md5HexDigest;
 
 + (NSString *)stringWithUUID;
+
 @end

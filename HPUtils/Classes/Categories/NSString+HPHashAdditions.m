@@ -34,6 +34,16 @@
 	return outputString;
 }
 
+- (NSData *)SHA1HashWithSalt:(NSString *)salt {
+    const char *cKey  = [salt cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cData = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+    
+    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+    
+    return [NSData dataWithBytes:cHMAC length:sizeof(cHMAC)];
+}
+
 - (NSData *)HMACSHA1withKey:(NSString *)key {
     NSData *clearTextData = [self dataUsingEncoding:NSUTF8StringEncoding];
     NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
@@ -44,7 +54,7 @@
     CCHmacInit(&hmacContext, kCCHmacAlgSHA1, keyData.bytes, keyData.length);
     CCHmacUpdate(&hmacContext, clearTextData.bytes, clearTextData.length);
     CCHmacFinal(&hmacContext, digest);
-    
+
     return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
