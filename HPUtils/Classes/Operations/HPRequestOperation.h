@@ -209,4 +209,18 @@ extern NSString * const HPRequestOperationMultiPartFormBoundary;
  */
 - (void)addCookie:(NSString *)cookie;
 
+/** Checks whether a cached response for this request is available
+ 
+ @returns BOOL Boolean value that indicates whether this request has a 
+ cached response available
+ */
+- (BOOL)hasCachedResponseAvailable;
+
+/** Prematurely completes this request and calls completion blocks with cached data
+ 
+ @returns BOOL Boolean value that indicates whether request could be completed 
+ from cache
+ */
+- (BOOL)completeRequestWithCachedResponse;
+
 @end

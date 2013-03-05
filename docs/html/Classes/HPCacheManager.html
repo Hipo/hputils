@@ -61,6 +61,10 @@
 	
 	<option value="//api/name/clearCacheForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCacheForURL:</option>
 	
+	<option value="//api/name/hasCachedItemForCacheKey:">&nbsp;&nbsp;&nbsp;&nbsp;- hasCachedItemForCacheKey:</option>
+	
+	<option value="//api/name/hasCachedItemForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- hasCachedItemForURL:</option>
+	
 	<option value="//api/name/storeData:forStorageKey:withMIMEType:">&nbsp;&nbsp;&nbsp;&nbsp;- storeData:forStorageKey:withMIMEType:</option>
 	
 	<option value="//api/name/storedItemForStorageKey:">&nbsp;&nbsp;&nbsp;&nbsp;- storedItemForStorageKey:</option>
@@ -110,6 +114,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCacheForCacheKey:">clearCacheForCacheKey:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCacheForURL:">clearCacheForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasCachedItemForCacheKey:">hasCachedItemForCacheKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasCachedItemForURL:">hasCachedItemForURL:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeData:forStorageKey:withMIMEType:">storeData:forStorageKey:withMIMEType:</a></span></li>
 	
@@ -200,6 +208,13 @@ necessary.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/hasCachedItemForCacheKey:">&ndash;&nbsp;hasCachedItemForCacheKey:</a></code>
+		<span class="tooltip"><p>Checks whether a cached item is available for a given key</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/cachedItemForCacheKey:">&ndash;&nbsp;cachedItemForCacheKey:</a></code>
 		<span class="tooltip"><p>Finds a temporary cache item associated with a given cache key</p></span>
 	</span>
@@ -209,6 +224,13 @@ necessary.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/cacheData:forCacheKey:withMIMEType:">&ndash;&nbsp;cacheData:forCacheKey:withMIMEType:</a></code>
 		<span class="tooltip"><p>Temporarily caches an NSData and MIMEType combination for a given cache key</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasCachedItemForURL:">&ndash;&nbsp;hasCachedItemForURL:</a></code>
+		<span class="tooltip"><p>Checks whether a cached item is available for a given URL</p></span>
 	</span>
 	
 	
@@ -648,6 +670,118 @@ necessary.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/hasCachedItemForCacheKey:" title="hasCachedItemForCacheKey:"></a>
+	<h3 class="subsubtitle method-title">hasCachedItemForCacheKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks whether a cached item is available for a given key</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasCachedItemForCacheKey:(NSString *)<em>cacheKey</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cacheKey</em></dt>
+			<dd><p>Cache key to search for</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>BOOL Boolean that determines whether a cache is available</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Checks whether a cached item is available for a given key</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPCacheManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasCachedItemForURL:" title="hasCachedItemForURL:"></a>
+	<h3 class="subsubtitle method-title">hasCachedItemForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks whether a cached item is available for a given URL</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasCachedItemForURL:(NSURL *)<em>url</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>URL to search for</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>BOOL Boolean that determines whether a cache is available</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Checks whether a cached item is available for a given URL</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPCacheManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/storeData:forStorageKey:withMIMEType:" title="storeData:forStorageKey:withMIMEType:"></a>
 	<h3 class="subsubtitle method-title">storeData:forStorageKey:withMIMEType:</h3>
 	
@@ -777,7 +911,7 @@ necessary.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Hippo Foundry. All rights reserved. (Last updated: 2013-02-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Hippo Foundry. All rights reserved. (Last updated: 2013-03-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

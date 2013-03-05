@@ -250,7 +250,9 @@ static HPRequestManager *_sharedManager = nil;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] - 1 > 0)];
 		}];
 		
-		[_requestQueue addOperation:request];
+        if (![request completeRequestWithCachedResponse]) {
+            [_requestQueue addOperation:request];
+        }
 	}
 }
 

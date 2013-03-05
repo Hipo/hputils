@@ -80,6 +80,10 @@
 	
 	<option value="//api/name/addCookie:">&nbsp;&nbsp;&nbsp;&nbsp;- addCookie:</option>
 	
+	<option value="//api/name/completeRequestWithCachedResponse">&nbsp;&nbsp;&nbsp;&nbsp;- completeRequestWithCachedResponse</option>
+	
+	<option value="//api/name/hasCachedResponseAvailable">&nbsp;&nbsp;&nbsp;&nbsp;- hasCachedResponseAvailable</option>
+	
 	<option value="//api/name/initWithURL:data:method:cached:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:data:method:cached:</option>
 	
 	
@@ -147,6 +151,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addCompletionBlock:">addCompletionBlock:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addCookie:">addCookie:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/completeRequestWithCachedResponse">completeRequestWithCachedResponse</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasCachedResponseAvailable">hasCachedResponseAvailable</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:data:method:cached:">initWithURL:data:method:cached:</a></span></li>
 	
@@ -317,6 +325,20 @@ It can also be identified and cancelled very easily.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/addCookie:">&ndash;&nbsp;addCookie:</a></code>
 		<span class="tooltip"><p>Adds a cookie for this request</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasCachedResponseAvailable">&ndash;&nbsp;hasCachedResponseAvailable</a></code>
+		<span class="tooltip"><p>Checks whether a cached response for this request is available</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/completeRequestWithCachedResponse">&ndash;&nbsp;completeRequestWithCachedResponse</a></code>
+		<span class="tooltip"><p>Prematurely completes this request and calls completion blocks with cached data</p></span>
 	</span>
 	
 	
@@ -1066,6 +1088,100 @@ purposes, this method can be used to add an NSString cookie header to the reques
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/completeRequestWithCachedResponse" title="completeRequestWithCachedResponse"></a>
+	<h3 class="subsubtitle method-title">completeRequestWithCachedResponse</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prematurely completes this request and calls completion blocks with cached data</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)completeRequestWithCachedResponse</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>BOOL Boolean value that indicates whether request could be completed
+from cache</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Prematurely completes this request and calls completion blocks with cached data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasCachedResponseAvailable" title="hasCachedResponseAvailable"></a>
+	<h3 class="subsubtitle method-title">hasCachedResponseAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks whether a cached response for this request is available</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasCachedResponseAvailable</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>BOOL Boolean value that indicates whether this request has a
+cached response available</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Checks whether a cached response for this request is available</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HPRequestOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithURL:data:method:cached:" title="initWithURL:data:method:cached:"></a>
 	<h3 class="subsubtitle method-title">initWithURL:data:method:cached:</h3>
 	
@@ -1154,7 +1270,7 @@ check for an available cached item for this request before starting.</p></dd>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Hippo Foundry. All rights reserved. (Last updated: 2013-02-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Hippo Foundry. All rights reserved. (Last updated: 2013-03-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

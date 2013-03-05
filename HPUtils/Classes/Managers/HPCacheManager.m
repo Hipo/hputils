@@ -247,6 +247,10 @@ static HPCacheManager *_sharedManager = nil;
 	}
 }
 
+- (BOOL)hasCachedItemForCacheKey:(NSString *)cacheKey {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePathForCacheKey:cacheKey]];
+}
+
 - (HPCacheItem *)cachedItemForCacheKey:(NSString *)cacheKey {
 	NSDictionary *pickle = [NSKeyedUnarchiver unarchiveObjectWithFile:[self cachePathForCacheKey:cacheKey]];
 	
@@ -265,6 +269,10 @@ static HPCacheManager *_sharedManager = nil;
 	} else {
 		return nil;
 	}
+}
+
+- (BOOL)hasCachedItemForURL:(NSURL *)url {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePathForCacheKey:[[url absoluteString] SHA1Hash]]];
 }
 
 - (HPCacheItem *)cachedItemForURL:(NSURL *)url {

@@ -117,6 +117,14 @@
     forStorageKey:(NSString *)storageKey 
      withMIMEType:(NSString *)MIMEType;
 
+/** Checks whether a cached item is available for a given key
+ 
+ @param cacheKey Cache key to search for
+ 
+ @returns BOOL Boolean that determines whether a cache is available
+ */
+- (BOOL)hasCachedItemForCacheKey:(NSString *)cacheKey;
+
 /** Finds a temporary cache item associated with a given cache key
  
  @param cacheKey Cache key to search for
@@ -134,6 +142,14 @@
 - (void)cacheData:(NSData *)cacheData 
       forCacheKey:(NSString *)cacheKey 
      withMIMEType:(NSString *)MIMEType;
+
+/** Checks whether a cached item is available for a given URL
+ 
+ @param url URL to search for
+ 
+ @returns BOOL Boolean that determines whether a cache is available
+ */
+- (BOOL)hasCachedItemForURL:(NSURL *)url;
 
 /** Finds a temporary cache item associated with a given URL
  

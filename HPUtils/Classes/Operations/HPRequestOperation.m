@@ -510,6 +510,34 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     [_cookies addObject:cookie];
 }
 
+#pragma mark - Cache
+
+- (BOOL)hasCachedResponseAvailable {
+    if (!_isCached) {
+        return NO;
+    }
+    
+    return [[HPCacheManager sharedManager] hasCachedItemForURL:_requestURL];
+}
+
+- (BOOL)completeRequestWithCachedResponse {
+    if (![self hasCachedResponseAvailable]) {
+        return NO;
+    }
+    
+    HPCacheItem *cacheItem = [[HPCacheManager sharedManager] cachedItemForURL:_requestURL];
+    
+    if (cacheItem == nil) {
+        return NO;
+    }
+    
+    _MIMEType = [cacheItem.MIMEType copy];
+    
+    [self callParserBlockWithData:cacheItem.cacheData error:nil];
+    
+    return YES;
+}
+
 #pragma mark - Memory management
 
 - (void)dealloc {
