@@ -225,32 +225,37 @@ static HPRequestManager *_sharedManager = nil;
 }
 
 - (void)enqueueRequest:(HPRequestOperation *)request {
-	if (![request isExecuting] && ![request isFinished] && ![[_requestQueue operations] containsObject:request]) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        
-		[request addCompletionBlock:^(id resources, NSError *error) {
-			if (error != nil && [error code] == kHPNetworkErrorCode) {
-                if (_networkConnectionAvailable) {
-                    _networkConnectionAvailable = NO;
+	if (![request isExecuting]
+        && ![request isFinished]
+        && ![[_requestQueue operations] containsObject:request]) {
 
+        // If request is cachable and there is a cache available, complete it immediately
+        if (![request completeRequestWithCachedResponse]) {
+            // Either the request is not cached or no cache is available, go ahead
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            
+            [request addCompletionBlock:^(id resources, NSError *error) {
+                if (error != nil && [error code] == kHPNetworkErrorCode) {
+                    if (_networkConnectionAvailable) {
+                        _networkConnectionAvailable = NO;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
+                                                                            object:self];
+                        
+                        [self performSelector:@selector(checkNetworkConnectivity)
+                                   withObject:nil
+                                   afterDelay:kNetworkConnectivityCheckInterval];
+                    }
+                } else if (!_networkConnectionAvailable) {
+                    _networkConnectionAvailable = YES;
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
                                                                         object:self];
-
-                    [self performSelector:@selector(checkNetworkConnectivity) 
-                               withObject:nil 
-                               afterDelay:kNetworkConnectivityCheckInterval];
                 }
-			} else if (!_networkConnectionAvailable) {
-                _networkConnectionAvailable = YES;
+                
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] - 1 > 0)];
+            }];
 
-                [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
-                                                                    object:self];
-			}
-            
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:([_requestQueue operationCount] - 1 > 0)];
-		}];
-		
-        if (![request completeRequestWithCachedResponse]) {
             [_requestQueue addOperation:request];
         }
 	}
