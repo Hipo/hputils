@@ -246,7 +246,7 @@ static HPRequestManager *_sharedManager = nil;
                                    withObject:nil
                                    afterDelay:kNetworkConnectivityCheckInterval];
                     }
-                } else if (!_networkConnectionAvailable) {
+                } else if (!_networkConnectionAvailable && !request.hasCachedResponseAvailable) {
                     _networkConnectionAvailable = YES;
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:HPNetworkStatusChangeNotification
