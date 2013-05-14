@@ -10,7 +10,6 @@
 
 #import "HPCacheManager.h"
 #import "HPErrors.h"
-#import "HPReachabilityManager.h"
 #import "HPRequestManager.h"
 #import "HPRequestOperation.h"
 #import "NSString+HPHashAdditions.h"
@@ -471,6 +470,7 @@ static HPRequestManager *_sharedManager = nil;
                                                                              cacheKey:[imageURL SHA1Hash]
                                                                           imageFormat:imageFormat];
 				
+                [operation setIdentifier:identifier];
 				[operation setIndexPath:indexPath];
 				[operation addCompletionBlock:block];
                 [operation setQueuePriority:NSOperationQueuePriorityLow];

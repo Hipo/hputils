@@ -7,6 +7,7 @@
 //
 
 #import "HPImageOperation.h"
+#import "HPReachabilityManager.h"
 #import "HPRequestOperation.h"
 #import "HPS3UploadOperation.h"
 
@@ -14,9 +15,7 @@
 extern NSString * const HPNetworkStatusChangeNotification;
 
 
-@class HPReachabilityManager;
-
-/** Common manager class that handles all network communication, reachability 
+/** Common manager class that handles all network communication, reachability
  and image processing tasks. Contains two operation queues that execute 
  [HPImageOperation](HPImageOperation) and [HPRequestOperation](HPRequestOperation) 
  subclasses.
@@ -31,6 +30,12 @@ extern NSString * const HPNetworkStatusChangeNotification;
     BOOL _networkConnectionAvailable;
     BOOL _loggingEnabled;
 }
+
+/** Reachability manager
+ 
+ Active reachability manager that can be used to get detailed info on network conditions
+ */
+@property (nonatomic, readonly, retain) HPReachabilityManager *reachabilityManager;
 
 /** Logging mode for all operations
  
