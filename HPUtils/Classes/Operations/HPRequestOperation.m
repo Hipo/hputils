@@ -61,17 +61,14 @@ static NSUInteger const HPRequestOperationDataLoggingLimit = 50 * 1024;
 		_indexPath = nil;
 		_isCached = cached;
 		_requestMethod = method;
+		_requestURL = [url copy];
 		_requestData = [data copy];
 		_completionBlocks = [[NSMutableSet alloc] init];
         _cookies = [[NSMutableSet alloc] init];
         _loggingEnabled = NO;
         _username = nil;
         _password = nil;
-
-        NSString *urlString = url.absoluteString;
-        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-		_requestURL = [[NSURL alloc] initWithString:urlString];
-
+		
 		_isCancelled = NO;
 		_isExecuting = NO;
 		_isFinished = NO;
