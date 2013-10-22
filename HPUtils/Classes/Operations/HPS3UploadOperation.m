@@ -57,8 +57,11 @@ static NSString * const kHPAmazonCanonicalPermission = @"public-read";
 		_isCancelled = NO;
 		_isExecuting = NO;
 		_isFinished = NO;
-		
-        NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:kHPAmazonURL, bucket, path]];
+
+		NSString *escapedURLString = [[NSString stringWithFormat:kHPAmazonURL, bucket, path]
+                                      stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+
+        NSURL *requestURL = [NSURL URLWithString:escapedURLString];
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL 
 															   cachePolicy:NSURLRequestReloadIgnoringCacheData 
 														   timeoutInterval:30.0];

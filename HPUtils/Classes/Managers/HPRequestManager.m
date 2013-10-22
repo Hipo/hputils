@@ -167,7 +167,9 @@ static HPRequestManager *_sharedManager = nil;
                               withData:(NSData *)data 
                                 method:(HPRequestMethod)method 
                                 cached:(BOOL)cached {
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseURL, path]];
+    NSString *escapedString = [[NSString stringWithFormat:@"%@%@", baseURL, path]
+                               stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSURL *url = [NSURL URLWithString:escapedString];
     
     return [self requestForURL:url withData:data method:method cached:cached];
 }
@@ -191,7 +193,9 @@ static HPRequestManager *_sharedManager = nil;
 }
 
 - (HPRequestOperation *)imageRequestForURL:(NSString *)urlString {
-	NSURL *url = [NSURL URLWithString:urlString];
+    NSString *escapedURLString = [urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSURL *url = [NSURL URLWithString:escapedURLString];
+
 	HPRequestOperation *request = [HPRequestOperation requestForURL:url 
                                                            withData:nil 
                                                              method:HPRequestMethodGet 
