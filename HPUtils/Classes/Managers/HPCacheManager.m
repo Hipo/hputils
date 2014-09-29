@@ -15,7 +15,7 @@
 const NSUInteger kHPURLCacheMemoryCapacity = 1024 * 1024;
 const NSUInteger kHPURLCacheDiskCapacity = 10 * 1024 * 1024;
 
-double const kHPStaleCacheInterval = 60.0 * 60.0 * 48.0;
+double const kHPStaleCacheInterval = 60.0 * 60.0 * 24.0;
 
 static NSString * const kURLCachePath = @"caches";
 static NSString * const kURLStoragePath = @"storage";
@@ -25,6 +25,7 @@ static NSString * const kCacheInfoPathKey = @"cachePath";
 static NSString * const kCacheInfoDataKey = @"cacheData";
 static NSString * const kCacheInfoDateKey = @"cacheDate";
 static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
+static NSString * const kCacheInfoMetaDataKey = @"metaData";
 
 
 @interface HPURLCache : NSURLCache
@@ -46,6 +47,18 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 @synthesize timeStamp = _timeStamp;
 @synthesize MIMEType = _MIMEType;
 
++ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data
+                                   path:(NSString *)path
+                               MIMEType:(NSString *)type
+                                  stamp:(NSDate *)stamp
+                               metaData:(NSDictionary *)metaData {
+	return [[[HPCacheItem alloc] initWithCacheData:data
+                                              path:path
+                                          MIMEType:type
+                                             stamp:stamp
+                                          metaData:metaData] autorelease];
+}
+
 + (HPCacheItem *)cacheItemWithCacheData:(NSData *)data 
                                    path:(NSString *)path 
                                MIMEType:(NSString *)type 
@@ -58,6 +71,29 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 
 + (HPCacheItem *)cacheItemWithPickledObject:(NSDictionary *)pickle {
 	return [[[HPCacheItem alloc] initWithPickledObject:pickle] autorelease];
+}
+
+- (id)initWithCacheData:(NSData *)data
+                   path:(NSString *)path
+               MIMEType:(NSString *)type
+                  stamp:(NSDate *)stamp
+               metaData:(NSDictionary *)metaData {
+	self = [super init];
+	
+	if (self) {
+		_cachePath = [path copy];
+		_cacheData = [data copy];
+		_MIMEType = [type copy];
+        _metaData = [metaData copy];
+		
+		if (stamp != nil) {
+			_timeStamp = [stamp copy];
+		} else {
+			_timeStamp = [[NSDate date] copy];
+		}
+	}
+	
+	return self;
 }
 
 - (id)initWithCacheData:(NSData *)data 
@@ -85,15 +121,22 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 	return [self initWithCacheData:[pickle objectForKey:kCacheInfoDataKey] 
 							  path:[pickle objectForKey:kCacheInfoPathKey] 
 						  MIMEType:[pickle objectForKey:kCacheInfoMIMETypeKey] 
-							 stamp:[pickle objectForKey:kCacheInfoDateKey]];
+							 stamp:[pickle objectForKey:kCacheInfoDateKey]
+                          metaData:[pickle objectForKey:kCacheInfoMetaDataKey]];
 }
 
 - (NSDictionary *)pickledObjectForArchive {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			_cacheData, kCacheInfoDataKey, 
-			_timeStamp, kCacheInfoDateKey, 
-			_cachePath, kCacheInfoPathKey, 
-			_MIMEType, kCacheInfoMIMETypeKey, nil];
+	NSMutableDictionary *pickle = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   _cacheData, kCacheInfoDataKey,
+                                   _timeStamp, kCacheInfoDateKey,
+                                   _cachePath, kCacheInfoPathKey,
+                                   _MIMEType, kCacheInfoMIMETypeKey, nil];
+    
+    if (_metaData != nil) {
+        [pickle setObject:_metaData forKey:kCacheInfoMetaDataKey];
+    }
+    
+    return pickle;
 }
 
 - (void)dealloc {
@@ -101,6 +144,7 @@ static NSString * const kCacheInfoMIMETypeKey = @"mimeType";
 	[_cachePath release], _cachePath = nil;
 	[_cacheData release], _cacheData = nil;
 	[_MIMEType release], _MIMEType = nil;
+    [_metaData release], _metaData = nil;
 	
 	[super dealloc];
 }
@@ -177,7 +221,6 @@ static HPCacheManager *_sharedManager = nil;
 		}
         
         // Remove legacy storage directory
-        
         NSString *legacyStorageDirectoryPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] 
                                                  stringByAppendingPathComponent:kURLStoragePath];
         
@@ -189,8 +232,38 @@ static HPCacheManager *_sharedManager = nil;
             [fileManager removeItemAtPath:legacyStorageDirectoryPath 
                                     error:&error];
 		}
-		
-		HPURLCache *urlCache = [[HPURLCache alloc] initWithMemoryCapacity:kHPURLCacheMemoryCapacity 
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            // Loop through existing files and delete old ones
+            NSError *clearError = nil;
+            NSArray *filePaths = [fileManager contentsOfDirectoryAtPath:_cacheDirectoryPath error:&clearError];
+
+            if (clearError == nil && filePaths != nil && [filePaths count] > 0) {
+                for (NSString *filePath in filePaths) {
+                    NSString *fullFilePath = [_cacheDirectoryPath stringByAppendingPathComponent:filePath];
+                    NSDictionary *pickle = [NSKeyedUnarchiver unarchiveObjectWithFile:fullFilePath];
+
+                    if (pickle == nil) {
+                        continue;
+                    }
+                    
+                    HPCacheItem *cachedItem = [HPCacheItem cacheItemWithPickledObject:pickle];
+                    
+                    if (cachedItem.timeStamp != nil
+                        && (-1 * [cachedItem.timeStamp timeIntervalSinceNow]) < kHPStaleCacheInterval) {
+                        continue;
+                    }
+                    
+                    NSError *deleteError = nil;
+                    
+                    if (![fileManager removeItemAtPath:fullFilePath error:&deleteError]) {
+                        NSLog(@">>> DELETE ERROR: %@", deleteError);
+                    }
+                }
+            }
+        });
+        
+		HPURLCache *urlCache = [[HPURLCache alloc] initWithMemoryCapacity:kHPURLCacheMemoryCapacity
                                                              diskCapacity:kHPURLCacheDiskCapacity 
                                                                  diskPath:_cacheDirectoryPath];
 		
@@ -233,18 +306,32 @@ static HPCacheManager *_sharedManager = nil;
 	}
 }
 
-- (void)storeData:(NSData *)storageData forStorageKey:(NSString *)storageKey withMIMEType:(NSString *)MIMEType {
+- (void)storeData:(NSData *)storageData
+    forStorageKey:(NSString *)storageKey
+     withMIMEType:(NSString *)MIMEType
+         metaData:(NSDictionary *)metaData {
     if (storageData != nil) {
 		NSString *storagePath = [self storagePathForStorageKey:storageKey];
-
-        [_saveQueue addOperation:[[[NSInvocationOperation alloc] 
-                                   initWithTarget:self 
-                                   selector:@selector(storeCacheWithCacheItem:) 
-                                   object:[HPCacheItem cacheItemWithCacheData:storageData 
-                                                                         path:storagePath 
-                                                                     MIMEType:MIMEType 
-                                                                        stamp:nil]] autorelease]];
+        
+        [_saveQueue addOperation:[[[NSInvocationOperation alloc]
+                                   initWithTarget:self
+                                   selector:@selector(storeCacheWithCacheItem:)
+                                   object:[HPCacheItem cacheItemWithCacheData:storageData
+                                                                         path:storagePath
+                                                                     MIMEType:MIMEType
+                                                                        stamp:nil
+                                                                     metaData:metaData]] autorelease]];
 	}
+}
+
+- (void)storeData:(NSData *)storageData
+    forStorageKey:(NSString *)storageKey
+     withMIMEType:(NSString *)MIMEType {
+
+    [self storeData:storageData
+      forStorageKey:storageKey
+       withMIMEType:MIMEType
+           metaData:nil];
 }
 
 - (BOOL)hasCachedItemForCacheKey:(NSString *)cacheKey {
@@ -279,28 +366,58 @@ static HPCacheManager *_sharedManager = nil;
 	return [self cachedItemForCacheKey:[[url absoluteString] SHA1Hash]];
 }
 
-- (void)cacheData:(NSData *)cacheData forCacheKey:(NSString *)cacheKey withMIMEType:(NSString *)MIMEType {
+- (void)cacheData:(NSData *)cacheData
+      forCacheKey:(NSString *)cacheKey
+     withMIMEType:(NSString *)MIMEType
+         metaData:(NSDictionary *)metaData {
+    
 	if (cacheData != nil) {
 		NSString *cachePath = [self cachePathForCacheKey:cacheKey];
 		
 		if (![[NSFileManager defaultManager] fileExistsAtPath:cachePath]) {
-			[_saveQueue addOperation:[[[NSInvocationOperation alloc] 
-                                       initWithTarget:self 
-                                       selector:@selector(storeCacheWithCacheItem:) 
-                                       object:[HPCacheItem cacheItemWithCacheData:cacheData 
-                                                                             path:cachePath 
-                                                                         MIMEType:MIMEType 
-                                                                            stamp:nil]] autorelease]];
+			[_saveQueue addOperation:[[[NSInvocationOperation alloc]
+                                       initWithTarget:self
+                                       selector:@selector(storeCacheWithCacheItem:)
+                                       object:[HPCacheItem cacheItemWithCacheData:cacheData
+                                                                             path:cachePath
+                                                                         MIMEType:MIMEType
+                                                                            stamp:nil
+                                                                         metaData:metaData]] autorelease]];
 		}
 	}
 }
 
-- (void)cacheData:(NSData *)cacheData forURL:(NSURL *)url withMIMEType:(NSString *)MIMEType {
+- (void)cacheData:(NSData *)cacheData
+      forCacheKey:(NSString *)cacheKey
+     withMIMEType:(NSString *)MIMEType {
+    
+    [self cacheData:cacheData
+        forCacheKey:cacheKey
+       withMIMEType:MIMEType
+           metaData:nil];
+}
+
+- (void)cacheData:(NSData *)cacheData
+           forURL:(NSURL *)url
+     withMIMEType:(NSString *)MIMEType
+         metaData:(NSDictionary *)metaData {
+    
 	if (cacheData != nil) {
-		[self cacheData:cacheData 
-			forCacheKey:[[url absoluteString] SHA1Hash] 
-		   withMIMEType:MIMEType];
+		[self cacheData:cacheData
+			forCacheKey:[[url absoluteString] SHA1Hash]
+		   withMIMEType:MIMEType
+               metaData:metaData];
 	}
+}
+
+- (void)cacheData:(NSData *)cacheData
+           forURL:(NSURL *)url
+     withMIMEType:(NSString *)MIMEType {
+    
+    [self cacheData:cacheData
+             forURL:url
+       withMIMEType:MIMEType
+           metaData:nil];
 }
 
 - (void)storeCacheWithCacheItem:(HPCacheItem *)cacheItem {

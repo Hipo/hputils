@@ -118,6 +118,40 @@ static HPLocationManager *_sharedManager = nil;
     [self processNewLocation:[locations lastObject]];
 }
 
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            break;
+        }
+        case kCLAuthorizationStatusDenied: {
+            [self sendLocationToBlocks:nil
+                             withError:[NSError errorWithDomain:kHPErrorDomain
+                                                           code:kHPLocationDeniedErrorCode
+                                                       userInfo:nil]];
+            break;
+        }
+        default: {
+            if ([_executionBlocks count] == 0) {
+                return;
+            }
+            
+            if (_queryStartTime != nil) {
+                [_queryStartTime release], _queryStartTime = nil;
+            }
+            
+            _queryStartTime = [[NSDate date] retain];
+            
+            [_locationManager startUpdatingLocation];
+            
+            [self performSelector:@selector(checkLocationStatus)
+                       withObject:nil
+                       afterDelay:kLocationCheckInterval];
+            break;
+        }
+    }
+}
+
 #pragma mark - Location update calls
 
 - (void)refreshLocation {
@@ -141,9 +175,30 @@ static HPLocationManager *_sharedManager = nil;
                (_locationManager.location != nil && 
                 (-1 * [_locationManager.location.timestamp timeIntervalSinceNow]) > kMaximumAllowedLocationInterval)) {
 
+                   [_executionBlocks addObject:[[block copy] autorelease]];
+
+                   BOOL managerReady = YES;
+                   
+                   if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+                       CLAuthorizationStatus authStatus = [CLLocationManager authorizationStatus];
+                       
+                       if (authStatus == kCLAuthorizationStatusNotDetermined) {
+                           managerReady = NO;
+                           
+                           [_locationManager requestWhenInUseAuthorization];
+                       }
+                   }
+                   
+                   if (!managerReady) {
+                       return;
+                   }
+                   
+                   if (_queryStartTime != nil) {
+                       [_queryStartTime release], _queryStartTime = nil;
+                   }
+                   
                    _queryStartTime = [[NSDate date] retain];
         
-                   [_executionBlocks addObject:[[block copy] autorelease]];
                    [_locationManager startUpdatingLocation];
                    
                    [self performSelector:@selector(checkLocationStatus)
@@ -219,8 +274,10 @@ static HPLocationManager *_sharedManager = nil;
                    withObject:nil 
                    afterDelay:(kLocationCheckInterval)];
     }
+    
+    NSSet *execBlocks = [_executionBlocks copy];
 	
-    for (void(^block)(CLLocation *location, NSError *error) in _executionBlocks) {
+    for (void(^block)(CLLocation *location, NSError *error) in execBlocks) {
 		block(location, error);
 	}
 	

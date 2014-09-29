@@ -21,10 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		EC1BA20B1557C13900A03925 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1BA2081557C13900A03925 /* JSONKit.h */; };
-		EC1BA20C1557C13900A03925 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1BA2081557C13900A03925 /* JSONKit.h */; };
-		EC1BA20D1557C13900A03925 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1BA2091557C13900A03925 /* JSONKit.m */; };
-		EC1BA20E1557C13900A03925 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1BA2091557C13900A03925 /* JSONKit.m */; };
 		EC1F156113369AB100385E05 /* HPKeychainItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1F155F13369AB100385E05 /* HPKeychainItem.h */; };
 		EC1F156213369AB100385E05 /* HPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1F156013369AB100385E05 /* HPKeychainItem.m */; };
 		EC1F156413369B3C00385E05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1F156313369B3C00385E05 /* Security.framework */; };
@@ -148,10 +144,6 @@
 		EC0EC7861335636D00BD383A /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		EC0EC7871335636D00BD383A /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
 		EC0EC7881335636D00BD383A /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
-		EC1BA2071557C13900A03925 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		EC1BA2081557C13900A03925 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		EC1BA2091557C13900A03925 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		EC1BA20A1557C13900A03925 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EC1F155F13369AB100385E05 /* HPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPKeychainItem.h; sourceTree = "<group>"; };
 		EC1F156013369AB100385E05 /* HPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPKeychainItem.m; sourceTree = "<group>"; };
 		EC1F156313369B3C00385E05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -261,17 +253,6 @@
 				EC0EC7881335636D00BD383A /* warning@2x.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		EC1BA2061557C13900A03925 /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				EC1BA2071557C13900A03925 /* CHANGELOG.md */,
-				EC1BA2081557C13900A03925 /* JSONKit.h */,
-				EC1BA2091557C13900A03925 /* JSONKit.m */,
-				EC1BA20A1557C13900A03925 /* README.md */,
-			);
-			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		EC1F155D13369A9500385E05 /* Utilities */ = {
@@ -425,7 +406,6 @@
 		ECB764631334015400451A54 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				EC1BA2061557C13900A03925 /* JSONKit */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -505,7 +485,6 @@
 				EC6AEE5413381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */,
 				ECB55F72135B770900E8ED26 /* HPScrollView.h in Headers */,
 				EC79140E13668A3E0099AD73 /* HPWebViewController.h in Headers */,
-				EC1BA20B1557C13900A03925 /* JSONKit.h in Headers */,
 				EC24F0F81561723200628299 /* HPGalleryView.h in Headers */,
 				EC24F10715624B4100628299 /* HPPhotoView.h in Headers */,
 				ECE709651585FC5400DFE9E8 /* HPGalleryViewController.h in Headers */,
@@ -529,7 +508,6 @@
 				EC6AEE221337C7F200D4CF26 /* HPInteractiveView.h in Headers */,
 				EC6AEE5513381D5A00D4CF26 /* HPS3UploadOperation.h in Headers */,
 				ECB55F73135B770900E8ED26 /* HPScrollView.h in Headers */,
-				EC1BA20C1557C13900A03925 /* JSONKit.h in Headers */,
 				EC24F0F91561723200628299 /* HPGalleryView.h in Headers */,
 				EC24F10815624B4100628299 /* HPPhotoView.h in Headers */,
 				ECE709661585FC5400DFE9E8 /* HPGalleryViewController.h in Headers */,
@@ -580,7 +558,7 @@
 		ECB76449133400D000451A54 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Hippo Foundry";
 			};
 			buildConfigurationList = ECB7644C133400D000451A54 /* Build configuration list for PBXProject "HPUtils" */;
@@ -648,7 +626,6 @@
 				EC6AEE5613381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */,
 				ECB55F74135B770900E8ED26 /* HPScrollView.m in Sources */,
 				EC79140F13668A3E0099AD73 /* HPWebViewController.m in Sources */,
-				EC1BA20D1557C13900A03925 /* JSONKit.m in Sources */,
 				EC24F0FA1561723200628299 /* HPGalleryView.m in Sources */,
 				EC24F10915624B4100628299 /* HPPhotoView.m in Sources */,
 				ECE709671585FC5400DFE9E8 /* HPGalleryViewController.m in Sources */,
@@ -684,7 +661,6 @@
 				EC6AEE241337C7F200D4CF26 /* HPInteractiveView.m in Sources */,
 				EC6AEE5713381D5A00D4CF26 /* HPS3UploadOperation.m in Sources */,
 				ECB55F75135B770900E8ED26 /* HPScrollView.m in Sources */,
-				EC1BA20E1557C13900A03925 /* JSONKit.m in Sources */,
 				EC24F0FB1561723200628299 /* HPGalleryView.m in Sources */,
 				EC24F10A15624B4100628299 /* HPPhotoView.m in Sources */,
 				ECE709681585FC5400DFE9E8 /* HPGalleryViewController.m in Sources */,
@@ -697,17 +673,11 @@
 		ECB7645B133400D000451A54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					armv6,
-					armv7s,
-					armv7,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Support/HPUtils-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

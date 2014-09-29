@@ -6,8 +6,6 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
-#import "JSONKit.h"
-
 #import "HPCacheManager.h"
 #import "HPErrors.h"
 #import "HPRequestManager.h"
@@ -20,8 +18,6 @@ NSString * const HPNetworkStatusChangeNotification = @"networkStatusChange";
 
 static NSTimeInterval const kNetworkActivityCheckInterval = 30.0;
 static NSTimeInterval const kNetworkConnectivityCheckInterval = 8.0;
-static NSString * const kHPReleasesAPIBaseURL = @"http://releases.hippofoundry.com/api";
-static NSString * const kHPReleasesAPICrashReportPath = @"/crash-logs/";
 
 
 @interface HPRequestManager (PrivateMethods)
@@ -141,7 +137,10 @@ static HPRequestManager *_sharedManager = nil;
 #pragma mark - Parsers
 
 - (id)parseJSONData:(NSData *)loadedData {
-	return [loadedData objectFromJSONData];
+	return [NSJSONSerialization
+            JSONObjectWithData:loadedData
+            options:0
+            error:nil];
 }
 
 - (id)parseImageData:(NSData *)loadedData {

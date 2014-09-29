@@ -13,6 +13,9 @@
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
+NSString * const HPImageOperationCacheMetaOrientationKey = @"HPOrientation";
+
+
 
 @interface HPImageOperation (PrivateMethods)
 - (void)sendProcessedImageToBlocks:(id)image;
@@ -100,13 +103,19 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 }
                 
                 if (storageImage != NULL) {
-                    if (screenScaleRatio > 1.0) {
-                        _sourceImage = [[UIImage alloc] initWithCGImage:storageImage 
-                                                                  scale:screenScaleRatio 
-                                                            orientation:UIImageOrientationUp];
-                    } else {
-                        _sourceImage = [[UIImage alloc] initWithCGImage:storageImage];
+                    UIImageOrientation orientation = UIImageOrientationUp;
+                    
+                    if (storedItem.metaData != nil) {
+                        NSNumber *orientationData = [storedItem.metaData objectForKey:HPImageOperationCacheMetaOrientationKey];
+                        
+                        if (orientationData != nil) {
+                            orientation = [orientationData integerValue];
+                        }
                     }
+                    
+                    _sourceImage = [[UIImage alloc] initWithCGImage:storageImage
+                                                              scale:screenScaleRatio 
+                                                        orientation:orientation];
                     
                     CFRelease(storageImage);
                 }
@@ -131,13 +140,19 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 if (cacheImage != NULL) {
                     alreadyCached = YES;
                     
-                    if (screenScaleRatio > 1.0) {
-                        finalImage = [[UIImage alloc] initWithCGImage:cacheImage 
-                                                                scale:screenScaleRatio 
-                                                          orientation:UIImageOrientationUp];
-                    } else {
-                        finalImage = [[UIImage alloc] initWithCGImage:cacheImage];
+                    UIImageOrientation orientation = UIImageOrientationUp;
+                    
+                    if (cachedItem.metaData != nil) {
+                        NSNumber *orientationData = [cachedItem.metaData objectForKey:HPImageOperationCacheMetaOrientationKey];
+                        
+                        if (orientationData != nil) {
+                            orientation = [orientationData integerValue];
+                        }
                     }
+                    
+                    finalImage = [[UIImage alloc] initWithCGImage:cacheImage
+                                                            scale:screenScaleRatio
+                                                      orientation:orientation];
                     
                     CFRelease(cacheImage);
                 }
@@ -293,13 +308,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 }
             } else {
                 if (![self isCancelled]) {
-                    if (screenScaleRatio > 1.0) {
-                        finalImage = [[UIImage alloc] initWithCGImage:[_sourceImage CGImage] 
-                                                                scale:screenScaleRatio 
-                                                          orientation:UIImageOrientationUp];
-                    } else {
-                        finalImage = [[UIImage alloc] initWithCGImage:[_sourceImage CGImage]];
-                    }
+                    finalImage = [[UIImage alloc] initWithCGImage:[_sourceImage CGImage]
+                                                            scale:screenScaleRatio
+                                                      orientation:_sourceImage.imageOrientation];
                 }
             }
         }

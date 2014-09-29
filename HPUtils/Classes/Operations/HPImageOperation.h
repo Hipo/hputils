@@ -18,6 +18,9 @@ typedef enum {
 } HPImageOperationOutputFormat;
 
 
+extern NSString * const HPImageOperationCacheMetaOrientationKey;
+
+
 /** An image operation that gets queued and run by [HPRequestManager](HPRequestManager)
  
  This is an NSOperation subclass that's capable of resizing a given image file 

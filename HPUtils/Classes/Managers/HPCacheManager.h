@@ -18,6 +18,7 @@
 	NSDate *_timeStamp;
 	NSString *_MIMEType;
 	NSString *_cachePath;
+    NSDictionary *_metaData;
 }
 
 /** NSData instance with the contents of the cache
@@ -36,6 +37,10 @@
  */
 @property (nonatomic, retain, readonly) NSString *cachePath;
 
+/** Additional meta data for the cache object
+ */
+@property (nonatomic, readonly, retain) NSDictionary *metaData;
+
 /** Generates a cache item from an NSDictionary
  
  @param pickle NDictionary that contains cache parameters
@@ -50,10 +55,17 @@
  @param path File system path for the cache file
  @param type MIME type for the cached file
  @param stamp Timestamp of storage
+ @param metaData Additional meta data
  
  @returns An autoreleased HPCacheItem instance
  */
-+ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data 
++ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data
+                                   path:(NSString *)path
+                               MIMEType:(NSString *)type
+                                  stamp:(NSDate *)stamp
+                               metaData:(NSDictionary *)metaData;
+
++ (HPCacheItem *)cacheItemWithCacheData:(NSData *)data
                                    path:(NSString *)path 
                                MIMEType:(NSString *)type 
                                   stamp:(NSDate *)stamp;
@@ -62,7 +74,8 @@
 - (id)initWithCacheData:(NSData *)data 
                    path:(NSString *)path 
                MIMEType:(NSString *)type 
-                  stamp:(NSDate *)stamp;
+                  stamp:(NSDate *)stamp
+               metaData:(NSDictionary *)metaData;
 
 /** Generates an NSDictionary object with cache item parameters
  
@@ -112,8 +125,14 @@
  @param storageData NSData to be stored
  @param storageKey Storage key for identification
  @param MIMEType MIME type of the stored file
+ @param metaData Additional meta data
  */
-- (void)storeData:(NSData *)storageData 
+- (void)storeData:(NSData *)storageData
+    forStorageKey:(NSString *)storageKey
+     withMIMEType:(NSString *)MIMEType
+         metaData:(NSDictionary *)metaData;
+
+- (void)storeData:(NSData *)storageData
     forStorageKey:(NSString *)storageKey 
      withMIMEType:(NSString *)MIMEType;
 
@@ -138,8 +157,14 @@
  @param cacheData NSData to be cached
  @param cacheKey Cache key for identification
  @param MIMEType MIME type of the cached file
+ @param metaData Additional meta data
  */
-- (void)cacheData:(NSData *)cacheData 
+- (void)cacheData:(NSData *)cacheData
+      forCacheKey:(NSString *)cacheKey
+     withMIMEType:(NSString *)MIMEType
+         metaData:(NSDictionary *)metaData;
+
+- (void)cacheData:(NSData *)cacheData
       forCacheKey:(NSString *)cacheKey 
      withMIMEType:(NSString *)MIMEType;
 
@@ -164,8 +189,14 @@
  @param cacheData NSData to be cached
  @param url URL for identification
  @param MIMEType MIME type of the cached file
+ @param metaData Additional meta data
  */
-- (void)cacheData:(NSData *)cacheData 
+- (void)cacheData:(NSData *)cacheData
+           forURL:(NSURL *)url
+     withMIMEType:(NSString *)MIMEType
+         metaData:(NSDictionary *)metaData;
+
+- (void)cacheData:(NSData *)cacheData
            forURL:(NSURL *)url 
      withMIMEType:(NSString *)MIMEType;
 

@@ -42,5 +42,3 @@
 #import "NSData+HPBase64Additions.h"
 
 #import "HPKeychainItem.h"
-
-#import "JSONKit.h"
