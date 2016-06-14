@@ -1,3 +1,7 @@
+# This project is deprecated and is only kept here for reference purposes. Our more modern networking and locations libraries replaced the functionality contained within this single framework: HIPNetworking, HIPLocationManager, HIPSocialAuth
+
+***
+
 HPUtils - Hippo Foundry's iOS Utility Classes
 =============================================
 
